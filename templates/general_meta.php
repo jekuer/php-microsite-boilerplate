@@ -50,6 +50,7 @@ foreach ($language['available'] as $lang) {
 <!-- Favicons -->
 <!-- Mind to also adjust site.webmanifest and browserconfig.xml ! -->
 <!-- Generate your favicon set via https://realfavicongenerator.net/ -->
+<!-- Mind to not only exchange the favicons in /assets/favicons, but also the favicon.ico at root level! -->
 <link rel="apple-touch-icon" sizes="57x57" href="<?php echo rtrim($the_page_url, '/') . '/'; ?>assets/favicons/apple-touch-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="<?php echo rtrim($the_page_url, '/') . '/'; ?>assets/favicons/apple-touch-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="<?php echo rtrim($the_page_url, '/') . '/'; ?>assets/favicons/apple-touch-icon-72x72.png">

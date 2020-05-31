@@ -46,7 +46,6 @@ Demo: [https://phpmicrosite.jenskuerschner.de/](https://phpmicrosite.jenskuersch
     * If you do not run it on Apache, check the index.php for the security headers setup and make sure every request (except for files) is send to the index.php. 
     * Adjust the value within config.php and also mind files, which are mentioned in the comments there. 
     * Check /templates/general_meta.php and create the respective favicons. 
-    * Replace the YOURDOMAIN.com at the style.css with yours.
     * Define your pages at the routing.php. (Mind legal notice and privacy policy to stay GDPR compliant!) 
     * Create those pages (as specified before) as single php files within /pages. 
     * Create respective files within /controller if necessary in your case. 

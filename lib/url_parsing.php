@@ -10,10 +10,13 @@ function parse_the_url($url) {
   $the_url_path['call_parts'] = array();
   $the_url_path['query_vars'] = array();
   $the_request_path = explode('?', $url);
-  $the_url_path['base'] = rtrim(dirname($_SERVER['SCRIPT_NAME']), '\/');
+  $the_url_path['base'] = '';
+  if (isset($_SERVER['SCRIPT_NAME'])) {
+    $the_url_path['base'] = rtrim(dirname($_SERVER['SCRIPT_NAME']), '\/');
+  }
   $the_url_path['call_utf8'] = substr(urldecode($the_request_path[0]), strlen($the_url_path['base']) + 1);
   $the_url_path['call'] = utf8_decode($the_url_path['call_utf8']);
-  if ($the_url_path['call'] == basename($_SERVER['PHP_SELF'])) {
+  if (!isset($_SERVER['PHP_SELF']) or $the_url_path['call'] == basename($_SERVER['PHP_SELF'])) {
     $the_url_path['call'] = '';
   }
   $the_url_path['call_parts'] = explode('/', $the_url_path['call']);
@@ -51,9 +54,9 @@ foreach ($url_parts_all['query_vars'] as $key => $value) {
 $url_parts_all_prev = array();
 $url_parts_prev = array();
 if (isset($_SERVER['HTTP_REFERER'])) {
-  $prev_url_to_parse = $_SERVER['HTTP_REFERER'];
+  $prev_url_to_parse = filter_var($_SERVER['HTTP_REFERER'], FILTER_SANITIZE_URL);
   $prev_url_to_parse_arr = parse_url($prev_url_to_parse);
-  if (isset($prev_url_to_parse_arr['host'])) {
+  if (isset($prev_url_to_parse_arr['host']) and isset($_SERVER['HTTP_HOST'])) {
     if ($_SERVER['HTTP_HOST'] == $prev_url_to_parse_arr['host'] and isset($prev_url_to_parse_arr['path'])) {
       $prev_url_to_parse = $prev_url_to_parse_arr['path'];
       $url_parts_all_prev = parse_the_url($prev_url_to_parse);

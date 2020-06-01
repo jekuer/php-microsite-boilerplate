@@ -26,7 +26,7 @@
     <!-- General Meta -->
     <base href="<?php echo rtrim($the_page_url, '/') . '/'; ?>">
     <?php if (isset($pages[$language['active']][$the_page->id]['amp']) and $pages[$language['active']][$the_page->id]['amp'] = true) echo '<link rel="amphtml" href="'. $amp_url .'">'; ?>
-    <?php include_once ('./templates/general_meta.php'); ?>
+    <?php include_once './templates/general_meta.php'; ?>
 
     <!-- CSS -->
     <!-- Add more files, if needed, but try to consolidate it into one for better performance -->

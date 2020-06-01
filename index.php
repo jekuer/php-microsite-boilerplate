@@ -14,21 +14,25 @@
 
 // Load default configuration.
 $language = array();
-require_once ('./config.php');
+require_once './config.php';
 
 
 // Load additional functions and classes.
 // Include more, if needed.
-require_once ('./lib/helper_functions.php');
-if ($directus_url != '') require_once ('./lib/directus_connect.php');
-require_once ('./class.page.php');
+require_once './lib/helper_functions.php';
+if ($directus_url != '') require_once './lib/directus_connect.php';
+require_once './class.page.php';
 
 
 // URL parsing.
 $amp = false;
 $the_page_url_full = $the_page_url; // holds the base url plus settings path elements (amp, language)
-$current_url = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL); // holds the full url incl. slug
-require_once ('./lib/url_parsing.php');
+if (isset($_SERVER['REQUEST_URI'])) {
+  $current_url = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL); // holds the full url incl. slug
+} else {
+  $current_url = $the_page_url;
+}
+require_once './lib/url_parsing.php';
 
 
 /*
@@ -57,7 +61,7 @@ header_remove("ETag");
 
 
 // Routing.
-require_once ('./routing.php');
+require_once './routing.php';
 if (!isset($url_parts[0]) or $url_parts[0] == '') $url_parts[0] = 'main';
 $page_id = $url_parts[0];
 
@@ -65,7 +69,7 @@ $page_id = $url_parts[0];
 // Check for deployment hook call (GitHub).
 if ($page_id == 'deploy') {
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    include_once ('./deploy.php'); // Adjust to a file of yours, where you run a Git pull command and maybe more. Mind to do some checksum test there and do NOT include this file within the repo (or use secured variables). A sample file is included in this repo.
+    include_once './deploy.php'; // Adjust to a file of yours, where you run a Git pull command and maybe more. Mind to do some checksum test there and do NOT include this file within the repo (or use secured variables). A sample file is included in this repo.
     die();
   } else {
     http_response_code(400);
@@ -81,15 +85,15 @@ $the_page = new Page($page_id, $pages[$language['active']]);
 // Render page (compressed and with stripped HTML comments).
 ob_start("ob_html_compress");
 if ($amp) {
-  if ($the_page->controller != '') include_once ('./controller/'. $the_page->controller .'.php');
-  include_once ('./templates/header_amp.php');
-  include_once ('./pages/'. $the_page->view .'.php');
-  include_once ('./templates/footer_amp.php');
+  if ($the_page->controller != '') include_once './controller/'. $the_page->controller .'.php';
+  include_once './templates/header_amp.php';
+  include_once './pages/'. $the_page->view .'.php';
+  include_once './templates/footer_amp.php';
 } else {
-  if ($the_page->controller != '') include_once ('./controller/'. $the_page->controller .'.php');
-  include_once ('./templates/header.php');
-  include_once ('./pages/'. $the_page->view .'.php');
-  include_once ('./templates/footer.php');
+  if ($the_page->controller != '') include_once './controller/'. $the_page->controller .'.php';
+  include_once './templates/header.php';
+  include_once './pages/'. $the_page->view .'.php';
+  include_once './templates/footer.php';
 }
 ob_end_flush();
 

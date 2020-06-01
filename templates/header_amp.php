@@ -13,7 +13,7 @@
     <?php } ?>
 
     <!-- General Meta -->
-    <?php include_once ('./templates/general_meta.php'); ?>
+    <?php include_once './templates/general_meta.php'; ?>
 
     <!-- CSS -->
     <!-- Needs to be inline at AMP pages! -->
@@ -22,8 +22,8 @@
       // Mind to not have any relative URLs in your stylesheet. If so, you can use the str_replace here. Otherwise, just include it.
       $stylesheetForAMP = file_get_contents('./assets/css/style.min.css');
       echo str_replace('../fonts/',rtrim($the_page_url, '/') . '/assets/fonts/',$stylesheetForAMP);
-      // include_once ('./assets/css/style.min.css');
-      include_once ('./assets/css/style_amp.min.css');
+      // include_once './assets/css/style.min.css';
+      include_once './assets/css/style_amp.min.css';
       ?>
     </style>
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
@@ -33,7 +33,7 @@
 
     <!-- Cookie Consent -->
     <?php
-    if ($amp_cookie_consent) include_once ('./templates/cookie_consent_amp.php');
+    if ($amp_cookie_consent) include_once './templates/cookie_consent_amp.php';
     ?>
 
     <!-- Google Tag Manager for AMP -->

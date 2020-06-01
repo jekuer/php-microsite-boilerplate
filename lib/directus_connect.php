@@ -13,7 +13,6 @@ function authDirectus() {
       'Content-Type: application/json'
     );
     $api_curl_params = array('email' => $GLOBALS['directus_user'], 'password' => $GLOBALS['directus_password'], 'mode' => 'cookie');
-    $return_json = '';
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($api_curl_params));
     curl_setopt($curl, CURLOPT_POST, true);

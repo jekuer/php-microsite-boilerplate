@@ -84,7 +84,7 @@
 
   // See: https://brandonrozek.com/2015/11/limiting-cache-service-workers-revisited/ .
   self.addEventListener('message', function (event) {
-    if (event.data.command == 'trimCaches') {
+    if (event.data.command === 'trimCaches') {
       trimCache(version + pagesCacheName, 40);
       trimCache(version + assetsCacheName, 40);
     }
@@ -106,7 +106,7 @@
     // For HTML requests, try the network first, fall back to the cache, finally the offline page.
     if (request.headers.get('Accept').indexOf('text/html') !== -1) {
       // Fix for Chrome bug: https://code.google.com/p/chromium/issues/detail?id=573937 .
-      if (request.mode != 'navigate') {
+      if (request.mode !== 'navigate') {
         request = new Request(request.url, {
           method: 'GET',
           headers: request.headers,
@@ -139,7 +139,7 @@
     // For non-HTML requests, look in the cache first, fall back to the network - but only for non-google and non-cookiehub resources (add more exceptions, if necessary).
     var requesturl = request.url;
     var domainstring = requesturl.replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0];
-    if (domainstring != 'google.com' && domainstring != 'gstatic.com' && domainstring != 'google-analytics.com' && domainstring != 'googletagmanager.com' && domainstring != 'youtube.com' && domainstring != 'cookiehub.net') {
+    if (domainstring !== 'google.com' && domainstring !== 'gstatic.com' && domainstring !== 'google-analytics.com' && domainstring !== 'googletagmanager.com' && domainstring !== 'youtube.com' && domainstring !== 'cookiehub.net') {
       event.respondWith(
         caches.match(request)
         .then(function (response) {
@@ -148,7 +148,7 @@
             .then(function (response) {
               // NETWORK.
               // If the request is not for a page, stash a copy of it in the assets cache.
-              if (request.headers.get('Accept').indexOf('text/html') == -1) {
+              if (request.headers.get('Accept').indexOf('text/html') === -1) {
                 var copy = response.clone();
                 var cacheName = version + assetsCacheName;
                 stashInCache(cacheName, request, copy);

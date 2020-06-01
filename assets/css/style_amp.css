@@ -21,7 +21,7 @@
  * Note: Mind to minimize this file.
  * 
  */
- 
+
 
 /**
  * 1.0 - Consent
@@ -85,6 +85,7 @@ amp-consent {
   text-align: center;
   text-transform: uppercase;
 }
+
 .ampstart-btn:hover {
   background-color: #e9b75b;
 }
@@ -101,6 +102,7 @@ amp-consent {
   text-align: center;
   text-transform: lowercase;
 }
+
 .ampstart-btn-small:hover {
   background-color: #e9b75b;
   color: #353535;

@@ -39,6 +39,7 @@ Demo: <https://phpmicrosite.jenskuerschner.de/>
 ## Setup
 
 1.  Download the respective branch/tag and upload it to your website's folder - or clone the repo as you like.
+
 2.  Adjust it to your project: 
     -   Check the .htaccess file, if you run it on Apache. Mind the security headers and places, where a domain/path is specified (look for YOURDOMAIN.com). 
     -   If you do not run it on Apache, check the index.php for the security headers setup and make sure every request (except for files) is send to the index.php. 
@@ -49,6 +50,7 @@ Demo: <https://phpmicrosite.jenskuerschner.de/>
     -   Create respective files within /controller if necessary in your case. 
     -   Build the website with those pages, the style.css, and the all.js. Mind to minimize those files or adjust the way they get included at /templates/header.php and /templates/footer.php. 
     -   Adjust the footer at /templates/footer.php and /templates/footer_amp.php to your needs. 
+
 3.  That's basically it.
 
 You can make more changes and use more features, like:

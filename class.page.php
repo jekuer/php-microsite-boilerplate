@@ -19,7 +19,7 @@ class Page {
   public $robots = 'index,follow';
   public $amp = false;
   
-  public function __construct($page_id, $pages, $page_defaults, $directus_url = '', $directus_user = '', $directus_password = '') {
+  public function __construct($page_id, $pages, $page_defaults) {
 
     $this->id = $page_id;
 
@@ -78,8 +78,8 @@ class Page {
     if (isset($curr_page['amp']) and $curr_page['amp'] == true) {
       $this->amp = true;
     }
-    if (isset($curr_page['directus_collection']) and $curr_page['directus_collection'] != '' and isset($curr_page['directus_id']) and $curr_page['directus_id'] != '' and $directus_url != '') {
-      $this->directus = json_decode(getDirectusContent($directus_url, $curr_page['directus_collection'], $curr_page['directus_id'], '', $directus_user, $directus_password), true);
+    if (isset($curr_page['directus_collection']) and $curr_page['directus_collection'] != '' and isset($curr_page['directus_id']) and $curr_page['directus_id'] != '') {
+      $this->directus = json_decode(getDirectusContent($curr_page['directus_collection'], $curr_page['directus_id']), true);
     }
 
   }

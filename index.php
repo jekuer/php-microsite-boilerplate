@@ -63,7 +63,7 @@ if ($page_id == $the_deployment_slug) {
 
 
 // In all other cases, prepare page.
-$the_page = new Page($page_id, $pages[$language['active']], $the_page_meta_defaults, $directus_url, $directus_user, $directus_password);
+$the_page = new Page($page_id, $pages[$language['active']], $the_page_meta_defaults);
 if ($the_page->amp == false) $amp = false;
 
 

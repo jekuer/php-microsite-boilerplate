@@ -6,7 +6,8 @@
 
 // Authenticate.
 // Only if credentials are set. Not necessary, if API access to the respective information is set to public at the Directus instance.
-function authDirectus($directus_url, $directus_user, $directus_password) {
+function authDirectus($directus_url) {
+  global $directus_user, $directus_password;
   $api_curl_url = $directus_url . 'auth/authenticate';
   $api_curl_headers = array(
     'Accept: application/json',
@@ -36,7 +37,8 @@ function authDirectus($directus_url, $directus_user, $directus_password) {
 }
 
 // Read/Get only.
-function getDirectusContent($directus_url, $collection, $item = '', $file = '', $directus_user = '', $directus_password = '') {
+function getDirectusContent($collection, $item = '', $file = '') {
+  global $directus_url, $directus_user, $directus_password;
   $directus_url = rtrim($directus_url, '/') . '/';
   $directus_url = filter_var($directus_url, FILTER_SANITIZE_URL);
 

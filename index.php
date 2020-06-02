@@ -26,11 +26,12 @@ require_once './class.page.php';
 
 // URL parsing.
 $amp = false;
-$the_page_url_full = $the_page_url; // holds the base url plus settings path elements (amp, language)
+$the_page_url = filter_var($the_page_url, FILTER_SANITIZE_URL); // the base URL, cleaned up.
+$the_page_url_full = $the_page_url; // holds the base url plus settings path elements (amp, language).
 if (isset($_SERVER['REQUEST_URI'])) {
-  $current_url = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL); // holds the full url incl. slug
+  $current_url = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL); // holds the full url incl. slug.
 } else {
-  $current_url = $the_page_url;
+  $current_url = $the_page_url_full;
 }
 require_once './lib/url_parsing.php';
 

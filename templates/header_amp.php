@@ -21,7 +21,7 @@
       <?php
       // Mind to not have any relative URLs in your stylesheet. If so, you can use the str_replace here. Otherwise, just include it.
       $stylesheetForAMP = file_get_contents('./assets/css/style.min.css');
-      echo str_replace('../fonts/',rtrim($the_page_url, '/') . '/assets/fonts/',$stylesheetForAMP);
+      echo str_replace('../fonts/', $the_page_url . 'assets/fonts/',$stylesheetForAMP);
       // include_once './assets/css/style.min.css';
       include_once './assets/css/style_amp.min.css';
       ?>

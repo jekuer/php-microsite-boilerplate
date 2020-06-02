@@ -41,13 +41,14 @@ $the_theme_color = '#008c48'; // Mind manifest.json too.
 
 // Default page meta settings.
 // Can be partly overridden per page at the routing.
-$the_page_title = 'Put your default page title here.';
-$the_page_description = 'Put your default meta description here.';
-$the_meta_keywords = 'Keyword1, Keyword2, Keyword3, Up to 10';
-$the_author = 'YOUR NAME';
-$the_publisher = 'YOUR NAME';
-$the_twitter_profile = '';
-$the_robots_rules = 'index,follow';
+$the_page_meta_defaults = array();
+$the_page_meta_defaults['title'] = 'Put your default page title here.';
+$the_page_meta_defaults['description'] = 'Put your default meta description here.';
+$the_page_meta_defaults['keywords'] = 'Keyword1, Keyword2, Keyword3, Up to 10';
+$the_page_meta_defaults['author'] = 'YOUR NAME';
+$the_page_meta_defaults['publisher'] = 'YOUR NAME';
+$the_page_meta_defaults['twitter'] = ''; // your twitter name (without any @)
+$the_page_meta_defaults['robots'] = 'index,follow';
 
 
 

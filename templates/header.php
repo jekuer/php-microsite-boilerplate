@@ -6,7 +6,7 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-          navigator.serviceWorker.register(<?php echo "'".rtrim($the_page_url, '/') ."/serviceworker-cache.min.js'"; ?>).then(function(registration) {
+          navigator.serviceWorker.register(<?php echo "'". $the_page_url ."serviceworker-cache.min.js'"; ?>).then(function(registration) {
             console.log('ServiceWorker registration successful with scope: ', registration.scope);
           }, function(err) {
             console.log('ServiceWorker registration failed: ', err);
@@ -24,7 +24,7 @@
     ?>
 
     <!-- General Meta -->
-    <base href="<?php echo rtrim($the_page_url, '/') . '/'; ?>">
+    <base href="<?php echo $the_page_url; ?>">
     <?php if (isset($pages[$language['active']][$the_page->id]['amp']) and $pages[$language['active']][$the_page->id]['amp'] = true) echo '<link rel="amphtml" href="'. $amp_url .'">'; ?>
     <?php include_once './templates/general_meta.php'; ?>
 

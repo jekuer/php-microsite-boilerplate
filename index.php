@@ -27,9 +27,11 @@ require_once './class.page.php';
 // URL parsing.
 $amp = false;
 $the_page_url = filter_var($the_page_url, FILTER_SANITIZE_URL); // the base URL, cleaned up.
+$the_page_url = rtrim($the_page_url, '/') . '/';
 $the_page_url_full = $the_page_url; // holds the base url plus settings path elements (amp, language).
 if (isset($_SERVER['REQUEST_URI'])) {
   $current_url = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL); // holds the full url incl. slug.
+  $current_url = rtrim($current_url, '/') . '/';
 } else {
   $current_url = $the_page_url_full;
 }
@@ -61,7 +63,8 @@ if ($page_id == $the_deployment_slug) {
 
 
 // In all other cases, prepare page.
-$the_page = new Page($page_id, $pages[$language['active']]);
+$the_page = new Page($page_id, $pages[$language['active']], $the_page_meta_defaults, $directus_url, $directus_user, $directus_password);
+if ($the_page->amp == false) $amp = false;
 
 
 // Render page (compressed and with stripped HTML comments).

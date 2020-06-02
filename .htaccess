@@ -419,13 +419,33 @@ RedirectMatch 404 ^(.*\/)?\.git+
 ## MAIN REWRITE ##
 <IfModule mod_rewrite.c>
 	RewriteEngine On
-	RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-	RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+	RewriteBase /
+
+	# Force HTTPS.
 	RewriteCond %{HTTPS} !=on
-	RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-  RewriteRule ^index\.php$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.php [L]
+	RewriteRule (.*) https://%{HTTP_HOST}/$1 [R=301,L]
+
+	# Force www.
+	#RewriteCond %{HTTP_HOST} !^www\. [NC]
+	#RewriteRule (.*) https://www.%{HTTP_HOST}/$1 [L,R=301,NC]
+
+	# Force non-www (alternative).
+	RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+	RewriteRule ^(.*)$ https://%1/$1 [L,R=301,NC]
+
+	# Redirect direct access attempts to php files.
+	RewriteCond %{THE_REQUEST} \.php[?/] [NC]
+	RewriteRule !^index\.php$ - [F,L,NC]
+
+	# Force a trailing slash and route through index.php.
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_URI} !(.*)/$ [NC]
+	RewriteRule ^(.*)$ $1/ [L,R=301,NC]
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
+
 </IfModule>
 ## END MAIN REWRITE ##

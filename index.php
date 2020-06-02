@@ -5,7 +5,7 @@
  * PHP Microsite Boilerplate
  * +++++++++++++++++++++++++
  * 
- * Version: 1.0.0
+ * Version: 1.0.1
  * Creator: Jens Kuerschner (https://jenskuerschner.de)
  * Project: https://github.com/jekuer/php-microsite-boilerplate
  * License: GNU General Public License v3.0	(gpl-3.0)
@@ -67,10 +67,10 @@ if (!isset($url_parts[0]) or $url_parts[0] == '') $url_parts[0] = 'main';
 $page_id = $url_parts[0];
 
 
-// Check for deployment hook call (GitHub).
-if ($page_id == 'deploy') {
+// Check for deployment hook call.
+if ($page_id == $the_deployment_slug) {
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    include_once './deploy.php'; // Adjust to a file of yours, where you run a Git pull command and maybe more. Mind to do some checksum test there and do NOT include this file within the repo (or use secured variables). A sample file is included in this repo.
+    include_once $the_deployment_script;
     die();
   } else {
     http_response_code(400);

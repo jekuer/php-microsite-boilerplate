@@ -107,17 +107,20 @@ if (isset($url_parts[0])) {
 
 
 // Adjust URL variables for AMP and language adjustments.
-if ($amp) $the_page_url_full = rtrim($the_page_url_full, '/') . '/amp';
-$amp_url = rtrim($the_page_url, '/') . '/amp';
+if ($amp) $the_page_url_full = $the_page_url_full . 'amp/';
+$amp_url = $the_page_url . 'amp/';
 if ($language['active'] != $language['default']) {
-  $the_page_url_full = rtrim($the_page_url_full, '/') . '/' . $language['active'];
-  $amp_url .= '/' . $language['active'];
+  $the_page_url_full .= $language['active'] . '/';
+  $amp_url .= $language['active'] . '/';
 }
+$the_page_url_full = filter_var($the_page_url_full, FILTER_SANITIZE_URL);
 $current_url = $the_page_url_full; // update from actual URL to the current clean one
 if (isset($url_parts[0])) {
-  $current_url = rtrim($current_url, '/') . '/' . $url_parts[0];
-  $amp_url .= '/' . $url_parts[0];
+  $current_url .= $url_parts[0] . '/';
+  $amp_url .= $url_parts[0] . '/';
 }
+$amp_url = filter_var($amp_url, FILTER_SANITIZE_URL);
+$current_url = filter_var($current_url, FILTER_SANITIZE_URL);
 
 
 ?>

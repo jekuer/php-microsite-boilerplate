@@ -1,20 +1,18 @@
 
       <footer>
         <p>
-          <?php 
-          $slug = '/' . $the_page->id;
+          <?php
+          if ($the_page->id != 'main') $slug = $the_page->id . '/';
           if ($language['active'] == 'de') {
             if (isset($pages['en'][$the_page->id])) {
-              if ($slug == '/main') $slug = '/';
-              echo '<a class="footer_link" href="' . $slug . '">English Version</a>|';
+              echo '<a class="footer_link" href="/' . $slug . '">English Version</a>|';
             }
-            echo '<a class="footer_link" href="/de/legal-notice">Impressum</a>|<a class="footer_link" href="/de/privacy-policy">Datenschutz</a>';
+            echo '<a class="footer_link" href="/de/legal-notice/">Impressum</a>|<a class="footer_link" href="/de/privacy-policy/">Datenschutz</a>';
           } else {
             if (isset($pages['de'][$the_page->id])) {
-              if ($slug == '/main') $slug = '';
-              echo '<a class="footer_link" href="/de' . $slug . '">Deutsche Version</a>|';
+              echo '<a class="footer_link" href="/de/' . $slug . '">Deutsche Version</a>|';
             }
-            echo '<a class="footer_link" href="/legal-notice">Legal Notice</a>|<a class="footer_link" href="/privacy-policy">Privacy Policy</a>'; 
+            echo '<a class="footer_link" href="/legal-notice/">Legal Notice</a>|<a class="footer_link" href="/privacy-policy/">Privacy Policy</a>'; 
           }
           ?>
         </p>

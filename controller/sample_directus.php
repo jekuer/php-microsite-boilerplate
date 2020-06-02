@@ -6,7 +6,7 @@ $directus_page_content = '';
 $directus_page_content = $the_page->directus['data']['content'];
 
 if ($directus_page_content != '') {
-  $directus_page_content = '<p>&nbsp;</p><p>Look, we got some content!</p><p>&nbsp;</p>' . $directus_page_content
+  $directus_page_content = '<p>&nbsp;</p><p>Look, we got some content!</p><p>&nbsp;</p>' . $directus_page_content;
 }
 
 ?>

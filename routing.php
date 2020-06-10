@@ -34,7 +34,7 @@ $id = 'legal-notice';
 $pages['en'][$id]['alias'] = '';
 $pages['en'][$id]['view'] = 'legal-notice';
 $pages['en'][$id]['controller'] = '';
-$pages['en'][$id]['title'] = 'Legal Notice | ' . $the_page_title;
+$pages['en'][$id]['title'] = 'Legal Notice | ' . $the_page_meta_defaults['title'];
 $pages['en'][$id]['description'] = 'Legal information about this website.';
 $pages['en'][$id]['keywords'] = '';
 $pages['en'][$id]['robots'] = 'noindex,nofollow';
@@ -53,27 +53,27 @@ $pages['en'][$id]['amp'] = true;
 
 $id = 'offline'; // required for PWA
 $pages['en'][$id]['view'] = 'offline_en';
-$pages['en'][$id]['title'] = 'Offline | ' . $the_page_title;
+$pages['en'][$id]['title'] = 'Offline | ' . $the_page_meta_defaults['title'];
 $pages['en'][$id]['description'] = 'You are offline. Please check your internet conncetion and try again.';
 $pages['en'][$id]['robots'] = 'noindex,nofollow';
 
 $id = 'error'; // required for 404
 $pages['en'][$id]['view'] = 'error_en';
-$pages['en'][$id]['title'] = 'Error | ' . $the_page_title;
+$pages['en'][$id]['title'] = 'Error | ' . $the_page_meta_defaults['title'];
 $pages['en'][$id]['description'] = 'It seems that the requested page is not or no longer available.';
 $pages['en'][$id]['robots'] = 'noindex,nofollow';
 $pages['en'][$id]['amp'] = true;
 
 $id = 'legal-notice';
 $pages['en'][$id]['view'] = 'legal-notice_en';
-$pages['en'][$id]['title'] = 'Legal Notice | ' . $the_page_title;
+$pages['en'][$id]['title'] = 'Legal Notice | ' . $the_page_meta_defaults['title'];
 $pages['en'][$id]['description'] = 'Legal information about this website.';
 $pages['en'][$id]['robots'] = 'noindex,nofollow';
 $pages['en'][$id]['amp'] = true;
 
 $id = 'privacy-policy';
 $pages['en'][$id]['view'] = 'privacy-policy_en';
-$pages['en'][$id]['title'] = 'Privacy Policy | ' . $the_page_title;
+$pages['en'][$id]['title'] = 'Privacy Policy | ' . $the_page_meta_defaults['title'];
 $pages['en'][$id]['description'] = 'Privacy policy information about this website.';
 $pages['en'][$id]['robots'] = 'noindex,nofollow';
 $pages['en'][$id]['amp'] = true;
@@ -93,27 +93,27 @@ $pages['de'][$id]['amp'] = true;
 
 $id = 'offline'; // usually not used, since there can be only one offline fallback
 $pages['de'][$id]['view'] = 'offline_de';
-$pages['de'][$id]['title'] = 'Offline | ' . $the_page_title;
+$pages['de'][$id]['title'] = 'Offline | ' . $the_page_meta_defaults['title'];
 $pages['de'][$id]['description'] = 'Du bist leider offline. Prüfe deine Internetverbindung und versuche es danach erneut.';
 $pages['de'][$id]['robots'] = 'noindex,nofollow';
 
 $id = 'error';
 $pages['de'][$id]['view'] = 'error_de';
-$pages['de'][$id]['title'] = 'Error | ' . $the_page_title;
+$pages['de'][$id]['title'] = 'Error | ' . $the_page_meta_defaults['title'];
 $pages['de'][$id]['description'] = 'Die gewünschte Seite gibt es wohl nicht (mehr).';
 $pages['de'][$id]['robots'] = 'noindex,nofollow';
 $pages['de'][$id]['amp'] = true;
 
 $id = 'legal-notice';
 $pages['de'][$id]['view'] = 'legal-notice_de';
-$pages['de'][$id]['title'] = 'Impressum | ' . $the_page_title;
+$pages['de'][$id]['title'] = 'Impressum | ' . $the_page_meta_defaults['title'];
 $pages['de'][$id]['description'] = 'Rechtliche Informationen zu dieser Webseite.';
 $pages['de'][$id]['robots'] = 'noindex,nofollow';
 $pages['de'][$id]['amp'] = true;
 
 $id = 'privacy-policy';
 $pages['de'][$id]['view'] = 'privacy-policy_de';
-$pages['de'][$id]['title'] = 'Datenschutz | ' . $the_page_title;
+$pages['de'][$id]['title'] = 'Datenschutz | ' . $the_page_meta_defaults['title'];
 $pages['de'][$id]['description'] = 'Datenschutzbestimmungen und -Informationen zu dieser Webseite.';
 $pages['de'][$id]['robots'] = 'noindex,nofollow';
 $pages['de'][$id]['amp'] = true;

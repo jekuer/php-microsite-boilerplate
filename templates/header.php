@@ -1,6 +1,7 @@
 <?php header("Content-Language: ". $language['active']); ?><!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="<?php echo $language['active']; ?>" xml:lang="<?php echo $language['active']; ?>">
   <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
     <!-- Service Worker Cache -->
     <script>

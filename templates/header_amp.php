@@ -1,6 +1,7 @@
 <?php header("Content-Language: ". $language['active']); ?><!doctype html>
 <html ⚡ lang="<?php echo $language['active']; ?>">
   <head>
+    <meta charset="utf-8">
 
     <!-- Load AMP -->
     <script async src="https://cdn.ampproject.org/v0.js"></script>

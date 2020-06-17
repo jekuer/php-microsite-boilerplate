@@ -64,7 +64,7 @@
     <div class="space25"></div>
 
     <h3>Lizenz</h3>
-    Der Quellcode unterliegt der <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener" class="dark_link">GPU 3.0 Lizenz</a>.
+    <p>Der Quellcode unterliegt der <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener" class="dark_link">GPU 3.0 Lizenz</a>.</p>
 
   </div>
 

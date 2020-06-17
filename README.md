@@ -1,5 +1,9 @@
 # PHP Microsite Boilerplate
 
+[![pagespeed-100](https://img.shields.io/badge/Lighthouse%20PageSpeed-100-success.svg)](https://developers.google.com/speed/pagespeed/insights/?url=https://phpmicrosite.jenskuerschner.de)
+[![amp-valid](https://img.shields.io/badge/AMP-valid-success.svg)](https://validator.ampproject.org/#url=https%3A%2F%2Fphpmicrosite.jenskuerschner.de%2Famp%2F)
+[![pwa-valid](https://img.shields.io/badge/PWA-valid-success.svg)](https://phpmicrosite.jenskuerschner.de/)
+[![w3c-css-valid](https://img.shields.io/badge/W3C%20CSS-valid-success.svg)](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fphpmicrosite.jenskuerschner.de%2F&profile=css3svg&usermedium=all)
 [![LICENSE](https://img.shields.io/badge/license-GPL%203.0-blue.svg)](https://github.com/jekuer/php-microsite-boilerplate/blob/master/LICENSE.txt)
 [![github-stars-image](https://img.shields.io/github/stars/jekuer/php-microsite-boilerplate.svg?label=github%20stars)](https://github.com/jekuer/php-microsite-boilerplate)
 
@@ -71,6 +75,7 @@ Anyone is welcome to contribute, but mind the [guidelines](.github/CONTRIBUTING.
 
 ## Changelog
 
+-   1.1.0: Added better multilanguage support (incl. language switcher).
 -   1.0.0: Initial release.
 
 ## License

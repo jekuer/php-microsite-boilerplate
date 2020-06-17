@@ -3,7 +3,7 @@
  * PHP Microsite Boilerplate
  * +++++++++++++++++++++++++
  * 
- * Version: 1.0.2
+ * Version: 1.1.0
  * Creator: Jens Kuerschner (https://jenskuerschner.de)
  * Project: https://github.com/jekuer/php-microsite-boilerplate
  * License: GNU General Public License v3.0	(gpl-3.0)
@@ -112,5 +112,9 @@ amp-consent {
 /**
  * 2.0 - Custom Elements
  */
+
+#lang_menu {
+  display: block;
+}
 
 /* Put more AMP specific styles here... */

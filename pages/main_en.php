@@ -59,12 +59,12 @@
 
     <h2>Let's build!</h2>
     <p>Got to the repository and get started!</p>
-    <a href="https://github.com/jekuer/php-microsite-boilerplate" rel="noopener"><span class="button">Go to GitHub &#8250;</span></a>
+    <p><a href="https://github.com/jekuer/php-microsite-boilerplate" rel="noopener"><span class="button">Go to GitHub &#8250;</span></a></p>
 
     <div class="space25"></div>
 
     <h3>License</h3>
-    The code is available under the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank" rel="noopener" class="dark_link">GPU 3.0 license</a>.
+    <p>The code is available under the <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank" rel="noopener" class="dark_link">GPU 3.0 license</a>.</p>
 
   </div>
 

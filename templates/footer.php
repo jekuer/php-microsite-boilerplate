@@ -1,20 +1,9 @@
 
       <footer>
-        <p>
-          <?php
-          if ($the_page->id != 'main') $slug = $the_page->id . '/';
-          if ($language['active'] == 'de') {
-            if (isset($pages['en'][$the_page->id])) {
-              echo '<a class="footer_link" href="/' . $slug . '">English Version</a>|';
-            }
-            echo '<a class="footer_link" href="/de/legal-notice/">Impressum</a>|<a class="footer_link" href="/de/privacy-policy/">Datenschutz</a>';
-          } else {
-            if (isset($pages['de'][$the_page->id])) {
-              echo '<a class="footer_link" href="/de/' . $slug . '">Deutsche Version</a>|';
-            }
-            echo '<a class="footer_link" href="/legal-notice/">Legal Notice</a>|<a class="footer_link" href="/privacy-policy/">Privacy Policy</a>'; 
-          }
-          ?>
+      <p>
+          |<a class="footer_link" href="<?php echo $the_page_url_full; ?>legal-notice/"><?php echo $pages[$language['active']]['legal-notice']['name']; ?></a>
+          |<a class="footer_link" href="<?php echo $the_page_url_full; ?>privacy-policy/"><?php echo $pages[$language['active']]['privacy-policy']['name']; ?></a>
+          |<?php echo create_language_switcher($the_page->id); ?>
         </p>
         <p class="small">Icons made by <a href="https://www.flaticon.com/authors/freepik" target="_blank" rel="noopener" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" target="_blank" rel="noopener" title="Flaticon">www.flaticon.com</a></p>
         <p>&copy; <?php echo date('Y'); ?></p>

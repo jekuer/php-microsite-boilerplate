@@ -14,7 +14,7 @@
 
 <!-- Multilanguage Meta -->
 <?php
-foreach ($language['available'] as $lang) {
+foreach ($language['available'] as $lang => $lang_name) {
   if (isset($pages[$lang][$the_page->id])) {
     $language_url = $the_page_url;
     if ($amp) $language_url .= 'amp/';

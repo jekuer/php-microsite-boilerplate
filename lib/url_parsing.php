@@ -88,7 +88,7 @@ if (isset($url_parts[0]) and $url_parts[0] == 'amp') {
 // Get language information and reset URL parts (current URL only).
 $language['active'] = $language['default'];
 if (isset($url_parts[0])) {
-  foreach ($language['available'] as $lang) {
+  foreach ($language['available'] as $lang => $lang_name) {
     if ($url_parts[0] == $lang) {
       $language['active'] = $lang;
       // reset URL parts.

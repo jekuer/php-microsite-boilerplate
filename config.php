@@ -11,7 +11,11 @@ $version_nr = '1.2.3';
 
 // Multilanguage.
 $language['default'] = 'en'; // Use a value from the array below.
-$language['available'] = array('en', 'de'); // Needs to be an array! See https://support.google.com/webmasters/answer/189077 for details about language codes.
+$language['available'] = array( // Needs to be an array! Key needs to be the language code, while value needs to be the name of the language as spelled in its own language. See https://support.google.com/webmasters/answer/189077 for details about language codes.
+  'en' => 'English', 
+  'de' => 'Deutsch',
+  'es' => 'Español'
+);
 
 // Deployment hook definition.
 // Adjust to a file of yours, where you run a Git pull command and maybe more. Mind to do some checksum test there and do NOT include this file within the repo (or use secured variables). A sample file is included in this repo.

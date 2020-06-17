@@ -7,7 +7,7 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-          navigator.serviceWorker.register(<?php echo "'". $the_page_url ."serviceworker-cache.min.js'"; ?>).then(function(registration) {
+          navigator.serviceWorker.register(<?php echo "'" . $the_page_url . "serviceworker-cache.min.js?v=" . $version_nr . "'"; ?>).then(function(registration) {
             console.log('ServiceWorker registration successful with scope: ', registration.scope);
           }, function(err) {
             console.log('ServiceWorker registration failed: ', err);

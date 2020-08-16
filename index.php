@@ -41,7 +41,7 @@ require_once './lib/url_parsing.php';
 // Set Security Headers.
 // Only enable this, if it is not possible on the server side (e.g. via htaccess on Apache).
 // For testing and more details, see https://securityheaders.com/ .
-// require_once './php_security_headers.php';
+require_once './php_security_headers.php';
 
 
 // Routing.

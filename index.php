@@ -44,6 +44,14 @@ require_once './lib/url_parsing.php';
 // require_once './php_security_headers.php';
 
 
+// Check for redirects
+require_once './redirects.php';
+if (isset($redirects[$language['active']][$url_parts[0]]['target']) and $redirects[$language['active']][$url_parts[0]]['target'] != '') {
+  header('Location: ' . $redirects[$language['active']][$url_parts[0]]['target'], true, 301);
+  die();
+}
+
+
 // Routing.
 require_once './routing.php';
 if (!isset($url_parts[0]) or $url_parts[0] == '') $url_parts[0] = 'main';

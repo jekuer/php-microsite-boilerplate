@@ -6,7 +6,6 @@
 
 // Current version of the website.
 // Will be used to control css and js caching.
-// Mind to also update the version number within the serviceworker-cache.js!
 $version_nr = '1.2.3';
 
 // Multilanguage.

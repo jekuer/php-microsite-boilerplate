@@ -70,6 +70,14 @@ if ($page_id == $the_deployment_slug) {
 }
 
 
+// Check for sitemap call.
+if ($page_id == 'sitemap.xml') {
+  header('Content-Type: application/xml');
+  echo generate_sitemap();
+  die();
+}
+
+
 // In all other cases, prepare page.
 $the_page = new Page($page_id, $pages[$language['active']], $the_page_meta_defaults);
 if ($the_page->amp == false) $amp = false;

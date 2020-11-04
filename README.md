@@ -59,7 +59,6 @@ Demo: <https://phpmicrosite.jenskuerschner.de/>
 
 You can make more changes and use more features, like:
 
--   Setting up the sitemap.xml (useful for SEO).
 -   Setting up a deployment script (sample included) or the Directus integration.
 -   Do even more - it's a well documented playground!
 
@@ -75,6 +74,7 @@ Anyone is welcome to contribute, but mind the [guidelines](.github/CONTRIBUTING.
 
 ## Changelog
 
+-   1.2.0: Optimization of language switcher and serviceworker cache; new redirect functionality; automated sitemap generation; better Directus support
 -   1.1.0: Added better multilanguage support (incl. language switcher).
 -   1.0.0: Initial release.
 

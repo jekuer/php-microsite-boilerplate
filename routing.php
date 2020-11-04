@@ -24,6 +24,7 @@ foreach ($language['available'] as $lang => $lang_name) {
 // - robots               (e.g. 'noindex,nofollow') (string)
 // - amp                  (if the page works as AMP; default = false) (mind that the pages content needs to be AMP compliant! Go to https://validator.ampproject.org/ for validation.) (boolean)
 // - redirect             (if set, redirects) (url)
+// - sitemap              (if the page is included into the sitemap; default = true) (boolean)
 // - directus_collection  (collectionName, e.g. "mypages") (string)
 // - directus_id          (itemId within this collection, e.g. "4") (if set, the site will connect to directus and retrieve the meta information from this item in the respective collection. You can then use it via $the_page->directus['META_FIELD']) (string)
 
@@ -43,6 +44,7 @@ $pages['en'][$id]['keywords'] = '';
 $pages['en'][$id]['robots'] = 'noindex,nofollow';
 $pages['en'][$id]['amp'] = true;
 $pages['en'][$id]['redirect'] = '';
+$pages['en'][$id]['sitemap'] = false;
 $pages['en'][$id]['directus_collection'] = '';
 $pages['en'][$id]['directus_id'] = '';
 */
@@ -60,6 +62,7 @@ $pages['en'][$id]['view'] = 'offline_en';
 $pages['en'][$id]['name'] = 'Offline';
 $pages['en'][$id]['title'] = 'Offline | ' . $the_page_meta_defaults['title'];
 $pages['en'][$id]['description'] = 'You are offline. Please check your internet conncetion and try again.';
+$pages['en'][$id]['sitemap'] = false;
 $pages['en'][$id]['robots'] = 'noindex,nofollow';
 
 $id = 'error'; // required for 404
@@ -67,6 +70,7 @@ $pages['en'][$id]['view'] = 'error_en';
 $pages['en'][$id]['name'] = 'Error';
 $pages['en'][$id]['title'] = 'Error | ' . $the_page_meta_defaults['title'];
 $pages['en'][$id]['description'] = 'It seems that the requested page is not or no longer available.';
+$pages['en'][$id]['sitemap'] = false;
 $pages['en'][$id]['robots'] = 'noindex,nofollow';
 $pages['en'][$id]['amp'] = true;
 
@@ -106,6 +110,7 @@ $pages['de'][$id]['view'] = 'offline_de';
 $pages['de'][$id]['name'] = 'Offline';
 $pages['de'][$id]['title'] = 'Offline | ' . $the_page_meta_defaults['title'];
 $pages['de'][$id]['description'] = 'Du bist leider offline. Prüfe deine Internetverbindung und versuche es danach erneut.';
+$pages['de'][$id]['sitemap'] = false;
 $pages['de'][$id]['robots'] = 'noindex,nofollow';
 
 $id = 'error';
@@ -113,6 +118,7 @@ $pages['de'][$id]['view'] = 'error_de';
 $pages['de'][$id]['name'] = 'Error';
 $pages['de'][$id]['title'] = 'Error | ' . $the_page_meta_defaults['title'];
 $pages['de'][$id]['description'] = 'Die gewünschte Seite gibt es wohl nicht (mehr).';
+$pages['de'][$id]['sitemap'] = false;
 $pages['de'][$id]['robots'] = 'noindex,nofollow';
 $pages['de'][$id]['amp'] = true;
 
@@ -144,6 +150,7 @@ $pages['es'][$id]['view'] = 'offline_es';
 $pages['es'][$id]['name'] = 'Offline';
 $pages['es'][$id]['title'] = 'Offline | ' . $the_page_meta_defaults['title'];
 $pages['es'][$id]['description'] = 'Me temo que estás desconectado. Comprueba tu conexión a Internet e inténtalo de nuevo después.';
+$pages['es'][$id]['sitemap'] = false;
 $pages['es'][$id]['robots'] = 'noindex,nofollow';
 
 $id = 'error';
@@ -151,6 +158,7 @@ $pages['es'][$id]['view'] = 'error_es';
 $pages['es'][$id]['name'] = 'Error';
 $pages['es'][$id]['title'] = 'Error | ' . $the_page_meta_defaults['title'];
 $pages['es'][$id]['description'] = 'La página que solicitó ya no existe.';
+$pages['es'][$id]['sitemap'] = false;
 $pages['es'][$id]['robots'] = 'noindex,nofollow';
 $pages['es'][$id]['amp'] = true;
 

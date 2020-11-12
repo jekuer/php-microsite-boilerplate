@@ -44,6 +44,7 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
     if (isset($tmp_draw_detail['data'][$directus_pages['translation_block']][$directus_pages['language_field']])) $tmp_lang = $tmp_draw_detail['data'][$directus_pages['translation_block']][$directus_pages['language_field']];
     
     $tmp_id = $slug_add . $tmp_draw_detail['data'][$directus_pages['slug']];
+    if ($tmp_id == '' or $tmp_id == '/') $tmp_id = 'main';
     foreach ($fields_main_level as $field_name) {
       if (isset($tmp_draw_detail['data'][$directus_pages[$field_name]])) $pages[$tmp_lang][$tmp_id][$field_name] = $tmp_draw_detail['data'][$directus_pages[$field_name]]
     }
@@ -53,6 +54,17 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
     $pages[$tmp_lang][$tmp_id]['directus_collection'] = $single_collection;
     $pages[$tmp_lang][$tmp_id]['directus_id'] = $item['id'];
     if (!isset($pages[$tmp_lang][$tmp_id]['view'])) $pages[$tmp_lang][$tmp_id]['view'] = $tmp_draw_detail['data'][$directus_pages['slug']];
+
+    $fields_boolean = array('amp', 'sitemap');
+    foreach ($fields_boolean as $field_name) {
+      if (!isset($pages[$tmp_lang][$tmp_id][$field_name])) {
+        if ($pages[$tmp_lang][$tmp_id][$field_name] == '1') {
+          $pages[$tmp_lang][$tmp_id][$field_name] = true;
+        } else {
+          $pages[$tmp_lang][$tmp_id][$field_name] = false;
+        }
+      }
+    }
   }
 }
 

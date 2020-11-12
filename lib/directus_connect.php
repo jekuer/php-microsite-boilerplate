@@ -37,8 +37,8 @@ function authDirectus($directus_url) {
 }
 
 // Read/Get only.
-function getDirectusContent($collection, $item = '', $file = '') {
-  global $directus_url, $directus_user, $directus_password;
+function getDirectusContent($collection, $item = '', $file = '', $respect_status = false, $get_fields = '', $filter_lang = false) {
+  global $directus_url, $directus_user, $directus_password, $directus_pages, $language;
   $directus_url = rtrim($directus_url, '/') . '/';
   $directus_url = filter_var($directus_url, FILTER_SANITIZE_URL);
 
@@ -50,21 +50,34 @@ function getDirectusContent($collection, $item = '', $file = '') {
   
   // Get the content.
   $api_curl_url = '';
+  $go_for_filter_lang = false;
   if (isset($file) and $file != '') {
     // setting $file retrieves the specific file.
     // https://docs.directus.io/api/files.html#retrieve-a-file
     $api_curl_url = $directus_url . 'files/' . make_safe($file);
 
   } elseif (isset($collection) and $collection != '' and isset($item) and $item != '') {
-    // setting $collection and $item retrieves the specific item.
-    // https://docs.directus.io/api/items.html#retrieve-an-item
-    $api_curl_url = $directus_url . 'items/' .  make_safe($collection) . '/' .  make_safe($item);
+    // setting $collection and $item retrieves the specific item (including related collections' fields).
+    // https://docs.directus.io/api/items.html#retrieve-an-item    
+    if ($get_fields != '') {
+      $cq = 'fields=' . $get_fields;
+    } else {
+      $cq = 'fields=*.*';
+    }
+    if ($filter_lang) $cq .= '&lang=' . $language['active'];
+    if ($filter_lang) $go_for_filter_lang = true;
+    $api_curl_url = $directus_url . 'items/' .  make_safe($collection) . '/' .  make_safe($item) . '?' . $cq;
 
   } elseif (isset($collection) and $collection != '') {
-    // setting $collection only retrieves a list of all items (without details, change to retrieve more) of this collection.
+    // setting $collection only retrieves a list of all items (optionally with meta elements and optionally only published ones) of this collection.
     // https://docs.directus.io/api/items.html#list-the-items
-    $api_curl_url = $directus_url . 'items/' . make_safe($collection) . '?fields=id';
-
+    if ($get_fields != '') {
+      $cq = 'fields=' . $get_fields;
+    } else {
+      $cq = 'fields=id';
+    }
+    if ($respect_status) $cq .= '&status=published';
+    $api_curl_url = $directus_url . 'items/' . make_safe($collection) . '?' . $cq;
   }
   
   if ($api_curl_url != '') {
@@ -90,7 +103,25 @@ function getDirectusContent($collection, $item = '', $file = '') {
       $return_json = $api_curl_response;
     }
   }
-  return $return_json;
+  $directus_content = json_decode($return_json, true);
+
+  if ($go_for_filter_lang) { // kill elements, which hold a language code that does not fit the currently active language. Currently necessary for Directus V9.RC (WORKAROUND)
+    foreach ($directus_content['data'] as $key => $bucket) {
+      if (is_array($bucket)) {
+        foreach ($bucket as $name => $value) {
+          if ($name = $directus_pages['language_field'] or $name = 'language' or $name = 'language_code' or $name = 'languages_code' or $name = 'language-code' or $name = 'languages-code') {
+            if ($value != $language['active']) {
+              unset($directus_content['data'][$key]); 
+              break;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return $directus_content;
+
 }
 
 

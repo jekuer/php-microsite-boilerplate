@@ -79,7 +79,7 @@ class Page {
       $this->amp = true;
     }
     if (isset($curr_page['directus_collection']) and $curr_page['directus_collection'] != '' and isset($curr_page['directus_id']) and $curr_page['directus_id'] != '') {
-      $this->directus = json_decode(getDirectusContent($curr_page['directus_collection'], $curr_page['directus_id']), true);
+      $this->directus = getDirectusContent($curr_page['directus_collection'], $curr_page['directus_id'], '', false, '', true);
     }
 
   }

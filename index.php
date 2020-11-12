@@ -17,11 +17,11 @@ $language = array();
 require_once './config.php';
 
 
-// Load additional functions and classes.
+// Load general additional functions and classes.
 // Include more, if needed.
 require_once './lib/helper_functions.php';
 if ($directus_url != '') require_once './lib/directus_connect.php';
-require_once './class.page.php';
+require_once './class/class.page.php';
 
 
 // URL parsing.
@@ -41,7 +41,7 @@ require_once './lib/url_parsing.php';
 // Set Security Headers.
 // Only enable this, if it is not possible on the server side (e.g. via htaccess on Apache).
 // For testing and more details, see https://securityheaders.com/ .
-// require_once './php_security_headers.php';
+// require_once './templates/php_security_headers.php';
 
 
 // Check for redirects
@@ -56,6 +56,10 @@ if (isset($redirects[$language['active']][$url_parts[0]]['target']) and $redirec
 require_once './routing.php';
 if (!isset($url_parts[0]) or $url_parts[0] == '') $url_parts[0] = 'main';
 $page_id = $url_parts[0];
+if (isset($url_parts[1]) and $url_parts[1] != '') $page_id = $page_id . '/' . $url_parts[1]; // enables an optional second URL level.
+if ($directus_url != '' and isset($directus_pages['collections']) and !empty($directus_pages['collections'])) { // load Directus pages, if set.
+  require_once './lib/directus_dyn_pages.php';
+}
 
 
 // Check for deployment hook call.
@@ -72,6 +76,7 @@ if ($page_id == $the_deployment_slug) {
 
 // Check for sitemap call.
 if ($page_id == 'sitemap.xml') {
+  require_once './lib/sitemap_generator.php';
   header('Content-Type: application/xml');
   echo generate_sitemap();
   die();

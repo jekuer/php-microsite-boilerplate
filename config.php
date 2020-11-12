@@ -30,7 +30,7 @@ $amp_cookie_consent = false; // If set to false, there will be no cookie banner 
 // This is a basic integration. You can define a collection and item id at the routing and get a variable, which holds all meta information. You can than use this variable within the respective page code.
 // Mind that you need to provide public read access to the respective collections.
 // Directus is quite flexible and can be used in many styles and for many purposes. Feel free to extend this to your needs.
-$directus_url = ''; // URL to your directus API instance. If not set, directus connection will be disabled. (Usual scheme: PATH-TO-DIRECTUS/:project/ - PATH-TO-DIRECTUS can be a domain pointing to /public or something like https://www.domain.com/directus/public/:project/ - depending on your setup.)
+$directus_url = ''; // URL to your directus API instance. If not set, directus connection will be disabled. Usual scheme: PATH-TO-DIRECTUS/:project/ - PATH-TO-DIRECTUS can be a domain pointing to /public or something like https://www.domain.com/directus/public/:project/ - depending on your setup. If you are using V9, leave out the "/:project" part.
 $directus_user = ''; // Set user email and password only, if you need to access content, which is not set to public at you Directus instance. Make sure to have a seperate user for this and that this user has respective rights and no 2FA enabled.
 $directus_password = ''; // If you store your code in a repo, consider using a masked environment variable here.
 

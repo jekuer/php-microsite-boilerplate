@@ -16,9 +16,9 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
     $tmp_lang = $language['active'];
 
     $field_query = 'id,' . $directus_pages['slug'];
-    $fields_main_level = array('view', 'controller', 'robots', 'amp', 'redirect', 'sitemap');
+    $fields_main_level = array('robots', 'amp', 'redirect', 'sitemap');
     $fields_sub_level = array();
-    $fields_flex_level = array('name', 'title', 'description', 'keywords');
+    $fields_flex_level = array('view', 'controller', 'name', 'title', 'description', 'keywords');
     foreach ($fields_main_level as $field_name) {
       if (isset($directus_pages[$field_name]) and $directus_pages[$field_name] != '') {
         $field_query .= ',' . $directus_pages[$field_name];

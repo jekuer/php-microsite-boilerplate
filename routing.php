@@ -37,7 +37,7 @@ foreach ($language['available'] as $lang => $lang_name) {
 // - directus_collection  (collectionName, e.g. "mypages") (string)
 // - directus_id          (itemId within this collection, e.g. "4") (if set, the site will connect to directus and retrieve the information from this item in the respective collection. You can then use it via $the_page->directus['FIELD']) (string)
 
-// File and Name are required. At all other fields, if kept empty or not defined, the default setting is used.
+// View and Name are required. At all other fields, if kept empty or not defined, the default setting is used.
 // The id variable needs to hold the path slug. To reference the home page, use 'main'.
 // Mind to NOT use 'amp, 'default', or any of your language short names (e.g. 'de') as id!
 

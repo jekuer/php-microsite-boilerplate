@@ -42,7 +42,7 @@
       <li><a href="https://amp.dev/" target="_blank" rel="noopener" class="dark_link">Accelerated Mobile Pages (AMP)</a> prepared.</li>
       <li><a href="https://web.dev/progressive-web-apps/" target="_blank" rel="noopener" class="dark_link">Progressive Web App (PWA)</a> prepared.</li>
       <li>Multilanguage prepared.</li>
-      <li><a href="https://directus.io/" target="_blank" rel="noopener" class="dark_link">Directus CMS</a> integration.</li>
+      <li><a href="https://directus.io/" target="_blank" rel="noopener" class="dark_link">Directus CMS</a> integration (incl. local cache).</li>
       <li>GDPR and CCPA ready (regular site and AMP).</li>
       <li>Intelligent serviceworker cache.</li>
       <li>SEO optimized.</li>

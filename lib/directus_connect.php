@@ -4,6 +4,8 @@
  * Connecting to the Directus API.
  */
 
+$directus_auth_token = '';
+
 // Authenticate.
 // Only if credentials are set. Not necessary, if API access to the respective information is set to public at the Directus instance.
 function authDirectus($directus_url) {
@@ -37,34 +39,46 @@ function authDirectus($directus_url) {
 }
 
 // Read/Get only.
-function getDirectusContent($collection, $item = '', $file = '') {
-  global $directus_url, $directus_user, $directus_password;
+function getDirectusContent($collection, $item = '', $file = '', $respect_status = false, $get_fields = '', $filter_lang = false) {
+  global $directus_auth_token, $directus_url, $directus_user, $directus_password, $directus_pages, $language;
   $directus_url = rtrim($directus_url, '/') . '/';
   $directus_url = filter_var($directus_url, FILTER_SANITIZE_URL);
 
   // Authenticate if credentials are set.
-  $auth_token = '';
-  if ($directus_user != '' and $directus_password != '') {
-    $auth_token = authDirectus($directus_url, $directus_user, $directus_password);
+  if ($directus_user != '' and $directus_password != '' and $directus_auth_token == '') {
+    $directus_auth_token = authDirectus($directus_url, $directus_user, $directus_password);
   }
   
   // Get the content.
   $api_curl_url = '';
+  $go_for_filter_lang = false;
   if (isset($file) and $file != '') {
     // setting $file retrieves the specific file.
     // https://docs.directus.io/api/files.html#retrieve-a-file
     $api_curl_url = $directus_url . 'files/' . make_safe($file);
 
   } elseif (isset($collection) and $collection != '' and isset($item) and $item != '') {
-    // setting $collection and $item retrieves the specific item.
-    // https://docs.directus.io/api/items.html#retrieve-an-item
-    $api_curl_url = $directus_url . 'items/' .  make_safe($collection) . '/' .  make_safe($item);
+    // setting $collection and $item retrieves the specific item (including related collections' fields).
+    // https://docs.directus.io/api/items.html#retrieve-an-item    
+    if ($get_fields != '') {
+      $cq = 'fields=' . $get_fields;
+    } else {
+      $cq = 'fields=*.*';
+    }
+    if ($filter_lang) $cq .= '&lang=' . $language['active'];
+    if ($filter_lang) $go_for_filter_lang = true;
+    $api_curl_url = $directus_url . 'items/' .  make_safe($collection) . '/' .  make_safe($item) . '?' . $cq;
 
   } elseif (isset($collection) and $collection != '') {
-    // setting $collection only retrieves a list of all items (without details, change to retrieve more) of this collection.
+    // setting $collection only retrieves a list of all items (optionally with meta elements and optionally only published ones) of this collection.
     // https://docs.directus.io/api/items.html#list-the-items
-    $api_curl_url = $directus_url . 'items/' . make_safe($collection) . '?fields=id';
-
+    if ($get_fields != '') {
+      $cq = 'fields=' . $get_fields;
+    } else {
+      $cq = 'fields=id';
+    }
+    if ($respect_status) $cq .= '&status=published';
+    $api_curl_url = $directus_url . 'items/' . make_safe($collection) . '?' . $cq;
   }
   
   if ($api_curl_url != '') {
@@ -72,8 +86,8 @@ function getDirectusContent($collection, $item = '', $file = '') {
       'Accept: application/json',
       'Content-Type: application/json'
     );
-    if ($auth_token != '') {
-      array_push($api_curl_headers, 'Cookie: directus-' . basename($directus_url) . '-session=' . $auth_token);
+    if ($directus_auth_token != '') {
+      array_push($api_curl_headers, 'Cookie: directus-' . basename($directus_url) . '-session=' . $directus_auth_token);
     }
     $return_json = '';
     $curl = curl_init();
@@ -90,7 +104,35 @@ function getDirectusContent($collection, $item = '', $file = '') {
       $return_json = $api_curl_response;
     }
   }
-  return $return_json;
+  $directus_content = json_decode($return_json, true);
+
+  if ($go_for_filter_lang) { // kill elements, which hold a language code that does not fit the currently active language. Currently necessary for Directus V9.RC (WORKAROUND). Should be replaced by a deep-query-filter in addition to the V8-lang filter above later!!!
+    foreach ($directus_content['data'] as $bucket) {
+      if (is_array($bucket)) {
+        foreach ($bucket as $key => $lang_block) {
+          foreach ($lang_block as $name => $val) {
+            if ($name = $directus_pages['language_field'] or $name = 'language' or $name = 'language_code' or $name = 'languages_code' or $name = 'language-code' or $name = 'languages-code') {
+              if ($val != $language['active']) {
+                unset($directus_content['data'][$key]); 
+                break 2;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // clean up the translations array, if there is only one after a language filter.
+  if ($go_for_filter_lang and isset($directus_pages['translation_block']) and $directus_pages['translation_block'] != '') {
+    if (is_array($directus_content['data'][$directus_pages['translation_block']]) and count($directus_content['data'][$directus_pages['translation_block']]) == 1)
+    $tmp_translations_elem = $directus_content['data'][$directus_pages['translation_block']][0];
+    unset($directus_content['data'][$directus_pages['translation_block']]);
+    $directus_content['data'][$directus_pages['translation_block']] = $tmp_translations_elem;
+  }
+
+  return $directus_content['data'];
+
 }
 
 

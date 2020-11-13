@@ -6,8 +6,7 @@
 
 // Current version of the website.
 // Will be used to control css and js caching.
-// Mind to also update the version number within the serviceworker-cache.js!
-$version_nr = '1.2.3';
+$version_nr = '1.2.0';
 
 // Multilanguage.
 $language['default'] = 'en'; // Use a value from the array below.
@@ -27,13 +26,14 @@ $the_gtm_id = ''; // Set empty to not use it.
 $the_gtm_id_amp = ''; // Set empty to not use it (mind the correct AMP setup of your GTM container).
 $amp_cookie_consent = false; // If set to false, there will be no cookie banner on AMP pages and data-block-on-consent won't work. If set to true, add data-block-on-consent to every cookie using element (https://amp.dev/documentation/components/amp-consent/) and mind to have an option to adjust the choice through a link somewhere.
 
-// Directus (8+) integration.
+// Directus (8/9) integration.
 // This is a basic integration. You can define a collection and item id at the routing and get a variable, which holds all meta information. You can than use this variable within the respective page code.
 // Mind that you need to provide public read access to the respective collections.
 // Directus is quite flexible and can be used in many styles and for many purposes. Feel free to extend this to your needs.
-$directus_url = ''; // URL to your directus API instance. If not set, directus connection will be disabled. (Usual scheme: PATH-TO-DIRECTUS/:project/ - PATH-TO-DIRECTUS can be a domain pointing to /public or something like https://www.domain.com/directus/public/:project/ - depending on your setup.)
+$directus_url = ''; // URL to your directus API instance. If not set, directus connection will be disabled. Usual scheme: PATH-TO-DIRECTUS/:project/ - PATH-TO-DIRECTUS can be a domain pointing to /public or something like https://www.domain.com/directus/public/:project/ - depending on your setup. If you are using V9, leave out the "/:project" part.
 $directus_user = ''; // Set user email and password only, if you need to access content, which is not set to public at you Directus instance. Make sure to have a seperate user for this and that this user has respective rights and no 2FA enabled.
 $directus_password = ''; // If you store your code in a repo, consider using a masked environment variable here.
+$directus_cache = true; // The default API calls will be cached locally, if true. If you want to purge the cache, call YOURDOMAIN.com/purge/directus_cache. It is recommended to add this as webhook (GET) to Directus to purge the cache on every page update.
 
 // Base URL of your microsite.
 $the_page_url = 'https://YOURDOMAIN.com/';

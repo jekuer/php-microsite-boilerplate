@@ -29,7 +29,7 @@ Demo: <https://phpmicrosite.jenskuerschner.de/>
 -   [Accelerated Mobile Pages (AMP)](https://amp.dev/) prepared.
 -   [Progressive Web App (PWA)](https://web.dev/progressive-web-apps/) prepared.
 -   Multilanguage prepared.
--   [Directus CMS](https://directus.io/) integration.
+-   [Directus CMS](https://directus.io/) integration (incl. local cache).
 -   GDPR and CCPA ready (regular site and AMP).
 -   Intelligent serviceworker cache.
 -   SEO optimized.
@@ -74,7 +74,7 @@ Anyone is welcome to contribute, but mind the [guidelines](.github/CONTRIBUTING.
 
 ## Changelog
 
--   1.2.0: Optimization of language switcher and serviceworker cache; new redirect functionality; automated sitemap generation; better Directus support
+-   1.2.0: Optimization of language switcher and serviceworker cache; new redirect functionality; automated sitemap generation; better Directus support (incl. local cache)
 -   1.1.0: Added better multilanguage support (incl. language switcher).
 -   1.0.0: Initial release.
 

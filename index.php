@@ -5,7 +5,7 @@
  * PHP Microsite Boilerplate
  * +++++++++++++++++++++++++
  * 
- * Version: 1.1.0
+ * Version: 1.2.0
  * Creator: Jens Kuerschner (https://jenskuerschner.de)
  * Project: https://github.com/jekuer/php-microsite-boilerplate
  * License: GNU General Public License v3.0	(gpl-3.0)
@@ -67,6 +67,23 @@ if ($page_id == $the_deployment_slug) {
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include_once $the_deployment_script;
     die();
+  } else {
+    http_response_code(400);
+    $page_id = 'error';
+  }
+}
+
+
+// Check for cache purge call.
+if ($page_id == 'purge/directus_cache') {
+  if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $cache_files = glob('./cache/*.json');
+    foreach ($cache_files as $file) {
+      if (is_file($file)) {
+        unlink($file);
+      }
+    }
+    die('Directus local cache purged.');
   } else {
     http_response_code(400);
     $page_id = 'error';

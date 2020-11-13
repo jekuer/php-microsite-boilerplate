@@ -201,7 +201,7 @@ $pages['en'][$id]['redirect'] = 'https://github.com/jekuer/php-microsite-boilerp
 // Mind that this will automatically create a page for each language, expecting each page to be translated within Directus!
 // Also mind that the language codes in the config here are required to match the language codes from your Directus system!
 
-$directus_pages['collection'] = array(); // The collections, which hold the single pages (not the translated elements) (array). If empty, this feature will be skipped.
+$directus_pages['collections'] = array(); // The collections, which hold the single pages (not the translated elements) (array). If empty, this feature will be skipped.
 $directus_pages['slug'] = ''; // The field, which holds the slug. Should be the same structure for each collection. (required!).
 $directus_pages['slug_depth'] = array(); // If you want to define a deeper URL structure for one collection, you can add the second level here. E.g. "blog" would lead to a page appear at DOMAIN.COM/blog/slug. Mind to define it for each collection! Example: array('', '', 'blog', '');
 $directus_pages['respect_status'] = true; // If set true, only pages with a field "status" and the value "published" will be loaded.

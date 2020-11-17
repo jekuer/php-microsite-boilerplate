@@ -1,0 +1,28 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PHP Microsite Boilerplate\n"
+"POT-Creation-Date: 2020-11-17 10:23+0100\n"
+"PO-Revision-Date: 2020-11-17 11:12+0100\n"
+"Last-Translator: Jens Kuerschner\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: es_ES\n"
+"X-Generator: Poedit 2.4.2\n"
+
+msgid "Cookie Settings"
+msgstr "Cookie Ajustes"
+
+msgid "404"
+msgstr "404"
+
+msgid "Unfortunately, the requested page is not available."
+msgstr "La página que solicitó ya no existe."
+
+msgid "Offline"
+msgstr "Offline"
+
+msgid "You are offline. Please check your internet conncetion and try again."
+msgstr "Me temo que estás desconectado. Comprueba tu conexión a Internet e inténtalo de nuevo después."

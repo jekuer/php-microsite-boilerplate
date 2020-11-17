@@ -6,7 +6,7 @@
 
 // Current version of the website.
 // Will be used to control css and js caching.
-$version_nr = '1.2.0';
+$version_nr = '1.3.0';
 
 // Multilanguage.
 $language['default'] = 'en'; // Use a value from the array below.
@@ -14,6 +14,11 @@ $language['available'] = array( // Needs to be an array! Key needs to be the lan
   'en' => 'English', 
   'de' => 'Deutsch',
   'es' => 'Español'
+);
+$language['locale'] = array( // Needs to be an array with the same keys as $language['available']. Holds the locale for the gettext functionality. Mind that you will need to create respective folders (e.g. /de_DE/LC_MESSAGES) for translations within the translations folder! The .po and .mo files need to be named "main". For editing .po-files check https://poedit.net/. If you do not want to use gettext, leave this array empty.
+  'en' => 'en_US', 
+  'de' => 'de_DE',
+  'es' => 'es_ES'
 );
 
 // Deployment hook definition.

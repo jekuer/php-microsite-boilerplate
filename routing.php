@@ -62,7 +62,7 @@ $pages['en'][$id]['directus_id'] = '';
 // ENGLISH
 
 $id = 'offline'; // required for PWA
-$pages['en'][$id]['view'] = 'offline_en';
+$pages['en'][$id]['view'] = 'offline';
 $pages['en'][$id]['name'] = 'Offline';
 $pages['en'][$id]['title'] = 'Offline | ' . $the_page_meta_defaults['title'];
 $pages['en'][$id]['description'] = 'You are offline. Please check your internet conncetion and try again.';
@@ -70,7 +70,7 @@ $pages['en'][$id]['sitemap'] = false;
 $pages['en'][$id]['robots'] = 'noindex,nofollow';
 
 $id = 'error'; // required for 404
-$pages['en'][$id]['view'] = 'error_en';
+$pages['en'][$id]['view'] = 'error';
 $pages['en'][$id]['name'] = 'Error';
 $pages['en'][$id]['title'] = 'Error | ' . $the_page_meta_defaults['title'];
 $pages['en'][$id]['description'] = 'It seems that the requested page is not or no longer available.';
@@ -110,7 +110,7 @@ $pages['en'][$id]['directus_id'] = '1';*/
 // GERMAN
 
 $id = 'offline'; // required for PWA
-$pages['de'][$id]['view'] = 'offline_de';
+$pages['de'][$id]['view'] = 'offline';
 $pages['de'][$id]['name'] = 'Offline';
 $pages['de'][$id]['title'] = 'Offline | ' . $the_page_meta_defaults['title'];
 $pages['de'][$id]['description'] = 'Du bist leider offline. Prüfe deine Internetverbindung und versuche es danach erneut.';
@@ -118,7 +118,7 @@ $pages['de'][$id]['sitemap'] = false;
 $pages['de'][$id]['robots'] = 'noindex,nofollow';
 
 $id = 'error'; // required for 404
-$pages['de'][$id]['view'] = 'error_de';
+$pages['de'][$id]['view'] = 'error';
 $pages['de'][$id]['name'] = 'Error';
 $pages['de'][$id]['title'] = 'Error | ' . $the_page_meta_defaults['title'];
 $pages['de'][$id]['description'] = 'Die gewünschte Seite gibt es wohl nicht (mehr).';
@@ -150,7 +150,7 @@ $pages['de'][$id]['amp'] = true;
 // SPANISH
 
 $id = 'offline'; // required for PWA
-$pages['es'][$id]['view'] = 'offline_es';
+$pages['es'][$id]['view'] = 'offline';
 $pages['es'][$id]['name'] = 'Offline';
 $pages['es'][$id]['title'] = 'Offline | ' . $the_page_meta_defaults['title'];
 $pages['es'][$id]['description'] = 'Me temo que estás desconectado. Comprueba tu conexión a Internet e inténtalo de nuevo después.';
@@ -158,7 +158,7 @@ $pages['es'][$id]['sitemap'] = false;
 $pages['es'][$id]['robots'] = 'noindex,nofollow';
 
 $id = 'error'; // required for 404
-$pages['es'][$id]['view'] = 'error_es';
+$pages['es'][$id]['view'] = 'error';
 $pages['es'][$id]['name'] = 'Error';
 $pages['es'][$id]['title'] = 'Error | ' . $the_page_meta_defaults['title'];
 $pages['es'][$id]['description'] = 'La página que solicitó ya no existe.';

@@ -65,7 +65,7 @@ function getDirectusContent($collection, $item = '', $file = '', $respect_status
     } else {
       $cq = 'fields=*.*';
     }
-    if ($filter_lang) $cq .= '&lang=' . $language['active'];
+    if ($filter_lang) $cq .= '&lang=' . $language['active']; // V8 only!
     if ($filter_lang) $go_for_filter_lang = true;
     $api_curl_url = $directus_url . 'items/' .  make_safe($collection) . '/' .  make_safe($item) . '?' . $cq;
 
@@ -77,7 +77,7 @@ function getDirectusContent($collection, $item = '', $file = '', $respect_status
     } else {
       $cq = 'fields=id';
     }
-    if ($respect_status) $cq .= '&status=published';
+    if ($respect_status) $cq .= '&filter[status]=published';
     $api_curl_url = $directus_url . 'items/' . make_safe($collection) . '?' . $cq;
   }
   

@@ -38,7 +38,7 @@ foreach ($language['available'] as $lang => $lang_name) {
 <meta property="og:description" content="<?php echo $the_page->description; ?>">
 <meta property="og:image" content="<?php echo $the_page_url; ?>assets/images/social_media.png">
 <!-- Twitter (https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/markup) -->
-<?php if ($the_twitter_profile != '') { ?>
+<?php if ($the_page->twitter != '') { ?>
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="<?php echo $the_page_url; ?>"> <!-- use URL or Twitter username here -->
 <meta name="twitter:creator" content="<?php echo $the_page->twitter; ?>">

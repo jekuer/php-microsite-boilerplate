@@ -5,7 +5,7 @@
  * PHP Microsite Boilerplate
  * +++++++++++++++++++++++++
  * 
- * Version: 1.2.0
+ * Version: 1.3.0
  * Creator: Jens Kuerschner (https://jenskuerschner.de)
  * Project: https://github.com/jekuer/php-microsite-boilerplate
  * License: GNU General Public License v3.0	(gpl-3.0)
@@ -15,6 +15,13 @@
 // Load default configuration.
 $language = array();
 require_once './config.php';
+// error_reporting(E_ALL | E_STRICT); // enable for better debugging.
+
+
+// Set Security Headers.
+// Only enable this, if it is not possible on the server side (e.g. via htaccess on Apache).
+// For testing and more details, see https://securityheaders.com/ .
+// require_once './templates/php_security_headers.php';
 
 
 // Load general additional functions and classes.
@@ -38,10 +45,30 @@ if (isset($_SERVER['REQUEST_URI'])) {
 require_once './lib/url_parsing.php';
 
 
-// Set Security Headers.
-// Only enable this, if it is not possible on the server side (e.g. via htaccess on Apache).
-// For testing and more details, see https://securityheaders.com/ .
-// require_once './templates/php_security_headers.php';
+// Gettext setup. Based on a slightly optimized php-gettext 1.0.12 (https://launchpad.net/php-gettext) to enable gettext even on systems, where it is not installed.
+if (isset($language['locale']) and is_array($language['locale']) and !empty($language['locale'])) {
+  $locale = $language['locale'][$language['active']];
+  define('LOCALE_DIR', realpath('./') .'/translations');
+  $gettext_domain = 'main';
+  $text_encoding = 'UTF-8';
+  mb_internal_encoding($text_encoding);
+  header("Content-type: text/html; charset=$text_encoding");
+
+  // The following block should be used for the php-gettext fallback implementation, which looks for native support first and then falls back to the emulation. Mind that this uses "T_" as gettext alias! If you do not need the emulation, you can use "_" as alias.
+  require_once './lib/gettext/gettext.inc';
+  T_setlocale(LC_MESSAGES, $locale);
+  T_bindtextdomain($gettext_domain, LOCALE_DIR);
+  T_bind_textdomain_codeset($gettext_domain, $text_encoding);
+  T_textdomain($gettext_domain);  
+  // An alternative with regular gettext alias could look as follows:
+  /*T_setlocale(LC_MESSAGES, $locale);
+  bindtextdomain($gettext_domain, LOCALE_DIR);
+  bind_textdomain_codeset($gettext_domain, $text_encoding);
+  textdomain($gettext_domain);*/
+  setlocale(LC_TIME, $locale . '.utf8');
+  setlocale(LC_MONETARY, $locale);
+  setlocale(LC_NUMERIC, $locale . '.utf8');
+}
 
 
 // Check for redirects

@@ -45,7 +45,9 @@
       <li><a href="https://directus.io/" target="_blank" rel="noopener" class="dark_link">Directus CMS</a> integration (incl. local cache).</li>
       <li>GDPR and CCPA ready (regular site and AMP).</li>
       <li>Intelligent serviceworker cache.</li>
+      <li>Gettext support for easy translation (+ fallback if not installed on the server)</li>
       <li>SEO optimized.</li>
+      <li>Automated sitemap generation.</li>
       <li>Optimized for Social sharing.</li>
       <li>Extensive in-code documentation.</li>
       <li><a href="https://securityheaders.com/" target="_blank" rel="noopener" class="dark_link">Security Headers</a> <span class="small">(.htaccess or via PHP).</span></li>

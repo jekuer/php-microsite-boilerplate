@@ -32,7 +32,9 @@ Demo: <https://phpmicrosite.jenskuerschner.de/>
 -   [Directus CMS](https://directus.io/) integration (incl. local cache).
 -   GDPR and CCPA ready (regular site and AMP).
 -   Intelligent serviceworker cache.
+-   Gettext support for easy translation (+ fallback if not installed on the server).
 -   SEO optimized.
+-   Automated sitemap generation.
 -   Optimized for Social sharing.
 -   Extensive in-code documentation.
 -   [Security Headers](https://securityheaders.com/) (.htaccess or via PHP)
@@ -74,7 +76,8 @@ Anyone is welcome to contribute, but mind the [guidelines](.github/CONTRIBUTING.
 
 ## Changelog
 
--   1.2.0: Optimization of language switcher and serviceworker cache; new redirect functionality; automated sitemap generation; better Directus support (incl. local cache)
+-   1.3.0: Added Gettext support, including emulation fallback for servers not supporting native gettext.
+-   1.2.0: Optimization of language switcher and serviceworker cache; new redirect functionality; automated sitemap generation; better Directus support (incl. local cache).
 -   1.1.0: Added better multilanguage support (incl. language switcher).
 -   1.0.0: Initial release.
 

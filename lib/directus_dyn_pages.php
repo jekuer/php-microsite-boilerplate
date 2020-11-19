@@ -77,12 +77,15 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
 
       if (isset($item[$directus_pages['translation_block']])) {
         foreach ($item[$directus_pages['translation_block']] as $translated_item) {
-          if (isset($translated_item[$directus_pages['language_field']])) $tmp_lang = $translated_item[$directus_pages['language_field']];        
+          if (isset($translated_item[$directus_pages['language_field']])) $tmp_lang = make_safe($translated_item[$directus_pages['language_field']]);        
           foreach ($fields_main_level as $field_name) {
-            if (isset($item[$directus_pages[$field_name]])) $pages[$tmp_lang][$tmp_id][$field_name] = $item[$directus_pages[$field_name]];
+            if (isset($item[$directus_pages[$field_name]])) $pages[$tmp_lang][$tmp_id][$field_name] = make_safe2($item[$directus_pages[$field_name]]);
           }
           foreach ($fields_sub_level as $field_name) {
-            if (isset($translated_item[substr($directus_pages[$field_name], 1)])) $pages[$tmp_lang][$tmp_id][$field_name] = $translated_item[substr($directus_pages[$field_name], 1)];
+            if (isset($translated_item[substr($directus_pages[$field_name], 1)])) {
+              $pages[$tmp_lang][$tmp_id][$field_name] = $translated_item[substr($directus_pages[$field_name], 1)];
+              $pages[$tmp_lang][$tmp_id][$field_name] = make_safe2($pages[$tmp_lang][$tmp_id][$field_name]);
+            }
           }
           $pages[$tmp_lang][$tmp_id]['directus_collection'] = $single_collection;
           $pages[$tmp_lang][$tmp_id]['directus_id'] = $item['id'];
@@ -94,7 +97,7 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
         }
       } else {
         foreach ($fields_main_level as $field_name) {
-          if (isset($item[$directus_pages[$field_name]])) $pages[$tmp_lang][$tmp_id][$field_name] = $item[$directus_pages[$field_name]];
+          if (isset($item[$directus_pages[$field_name]])) $pages[$tmp_lang][$tmp_id][$field_name] = make_safe2($item[$directus_pages[$field_name]]);
         }
         $pages[$tmp_lang][$tmp_id]['directus_collection'] = $single_collection;
         $pages[$tmp_lang][$tmp_id]['directus_id'] = $item['id'];

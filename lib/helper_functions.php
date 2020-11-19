@@ -76,12 +76,12 @@ function array_column_ext($array, $columnkey, $indexkey = null) {
  * Some more handy functions.
  */
 
-function make_safe($v) { // strip html code, remove spaces, remove any strange special characters and more
+function make_safe($v) { // strip html code, remove spaces, remove any special characters and more
   if (is_array($v)) {
     foreach ($v as $key => $subv) {
       $v[$key] = cleanString($subv);
       if (get_magic_quotes_gpc()) $v[$key] = stripslashes($v[$key]);
-      $v[$key] = preg_replace('/[^A-Za-züöäßÜÖÄ0-9@&+;_\. -]/', '', $v[$key]);
+      $v[$key] = preg_replace('/[^A-Za-z0-9@&+;,:_\. -]/', '', $v[$key]);
       $v[$key] = htmlentities($v[$key], ENT_QUOTES);
       $v[$key] = strip_tags($v[$key]);
       $v[$key] = str_replace(" ", "", $v[$key]);
@@ -89,7 +89,7 @@ function make_safe($v) { // strip html code, remove spaces, remove any strange s
   } else {
     $v = cleanString($v);
     if (get_magic_quotes_gpc()) $v = stripslashes($v);
-    $v = preg_replace('/[^A-Za-züöäßÜÖÄ0-9@&+;_\. -]/', '', $v);
+    $v = preg_replace('/[^A-Za-z0-9@&+;,:_\. -]/', '', $v);
     $v = htmlentities($v, ENT_QUOTES);
     $v = strip_tags($v);
     $v = str_replace(" ", "", $v);
@@ -98,12 +98,12 @@ function make_safe($v) { // strip html code, remove spaces, remove any strange s
 }
 
 
-function make_safe2($v) { // keeps spaces (except beginning and end)
+function make_safe2($v) { // keeps spaces (except beginning and end) and allows special characters
   if (is_array($v)) {
     foreach ($v as $key => $subv) {
       $v[$key] = cleanString($subv);
       if (get_magic_quotes_gpc()) $v[$key] = stripslashes($v[$key]);
-      $v[$key] = preg_replace('/[^A-Za-züöäßÜÖÄ0-9@&+;_\. -]/', '', $v[$key]);
+      $v[$key] = preg_replace('/[^\p{L}0-9@&+|%$§€()=?!^°#;,:_\. -]/', '', $v[$key]);
       $v[$key] = htmlentities($v[$key], ENT_QUOTES);
       $v[$key] = strip_tags($v[$key]);
       $v[$key] = trim($v[$key]);
@@ -111,7 +111,7 @@ function make_safe2($v) { // keeps spaces (except beginning and end)
   } else {
     $v = cleanString($v);
     if (get_magic_quotes_gpc()) $v = stripslashes($v);
-    $v = preg_replace('/[^A-Za-züöäßÜÖÄ0-9@&+;_\. -]/', '', $v);
+    $v = preg_replace('/[^\p{L}0-9@&+|%$§€()=?!^°#;,:_\. -]/', '', $v);
     $v = htmlentities($v, ENT_QUOTES);
     $v = strip_tags($v);
     $v = trim($v);

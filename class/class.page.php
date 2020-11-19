@@ -70,7 +70,7 @@ class Page {
           }
         }
         // Second, fill the details.
-        $fields_boolean = array('amp', 'sitemap');
+        $fields_boolean = array('amp');
         foreach ($fields_boolean as $field_name) { // Optimize boolean fields
           if (isset($this->directus[$field_name])) {
             if ($this->directus[$field_name] == '1') {
@@ -81,10 +81,10 @@ class Page {
           }
         }
         foreach ($fields_main_level as $field_name) {
-          if (isset($this->directus[$directus_pages[$field_name]])) $curr_page[$field_name] = $this->directus[$directus_pages[$field_name]];
+          if (isset($this->directus[$directus_pages[$field_name]])) $curr_page[$field_name] = make_safe2($this->directus[$directus_pages[$field_name]]);
         }
         foreach ($fields_sub_level as $field_name) {
-          if (isset($this->directus[$directus_pages['translation_block']][$directus_pages[$field_name]])) $curr_page[$field_name] = $this->directus[$directus_pages['translation_block']][$directus_pages[$field_name]];
+          if (isset($this->directus[$directus_pages['translation_block']][$directus_pages[$field_name]])) $curr_page[$field_name] = make_safe2($this->directus[$directus_pages['translation_block']][$directus_pages[$field_name]]);
         }
         // Third and last, unset the Directus link of the page to not call the details again later.
         unset($curr_page['directus_collection']);

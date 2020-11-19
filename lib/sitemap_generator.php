@@ -14,11 +14,17 @@ function generate_sitemap() {
     } else {
       $lang = $lang . '/';
     }
-    foreach ($page as $slug => $pagedetails) {
+    foreach ($page as $page_id => $pagedetails) {
       // skip if sitemaps has been disabled for this page
-      if (isset($page[$slug]['sitemap']) and !$page[$slug]['sitemap']) continue;
+      if (isset($page[$page_id]['sitemap']) and !$page[$page_id]['sitemap']) continue;
       // skip if the page redirects
-      if (isset($page[$slug]['redirect']) and $page[$slug]['redirect'] != '') continue;   
+      if (isset($page[$page_id]['redirect']) and $page[$page_id]['redirect'] != '') continue;
+      // get slug
+      if (isset($page[$page_id]['slug']) and $page[$page_id]['slug'] != '') {
+        $slug = $page[$page_id]['slug'];
+      } else {
+        $slug = $page_id;
+      } 
       // adjust slug
       if ($slug == 'main') {
         $slug = '';

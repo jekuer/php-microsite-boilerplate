@@ -6,6 +6,11 @@
 
 foreach($directus_pages['collections'] as $key => $single_collection) {
   
+  // Defining the correct slug field.
+  if (isset($directus_pages['slugs']) and !empty($directus_pages['slugs'])) {
+    $directus_pages['slug'] = $directus_pages['slugs'][$key];
+  }
+
   // Defining a potential slug prepend.
   $slug_add = '';
   if (isset($directus_pages['slug_depth']) and !empty($directus_pages['slug_depth'])) {
@@ -14,9 +19,9 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
 
   // Determining the query.
   $field_query = 'id';
-  $fields_main_level = array('slug', 'sitemap');
+  $fields_main_level = array('sitemap');
   $fields_sub_level = array();
-  $fields_flex_level = array('view', 'name');
+  $fields_flex_level = array('slug', 'view', 'name');
   foreach ($fields_main_level as $field_name) {
     if (isset($directus_pages[$field_name]) and $directus_pages[$field_name] != '') {
       $field_query .= ',' . $directus_pages[$field_name];
@@ -66,8 +71,7 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
       }
 
       // Read the values and create.
-      $tmp_id = $slug_add . $item[$directus_pages['slug']];
-      if ($tmp_id == '' or $tmp_id == '/') $tmp_id = 'main';
+      $tmp_id = $item['id'];
 
       $tmp_lang = $language['active'];
 
@@ -83,6 +87,10 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
           $pages[$tmp_lang][$tmp_id]['directus_collection'] = $single_collection;
           $pages[$tmp_lang][$tmp_id]['directus_id'] = $item['id'];
           $pages[$tmp_lang][$tmp_id]['directus_dyn'] = true;
+          if (isset($pages[$tmp_lang][$tmp_id]['slug'])) {
+            $pages[$tmp_lang][$tmp_id]['slug'] = $slug_add . $pages[$tmp_lang][$tmp_id]['slug'];
+            if ($pages[$tmp_lang][$tmp_id]['slug'] == '' or $pages[$tmp_lang][$tmp_id]['slug'] == '/') $pages[$tmp_lang][$tmp_id]['slug'] = 'main';
+          }
         }
       } else {
         foreach ($fields_main_level as $field_name) {
@@ -91,6 +99,10 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
         $pages[$tmp_lang][$tmp_id]['directus_collection'] = $single_collection;
         $pages[$tmp_lang][$tmp_id]['directus_id'] = $item['id'];
         $pages[$tmp_lang][$tmp_id]['directus_dyn'] = true;
+        if (isset($pages[$tmp_lang][$tmp_id]['slug'])) {
+          $pages[$tmp_lang][$tmp_id]['slug'] = $slug_add . $pages[$tmp_lang][$tmp_id]['slug'];
+          if ($pages[$tmp_lang][$tmp_id]['slug'] == '' or $pages[$tmp_lang][$tmp_id]['slug'] == '/') $pages[$tmp_lang][$tmp_id]['slug'] = 'main';
+        }
       }
 
     }

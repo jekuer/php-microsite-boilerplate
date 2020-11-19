@@ -7,6 +7,7 @@
 class Page {
     
   public $id;
+  public $slug;
   public $directus = array();
   public $view = '';
   public $controller = '';
@@ -19,10 +20,21 @@ class Page {
   public $robots = 'index,follow';
   public $amp = false;
   
-  public function __construct($page_id, $pages, $page_defaults) {
+  public function __construct($page_slug, $pages, $page_defaults) {
     global $directus_pages, $directus_cache, $language;
 
-    $this->id = $page_id;
+    // find and set the id via slug
+    $this->slug = $page_slug;
+    $slug_override = false;
+    if (is_array($pages)) {
+      $tmp_search_array = array_column_ext($pages, 'slug', -1);
+      $slug_override = array_search($page_slug, $tmp_search_array);
+    }
+    if (false !== $slug_override and $slug_override != '') {
+      $this->id = $slug_override;
+    } else {
+      $this->id = $page_slug;
+    }
 
     // Check for special cases.
     if (isset($pages[$this->id]) and $this->id != '') {
@@ -31,7 +43,7 @@ class Page {
       // Load Directus dyn pages details.
       if (isset($curr_page['directus_dyn']) and $curr_page['directus_dyn'] = true) {
         // Draw content from Directus (or the cache, if set).
-        $cache_filename = 'directus_cache_page_' . str_replace('/','-sub-',$this->id) . '_' . $language['active'];
+        $cache_filename = 'directus_cache_page_' . $this->id . '_' . str_replace('/','-sub-',$this->slug) . '_' . $language['active'];
         if ($directus_cache and file_exists(__DIR__ . '/../cache/' . $cache_filename . '.json')) {
           $cache_page_file = file_get_contents(__DIR__ . '/../cache/' . $cache_filename . '.json');
           $this->directus = json_decode($cache_page_file, true);

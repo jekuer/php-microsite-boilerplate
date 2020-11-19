@@ -1,8 +1,8 @@
 
       <footer>
         <p>
-          <a class="footer_link" href="<?php echo $the_page_url_full; ?>legal-notice/"><?php echo $pages[$language['active']]['legal-notice']['name']; ?></a>
-          <a class="footer_link" href="<?php echo $the_page_url_full; ?>privacy-policy/"><?php echo $pages[$language['active']]['privacy-policy']['name']; ?></a>
+          <a class="footer_link" href="<?php echo $the_page_url_full . $pages[$language['active']]['legal-notice']['slug']; ?>/">"><?php echo $pages[$language['active']]['legal-notice']['name']; ?></a>
+          <a class="footer_link" href="<?php echo $the_page_url_full . $pages[$language['active']]['privacy-policy']['slug']; ?>/"><?php echo $pages[$language['active']]['privacy-policy']['name']; ?></a>
           <span class="footer_link" on="tap:myUserConsent.prompt()" role="button" tabindex="-1">Cookie Settings</span>
           <?php echo create_language_switcher($the_page->id, true); ?>
         </p>

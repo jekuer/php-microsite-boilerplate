@@ -23,7 +23,9 @@ foreach ($language['available'] as $lang => $lang_name) {
 /* Regular Pages */
 
 // Fields:
-// - alias                (if the entry/id acts as an alias for another id, put the target id here) (string)
+// - id                   (overall unique identifier, no real field) (the default slug for this page; needs to be the same per language; to reference the home page, use 'main'; mind to NOT use 'amp, 'default', or any of your language short names (e.g. 'de')) (string)
+// - slug                 (optional slug, if you do not want to use the id as slug (e.g. if you want to have different slugs per translation)) (string)
+// - alias                (if the entry/id acts as an alias for another id, put the target id here; this won't redirect, but load the target page's content under this slug) (string)
 // - view                 (the file to load from folder 'pages') (string)
 // - controller           (the file to load from folder 'controller'; gets included before any HTML) (string)
 // - name                 (display name for menus) (string)
@@ -37,12 +39,11 @@ foreach ($language['available'] as $lang => $lang_name) {
 // - directus_collection  (collectionName, e.g. "mypages") (string)
 // - directus_id          (itemId within this collection, e.g. "4") (if set, the site will connect to directus and retrieve the information from this item in the respective collection. You can then use it via $the_page->directus['FIELD']) (string)
 
-// View and Name are required. At all other fields, if kept empty or not defined, the default setting is used.
-// The id variable needs to hold the path slug. To reference the home page, use 'main'.
-// Mind to NOT use 'amp, 'default', or any of your language short names (e.g. 'de') as id!
+// Id, View, and Name are required. At all other fields, if kept empty or not defined, the default setting is used.
 
 /* // Example
 $id = 'legal-notice';
+$pages['en'][$id]['slug'] = 'legal-company-information';
 $pages['en'][$id]['alias'] = '';
 $pages['en'][$id]['view'] = 'legal-notice';
 $pages['en'][$id]['controller'] = '';
@@ -202,7 +203,7 @@ $pages['en'][$id]['redirect'] = 'https://github.com/jekuer/php-microsite-boilerp
 // Also mind that the language codes in the config here are required to match the language codes from your Directus system!
 
 $directus_pages['collections'] = array(); // The collections, which hold the single pages (not the translated elements) (array). If empty, this feature will be skipped.
-$directus_pages['slug'] = ''; // The field, which holds the slug. Should be the same structure for each collection. (required!).
+$directus_pages['slugs'] = array('slug'); // The field, which holds the slug. Per collection (array). For nested translations, add a period before the name, e.g. ".slug". Mind to define it for each collection! Example: array('', '', 'slug', '');
 $directus_pages['slug_depth'] = array(); // If you want to define a deeper URL structure for one collection, you can add the second level here. E.g. "blog" would lead to a page appear at DOMAIN.COM/blog/slug. Mind to define it for each collection! Example: array('', '', 'blog', '');
 $directus_pages['respect_status'] = true; // If set true, only pages with a field "status" and the value "published" will be loaded.
 $directus_pages['view'] = ''; // The field, which holds the name of the view file. For nested translations, add a period before the name, e.g. ".view". (if empty, will look for a file, which matches the slug).

@@ -19,7 +19,13 @@ foreach ($language['available'] as $lang => $lang_name) {
     $language_url = $the_page_url;
     if ($amp) $language_url .= 'amp/';
     if ($lang != $language['default']) $language_url .= $lang . '/';
-    if ($the_page->id != 'main') $language_url .= $the_page->id . '/';
+    if ($the_page->slug != 'main') {
+      if (isset($pages[$lang][$the_page->id]['slug']) and $pages[$lang][$the_page->id]['slug'] != '') {
+        $language_url .= $pages[$lang][$the_page->id]['slug'] . '/';
+      } else {
+        $language_url .= $the_page->id . '/';
+      }
+    }
     echo '<link rel="alternate" href="' . $language_url . '" hreflang="' . $lang . '">';
     if ($lang == $language['default']) echo '<link rel="alternate" href="' . $language_url . '" hreflang="x-default">';
   }

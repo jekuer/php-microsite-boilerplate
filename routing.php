@@ -203,21 +203,21 @@ $pages['en'][$id]['redirect'] = 'https://github.com/jekuer/php-microsite-boilerp
 // Also mind that the language codes in the config here are required to match the language codes from your Directus system!
 
 $directus_pages['collections'] = array(); // The collections, which hold the single pages (not the translated elements) (array). If empty, this feature will be skipped.
-$directus_pages['slugs'] = array('slug'); // The field, which holds the slug. Per collection (array). For nested translations, add a period before the name, e.g. ".slug". Mind to define it for each collection! Example: array('', '', 'slug', '');
+$directus_pages['slug'] = array(); // The field, which holds the slug. If different per collection, write as array. For nested translations, add a period before the name, e.g. ".slug". Mind to define it for each collection! Example: array('', '', 'slug', '');
 $directus_pages['slug_depth'] = array(); // If you want to define a deeper URL structure for one collection, you can add the second level here. E.g. "blog" would lead to a page appear at DOMAIN.COM/blog/slug. Mind to define it for each collection! Example: array('', '', 'blog', '');
-$directus_pages['respect_status'] = true; // If set true, only pages with a field "status" and the value "published" will be loaded.
-$directus_pages['view'] = ''; // The field, which holds the name of the view file. For nested translations, add a period before the name, e.g. ".view". (if empty, will look for a file, which matches the slug).
-$directus_pages['controller'] = ''; // The field, which holds the name of the controller file For nested translations, add a period before the name, e.g. ".view". (optional; if empty, gets skipped).
-$directus_pages['name'] = ''; // The field, which holds the title as it appears in menus. For nested translations, add a period before the name, e.g. ".name". (required!).
-$directus_pages['title'] = ''; // The field, which holds the meta title. For nested translations, add a period before the name, e.g. ".title". (If empty, defaults to the default).
-$directus_pages['description'] = ''; // The field, which holds the meta description. For nested translations, add a period before the name, e.g. ".description". (If empty, defaults to the default).
-$directus_pages['keywords'] = ''; // The field, which holds the meta keywords. For nested translations, add a period before the name, e.g. ".keywords". (If empty, defaults to the default).
-$directus_pages['robots'] = ''; // The field, which holds the robots information (if empty, defaults to the default).
-$directus_pages['amp'] = ''; // The field, which defines, whether the page has an AMP version or not (if empty, defaults to false).
-$directus_pages['redirect'] = ''; // The field, which defines, whether the page redirects to another URL (if empty, defaults to '').
-$directus_pages['sitemap'] = ''; // The field, which holds information, if the page should be included into the sitemap or not (if empty, defaults to true).
+$directus_pages['respect_status'] = true; // If set true, only pages with a field "status" and the value "published" will be loaded. Mind that all collections need a fiels "status" if set to true!
+$directus_pages['view'] = ''; // The field, which holds the name of the view file. If different per collection, write as array. For nested translations, add a period before the name, e.g. ".view". (if empty, will look for a file, which matches the slug).
+$directus_pages['controller'] = ''; // The field, which holds the name of the controller file. If different per collection, write as array. For nested translations, add a period before the name, e.g. ".view". (optional; if empty, gets skipped).
+$directus_pages['name'] = ''; // The field, which holds the title as it appears in menus. If different per collection, write as array. For nested translations, add a period before the name, e.g. ".name". (required!).
+$directus_pages['title'] = ''; // The field, which holds the meta title. If different per collection, write as array. For nested translations, add a period before the name, e.g. ".title". (If empty, defaults to the default).
+$directus_pages['description'] = ''; // The field, which holds the meta description. If different per collection, write as array. For nested translations, add a period before the name, e.g. ".description". (If empty, defaults to the default).
+$directus_pages['keywords'] = ''; // The field, which holds the meta keywords. If different per collection, write as array. For nested translations, add a period before the name, e.g. ".keywords". (If empty, defaults to the default).
+$directus_pages['robots'] = ''; // The field, which holds the robots information (if empty, defaults to the default). If different per collection, write as array.
+$directus_pages['amp'] = ''; // The field, which defines, whether the page has an AMP version or not (if empty, defaults to false). If different per collection, write as array.
+$directus_pages['redirect'] = ''; // The field, which defines, whether the page redirects to another URL (if empty, defaults to ''). If different per collection, write as array.
+$directus_pages['sitemap'] = ''; // The field, which holds information, if the page should be included into the sitemap or not (if empty, defaults to true). If different per collection, write as array.
 $directus_pages['translation_block'] = 'translations'; // The block (name of the sub level), which holds translated elements (usually "translations", if you did not change it).
-$directus_pages['language_field'] = ''; // The name of the field, which defines the language of a specific block (usually "language" in V8 and "languages_code" in V9).
+$directus_pages['language_field'] = 'languages_code'; // The name of the field, which defines the language of a specific block (usually "language" in V8 and "languages_code" in V9).
 
 
 ?>

@@ -5,7 +5,7 @@
  * PHP Microsite Boilerplate
  * +++++++++++++++++++++++++
  * 
- * Version: 1.3.1
+ * Version: 1.3.2
  * Creator: Jens Kuerschner (https://jenskuerschner.de)
  * Project: https://github.com/jekuer/php-microsite-boilerplate
  * License: GNU General Public License v3.0	(gpl-3.0)
@@ -84,7 +84,14 @@ require_once './routing.php';
 if (!isset($url_parts[0]) or $url_parts[0] == '') $url_parts[0] = 'main';
 $page_slug = $url_parts[0];
 if (isset($url_parts[1]) and $url_parts[1] != '') $page_slug = $page_slug . '/' . $url_parts[1]; // enables an optional second URL level.
-if ($directus_url != '' and isset($directus_pages['collections']) and !empty($directus_pages['collections'])) { // load Directus pages, if set.
+
+
+// Check for cache purge/rebuild call.
+require_once './lib/cache_purge_rebuild.php';
+
+
+// Load Directus pages, if set.
+if ($directus_url != '' and isset($directus_pages['collections']) and !empty($directus_pages['collections'])) {
   require_once './lib/directus_dyn_pages.php';
 }
 
@@ -94,23 +101,6 @@ if ($page_slug == $the_deployment_slug) {
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include_once $the_deployment_script;
     die();
-  } else {
-    http_response_code(400);
-    $page_slug = 'error';
-  }
-}
-
-
-// Check for cache purge call.
-if ($page_slug == 'purge/directus_cache') {
-  if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $cache_files = glob('./cache/*.json');
-    foreach ($cache_files as $file) {
-      if (is_file($file)) {
-        unlink($file);
-      }
-    }
-    die('Directus local cache purged.');
   } else {
     http_response_code(400);
     $page_slug = 'error';
@@ -135,12 +125,12 @@ if ($the_page->amp == false) $amp = false;
 // Render page (compressed and with stripped HTML comments).
 ob_start("ob_html_compress");
 if ($amp) {
-  if ($the_page->controller != '') include_once './controller/'. $the_page->controller .'.php';
+  if ($the_page->controller != '' and file_exists('./controller/'. $the_page->controller .'.php')) include_once './controller/'. $the_page->controller .'.php';
   include_once './templates/header_amp.php';
   include_once './pages/'. $the_page->view .'.php';
   include_once './templates/footer_amp.php';
 } else {
-  if ($the_page->controller != '') include_once './controller/'. $the_page->controller .'.php';
+  if ($the_page->controller != '' and file_exists('./controller/'. $the_page->controller .'.php')) include_once './controller/'. $the_page->controller .'.php';
   include_once './templates/header.php';
   include_once './pages/'. $the_page->view .'.php';
   include_once './templates/footer.php';

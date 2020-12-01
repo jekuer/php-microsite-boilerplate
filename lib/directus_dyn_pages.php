@@ -5,16 +5,15 @@
  */
 
 foreach($directus_pages['collections'] as $key => $single_collection) {
-  
-  // Defining the correct slug field.
-  if (isset($directus_pages['slugs']) and !empty($directus_pages['slugs'])) {
-    $directus_pages['slug'] = $directus_pages['slugs'][$key];
-  }
 
   // Defining a potential slug prepend.
   $slug_add = '';
-  if (isset($directus_pages['slug_depth']) and !empty($directus_pages['slug_depth'])) {
-    $slug_add = $directus_pages['slug_depth'][$key] . '/';
+  if (isset($directus_pages['slug_depth'])) {
+    if (is_array($directus_pages['slug_depth']) and isset($directus_pages['slug_depth'][$key]) and $directus_pages['slug_depth'][$key] != '') {
+      $slug_add = $directus_pages['slug_depth'][$key] . '/';
+    } elseif (!is_array($directus_pages['slug_depth']) and $directus_pages['slug_depth'] != '') {
+      $slug_add = $directus_pages['slug_depth'] . '/';
+    }
   }
 
   // Determining the query.
@@ -22,37 +21,42 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
   $fields_main_level = array('sitemap');
   $fields_sub_level = array();
   $fields_flex_level = array('slug', 'view', 'name');
+  $translation_block_str = '';
+  if (isset($directus_pages['translation_block'])) $translation_block_str = str_replace(" ", "%20", $directus_pages['translation_block']);
+  $language_field_str = '';
+  if (isset($directus_pages['language_field'])) $language_field_str = str_replace(" ", "%20", $directus_pages['language_field']);
   foreach ($fields_main_level as $field_name) {
-    if (isset($directus_pages[$field_name]) and $directus_pages[$field_name] != '') {
-      $field_query .= ',' . $directus_pages[$field_name];
+    if (isset($directus_pages[$field_name])) {
+      if (is_array($directus_pages[$field_name]) and !empty($directus_pages[$field_name])) {
+        $field_name_item = $directus_pages[$field_name][$key];
+      } else {
+        $field_name_item = $directus_pages[$field_name];
+      }
+      if ($field_name_item != '') $field_query .= ',' . $field_name_item;
     }
   }
   foreach ($fields_flex_level as $field_name) {
-    if (isset($directus_pages[$field_name]) and $directus_pages[$field_name] != '') {
-      if ($directus_pages[$field_name][0] == '.') {
-        $field_query .= ',' . $directus_pages['translation_block'] . $directus_pages[$field_name];
-        array_push($fields_sub_level,$field_name);
+    if (isset($directus_pages[$field_name])) {
+      if (is_array($directus_pages[$field_name]) and !empty($directus_pages[$field_name])) {
+        $field_name_item = $directus_pages[$field_name][$key];
       } else {
-        $field_query .= ',' . $directus_pages[$field_name];
-        array_push($fields_main_level,$field_name);
+        $field_name_item = $directus_pages[$field_name];
+      }
+      if ($field_name_item != '') {
+        if ($field_name_item[0] == '.') {
+          $field_query .= ',' . $translation_block_str . $field_name_item;
+          array_push($fields_sub_level,$field_name);
+        } else {
+          $field_query .= ',' . $field_name_item;
+          array_push($fields_main_level,$field_name);
+        }
       }
     }
   }
-  if (isset($directus_pages['language_field'])) $field_query .= ',' . $directus_pages['translation_block'] . '.' . $directus_pages['language_field'];
+  if (isset($directus_pages['language_field'])) $field_query .= ',' . $translation_block_str . '.' . $language_field_str;
 
-  // Draw content from Directus (or the cache, if set).
-  $cache_filename = 'directus_cache_main';
-  if ($directus_cache and file_exists(__DIR__ . '/../cache/' . $cache_filename . '.json')) {
-    $cache_main_file = file_get_contents(__DIR__ . '/../cache/' . $cache_filename . '.json');
-    $tmp_draw = json_decode($cache_main_file, true);
-  } else {
-    $tmp_draw = getDirectusContent($single_collection, '', '', $directus_pages['respect_status'], $field_query);
-    if ($directus_cache) { // save to cache
-      $fp = fopen(__DIR__ . '/../cache/' . $cache_filename . '.json', 'w');
-      fwrite($fp, json_encode($tmp_draw));
-      fclose($fp);
-    }
-  }
+  // Draw content from Directus.
+  $tmp_draw = getDirectusContent($single_collection, '', '', $directus_pages['respect_status'], $field_query);
 
   // Create pages.
   if (is_array($tmp_draw)) {
@@ -77,17 +81,32 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
 
       if (isset($item[$directus_pages['translation_block']])) {
         foreach ($item[$directus_pages['translation_block']] as $translated_item) {
-          if (isset($translated_item[$directus_pages['language_field']])) $tmp_lang = make_safe($translated_item[$directus_pages['language_field']]);        
+          if (isset($translated_item[$directus_pages['language_field']])) {
+            $tmp_lang = make_safe($translated_item[$directus_pages['language_field']]);
+            $lang_key = array_keys($language['directus'], $tmp_lang);
+            $tmp_lang = $lang_key[0];
+          }
           foreach ($fields_main_level as $field_name) {
-            if (isset($item[$directus_pages[$field_name]])) $pages[$tmp_lang][$tmp_id][$field_name] = make_safe2($item[$directus_pages[$field_name]]);
+            if (is_array($directus_pages[$field_name]) and !empty($directus_pages[$field_name])) {
+              $field_name_item = make_safe2($directus_pages[$field_name][$key]);
+            } else {
+              $field_name_item = make_safe2($directus_pages[$field_name]);
+            }
+            if (isset($item[$field_name_item])) $pages[$tmp_lang][$tmp_id][$field_name] = $item[$field_name_item];
           }
           foreach ($fields_sub_level as $field_name) {
-            if (isset($translated_item[substr($directus_pages[$field_name], 1)])) {
-              $pages[$tmp_lang][$tmp_id][$field_name] = $translated_item[substr($directus_pages[$field_name], 1)];
+            if (is_array($directus_pages[$field_name]) and !empty($directus_pages[$field_name])) {
+              $field_name_item = $directus_pages[$field_name][$key];
+            } else {
+              $field_name_item = $directus_pages[$field_name];
+            }
+            if (isset($translated_item[substr($field_name_item, 1)])) {
+              $pages[$tmp_lang][$tmp_id][$field_name] = $translated_item[substr($field_name_item, 1)];
               $pages[$tmp_lang][$tmp_id][$field_name] = make_safe2($pages[$tmp_lang][$tmp_id][$field_name]);
             }
           }
           $pages[$tmp_lang][$tmp_id]['directus_collection'] = $single_collection;
+          $pages[$tmp_lang][$tmp_id]['directus_collection_key'] = $key;
           $pages[$tmp_lang][$tmp_id]['directus_id'] = $item['id'];
           $pages[$tmp_lang][$tmp_id]['directus_dyn'] = true;
           if (isset($pages[$tmp_lang][$tmp_id]['slug'])) {
@@ -97,9 +116,15 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
         }
       } else {
         foreach ($fields_main_level as $field_name) {
-          if (isset($item[$directus_pages[$field_name]])) $pages[$tmp_lang][$tmp_id][$field_name] = make_safe2($item[$directus_pages[$field_name]]);
+          if (is_array($directus_pages[$field_name]) and !empty($directus_pages[$field_name])) {
+            $field_name_item = make_safe2($directus_pages[$field_name][$key]);
+          } else {
+            $field_name_item = make_safe2($directus_pages[$field_name]);
+          }
+          if (isset($item[$field_name_item])) $pages[$tmp_lang][$tmp_id][$field_name] = $item[$field_name_item];
         }
         $pages[$tmp_lang][$tmp_id]['directus_collection'] = $single_collection;
+        $pages[$tmp_lang][$tmp_id]['directus_collection_key'] = $key;
         $pages[$tmp_lang][$tmp_id]['directus_id'] = $item['id'];
         $pages[$tmp_lang][$tmp_id]['directus_dyn'] = true;
         if (isset($pages[$tmp_lang][$tmp_id]['slug'])) {

@@ -20,8 +20,8 @@ class Page {
   public $robots = 'index,follow';
   public $amp = false;
   
-  public function __construct($page_slug, $pages, $page_defaults) {
-    global $directus_pages, $directus_cache, $language;
+  public function __construct($page_slug, $pages, $page_defaults = array()) {
+    global $directus_pages;
 
     // find and set the id via slug
     $this->slug = $page_slug;
@@ -42,30 +42,25 @@ class Page {
 
       // Load Directus dyn pages details.
       if (isset($curr_page['directus_dyn']) and $curr_page['directus_dyn'] = true) {
-        // Draw content from Directus (or the cache, if set).
-        $cache_filename = 'directus_cache_page_' . $this->id . '_' . str_replace('/','-sub-',$this->slug) . '_' . $language['active'];
-        if ($directus_cache and file_exists(__DIR__ . '/../cache/' . $cache_filename . '.json')) {
-          $cache_page_file = file_get_contents(__DIR__ . '/../cache/' . $cache_filename . '.json');
-          $this->directus = json_decode($cache_page_file, true);
-        } else {
-          $this->directus = getDirectusContent($curr_page['directus_collection'], $curr_page['directus_id'], '', false, '', true);
-          if ($directus_cache) { // save to cache
-            $fp = fopen(__DIR__ . '/../cache/' . $cache_filename . '.json', 'w');
-            fwrite($fp, json_encode($this->directus));
-            fclose($fp);
-          }
-        }
+        $this->directus = getDirectusContent($curr_page['directus_collection'], $curr_page['directus_id'], '', false, '', true);
         // First, check where we need to look for which information.
         $fields_main_level = array('robots', 'amp', 'redirect');
         $fields_sub_level = array();
         $fields_flex_level = array('controller', 'title', 'description', 'keywords');
         foreach ($fields_flex_level as $field_name) {
-          if (isset($directus_pages[$field_name]) and $directus_pages[$field_name] != '') {
-            if ($directus_pages[$field_name][0] == '.') {
-              $directus_pages[$field_name] = substr($directus_pages[$field_name], 1);
-              array_push($fields_sub_level,$field_name);
+          if (isset($directus_pages[$field_name])) {
+            if (is_array($directus_pages[$field_name]) and !empty($directus_pages[$field_name])) {
+              $field_name_item = $directus_pages[$field_name][$curr_page['directus_collection_key']];
             } else {
-              array_push($fields_main_level,$field_name);
+              $field_name_item = $directus_pages[$field_name];
+            }
+            if ($field_name_item != '') {
+              if ($field_name_item[0] == '.') {
+                $field_name_item = substr($field_name_item, 1);
+                array_push($fields_sub_level,$field_name);
+              } else {
+                array_push($fields_main_level,$field_name);
+              }
             }
           }
         }
@@ -81,17 +76,27 @@ class Page {
           }
         }
         foreach ($fields_main_level as $field_name) {
-          if (isset($this->directus[$directus_pages[$field_name]])) $curr_page[$field_name] = make_safe2($this->directus[$directus_pages[$field_name]]);
+          if (is_array($directus_pages[$field_name]) and !empty($directus_pages[$field_name])) {
+            $field_name_item = $directus_pages[$field_name][$curr_page['directus_collection_key']];
+          } else {
+            $field_name_item = $directus_pages[$field_name];
+          }
+          if (isset($this->directus[$field_name_item])) $curr_page[$field_name] = $this->directus[$field_name_item];
         }
         foreach ($fields_sub_level as $field_name) {
-          if (isset($this->directus[$directus_pages['translation_block']][$directus_pages[$field_name]])) $curr_page[$field_name] = make_safe2($this->directus[$directus_pages['translation_block']][$directus_pages[$field_name]]);
+          if (is_array($directus_pages[$field_name]) and !empty($directus_pages[$field_name])) {
+            $field_name_item = $directus_pages[$field_name][$curr_page['directus_collection_key']];
+          } else {
+            $field_name_item = $directus_pages[$field_name];
+          }
+          if (isset($this->directus[$directus_pages['translation_block']][substr($field_name_item, 1)])) $curr_page[$field_name] = $this->directus[$directus_pages['translation_block']][substr($field_name_item, 1)];
         }
         // Third and last, unset the Directus link of the page to not call the details again later.
         unset($curr_page['directus_collection']);
         unset($curr_page['directus_id']);
         // And default view to the slug if not set.
         if (!isset($curr_page['view']) or (isset($curr_page['view']) and $curr_page['view'] == '')) {
-          $curr_page['view'] = $this->directus[$directus_pages['slug']];
+          $curr_page['view'] = $this->slug;
         }
       }
 
@@ -148,19 +153,8 @@ class Page {
       $this->amp = true;
     }
     if (isset($curr_page['directus_collection']) and $curr_page['directus_collection'] != '' and isset($curr_page['directus_id']) and $curr_page['directus_id'] != '') {
-      // Draw content from Directus (or the cache, if set).
-      $cache_filename = 'directus_cache_page_' . str_replace('/','-sub-',$this->id) . '_' . $language['active'];
-      if ($directus_cache and file_exists(__DIR__ . '/../cache/' . $cache_filename . '.json')) {
-        $cache_page_file = file_get_contents(__DIR__ . '/../cache/' . $cache_filename . '.json');
-        $this->directus = json_decode($cache_page_file, true);
-      } else {
-        $this->directus = getDirectusContent($curr_page['directus_collection'], $curr_page['directus_id'], '', false, '', true);
-        if ($directus_cache) { // save to cache
-          $fp = fopen(__DIR__ . '/../cache/' . $cache_filename . '.json', 'w');
-          fwrite($fp, json_encode($this->directus));
-          fclose($fp);
-        }
-      }      
+      // Draw content from Directus.
+      $this->directus = getDirectusContent($curr_page['directus_collection'], $curr_page['directus_id'], '', false, '', true);  
     }
 
   }

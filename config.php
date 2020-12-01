@@ -6,11 +6,11 @@
 
 // Current version of the website.
 // Will be used to control css and js caching.
-$version_nr = '1.3.0';
+$version_nr = '1.3.2';
 
-// Multilanguage.
-$language['default'] = 'en'; // Use a value from the array below.
-$language['available'] = array( // Needs to be an array! Key needs to be the language code, while value needs to be the name of the language as spelled in its own language. See https://support.google.com/webmasters/answer/189077 for details about language codes.
+// Multilanguage
+$language['default'] = 'en'; // Use a key from the array below.
+$language['available'] = array( // Needs to be an array! Key needs to be the language code, while value needs to be the name of the language as spelled in its own language. See https://support.google.com/webmasters/answer/189077 for details about language codes. Mind to also add them to the serviceworker-cache.js!
   'en' => 'English', 
   'de' => 'Deutsch',
   'es' => 'Español'
@@ -19,6 +19,11 @@ $language['locale'] = array( // Needs to be an array with the same keys as $lang
   'en' => 'en_US', 
   'de' => 'de_DE',
   'es' => 'es_ES'
+);
+$language['directus'] = array( // Needs to be an array with the same keys as $language['available']. Holds the the language codes for Directus translations.
+  'en' => 'en-US',
+  'de' => 'de-DE',
+  'es' => 'es-ES'
 );
 
 // Deployment hook definition.
@@ -33,12 +38,14 @@ $amp_cookie_consent = false; // If set to false, there will be no cookie banner 
 
 // Directus (8/9) integration.
 // This is a basic integration. You can define a collection and item id at the routing and get a variable, which holds all meta information. You can than use this variable within the respective page code.
-// Mind that you need to provide public read access to the respective collections.
 // Directus is quite flexible and can be used in many styles and for many purposes. Feel free to extend this to your needs.
-$directus_url = ''; // URL to your directus API instance. If not set, directus connection will be disabled. Usual scheme: PATH-TO-DIRECTUS/:project/ - PATH-TO-DIRECTUS can be a domain pointing to /public or something like https://www.domain.com/directus/public/:project/ - depending on your setup. If you are using V9, leave out the "/:project" part.
+$directus_version = '9'; // The major version of your Directus instance (8 or 9 supported).
+$directus_url = ''; // URL to your directus API instance. If not set, directus connection will be disabled. PATH-TO-DIRECTUS can be a domain pointing to /public or something like https://www.domain.com/directus/public/- depending on your setup.
+$directus_project = ''; // Name of the Directus project (only V8).
 $directus_user = ''; // Set user email and password only, if you need to access content, which is not set to public at you Directus instance. Make sure to have a seperate user for this and that this user has respective rights and no 2FA enabled.
 $directus_password = ''; // If you store your code in a repo, consider using a masked environment variable here.
 $directus_cache = true; // The default API calls will be cached locally, if true. If you want to purge the cache, call YOURDOMAIN.com/purge/directus_cache. It is recommended to add this as webhook (GET) to Directus to purge the cache on every page update.
+$random_cache_code = ''; // Consider changing this code to any alpha-numeric phrase, to make it harder for others to trigger the resource hungry cache & rebuild process. You will need to add this as purge_rebuild_code query param to the cache URL, e.g. YOURDOMAIN.com/purge/directus_cache?purge_rebuild_code=7347373467.
 
 // Base URL of your microsite.
 $the_page_url = 'https://YOURDOMAIN.com/';

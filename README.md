@@ -76,6 +76,7 @@ Anyone is welcome to contribute, but mind the [guidelines](.github/CONTRIBUTING.
 
 ## Changelog
 
+-   1.3.3: Optimization of redirect feature and Directus caching.
 -   1.3.2: Extensive bug fixing.
 -   1.3.1: Individual slug per language.
 -   1.3.0: Added Gettext support, including emulation fallback for servers not supporting native gettext.

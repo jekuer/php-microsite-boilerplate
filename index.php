@@ -5,7 +5,7 @@
  * PHP Microsite Boilerplate
  * +++++++++++++++++++++++++
  * 
- * Version: 1.3.2
+ * Version: 1.3.3
  * Creator: Jens Kuerschner (https://jenskuerschner.de)
  * Project: https://github.com/jekuer/php-microsite-boilerplate
  * License: GNU General Public License v3.0	(gpl-3.0)
@@ -71,14 +71,6 @@ if (isset($language['locale']) and is_array($language['locale']) and !empty($lan
 }
 
 
-// Check for redirects
-require_once './redirects.php';
-if (isset($redirects[$language['active']][$url_parts[0]]['target']) and $redirects[$language['active']][$url_parts[0]]['target'] != '') {
-  header('Location: ' . $redirects[$language['active']][$url_parts[0]]['target'], true, 301);
-  die();
-}
-
-
 // Routing.
 require_once './routing.php';
 if (!isset($url_parts[0]) or $url_parts[0] == '') $url_parts[0] = 'main';
@@ -120,6 +112,17 @@ if ($page_slug == 'sitemap.xml') {
 // In all other cases, prepare page.
 $the_page = new Page($page_slug, $pages[$language['active']], $the_page_meta_defaults);
 if ($the_page->amp == false) $amp = false;
+
+
+// Check for redirects, if no page found.
+if ($the_page->id == 'error') {
+  require_once './redirects.php';
+  if (isset($redirects[$full_url_parts]['target']) and $redirects[$full_url_parts]['target'] != '') {
+    if (!isset($redirects[$full_url_parts]['type']) or $redirects[$full_url_parts]['type'] == '') $redirects[$full_url_parts]['type'] = 301;
+    header('Location: ' . $redirects[$full_url_parts]['target'], true, $redirects[$full_url_parts]['type']);
+    die();
+  }
+}
 
 
 // Render page (compressed and with stripped HTML comments).

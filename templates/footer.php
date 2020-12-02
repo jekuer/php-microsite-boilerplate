@@ -12,6 +12,7 @@
 
     <!-- JavaScript -->        
     <!-- Add more files, if needed, but try to consolidate it into one for better performance -->
+    <!-- Have a look at Alpine (https://github.com/alpinejs/alpine) for a minimal JavaScript framework -->
     <script async src="./assets/js/all.min.js<?php echo '?v='.$version_nr; ?>"></script>
         
   </body>

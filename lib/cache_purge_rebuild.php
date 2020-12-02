@@ -8,6 +8,10 @@ $provided_cache_code = '';
 
 // Cache.
 if ($page_slug == 'purge/directus_cache') {
+  header('Expires: Sun, 01 Jan 2014 00:00:00 GMT');
+  header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+  header('Cache-Control: post-check=0, pre-check=0', false);
+  header("Pragma: no-cache");
   if (isset($url_query_vars['purge_rebuild_code'])) $provided_cache_code = $url_query_vars['purge_rebuild_code'];
   if ($_SERVER['REQUEST_METHOD'] === 'GET' and $random_cache_code == $provided_cache_code) {
     $cache_files = glob('./cache/*.json');
@@ -26,6 +30,12 @@ if ($page_slug == 'purge/directus_cache') {
 
 // Rebuild.
 if ($page_slug == 'rebuild/directus_cache' and $directus_url != '') {
+  header('Expires: Sun, 01 Jan 2014 00:00:00 GMT');
+  header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+  header('Cache-Control: post-check=0, pre-check=0', false);
+  header('Pragma: no-cache');
+  session_cache_limiter('private');
+  session_cache_expire(1);
   if (isset($url_query_vars['purge_rebuild_code'])) $provided_cache_code = $url_query_vars['purge_rebuild_code'];
   if ($_SERVER['REQUEST_METHOD'] === 'GET' and $random_cache_code == $provided_cache_code) {
     session_start();
@@ -34,9 +44,11 @@ if ($page_slug == 'rebuild/directus_cache' and $directus_url != '') {
       require_once './lib/directus_dyn_pages.php';
       $_SESSION['rebuild_page_data'] = json_encode($pages); // save it in a session variable
       $tmp_list = array();
-      foreach ($pages as $page_lang => $page) { // build an array of pages to rebuild
-        if (isset($page['slug'])) {
-          $tmp_list[] = array($page_lang, $page['slug']);
+      foreach ($language['available'] as $lang => $lang_name) { // build an array of pages to rebuild
+        foreach ($pages[$lang] as $page_id => $page) {
+          if (isset($pages[$lang][$page_id]['slug']) and isset($pages[$lang][$page_id]['directus_dyn'])) {
+            if ($pages[$lang][$page_id]['directus_dyn']) $tmp_list[] = array($lang, $pages[$lang][$page_id]['slug']);
+          }
         }
       }
       $_SESSION['rebuild_page_data_list'] = json_encode($tmp_list);

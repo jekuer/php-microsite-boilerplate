@@ -31,6 +31,7 @@
 
     <!-- CSS -->
     <!-- Add more files, if needed, but try to consolidate it into one for better performance -->
+    <!-- Have a look at Tailwind CSS (https://tailwindcss.com/) for a cool modern CSS experience -->
     <link rel="stylesheet" href="./assets/css/style.min.css<?php echo '?v='.$version_nr; ?>">
 
   </head>

@@ -1,3 +1,5 @@
+// Have a look at Alpine (https://github.com/alpinejs/alpine) for a minimal JavaScript framework.
+
 // Some simple stupid code for playing with the box icon.
 function openIt() {
   document.getElementById("box_closed").style.display = "none";

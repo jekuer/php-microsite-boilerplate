@@ -70,6 +70,11 @@ if (isset($_SERVER['HTTP_REFERER'])) {
 }
 
 
+// Also save path.
+$full_url_parts = implode('/', $url_parts);
+$full_url_parts_prev = implode('/', $url_parts_prev);
+
+
 // Get AMP information and reset URL parts (current URL only).
 if (isset($url_parts[0]) and $url_parts[0] == 'amp') {
   $amp = true;

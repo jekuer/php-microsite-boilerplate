@@ -65,7 +65,11 @@ function getDirectusContent($collection, $item = '', $file = '', $respect_status
 
   // Check for cache first.
   $cache_token = md5($collection . '_' . $item . '_' . $file . '_' . $respect_status . '_' . $get_fields . '_' . $filter_lang);
-  $cache_filename = 'directus_cache_page_' . $cache_token . '_' . $language['active'];
+  if ($filter_lang) {
+    $cache_filename = 'directus_cache_' . $collection . '_' . $item . '_' . $cache_token . '_' . $language['active'];
+  } else {
+    $cache_filename = 'directus_cache_' . $collection . '_' . $item . '_' . $cache_token;
+  }
   if ($directus_cache and file_exists(__DIR__ . '/../cache/' . $cache_filename . '.json')) {
     $cache_page_file = file_get_contents(__DIR__ . '/../cache/' . $cache_filename . '.json');
     return json_decode($cache_page_file, true);
@@ -166,7 +170,7 @@ function getDirectusContent($collection, $item = '', $file = '', $respect_status
   $directus_content = json_decode($return_json, true);
 
   // clean up the translations array, if there is only one after a language filter.
-  if ($clean_up_filter_lang and isset($directus_pages['translation_block']) and $directus_pages['translation_block'] != '') {
+  if ($clean_up_filter_lang and isset($directus_pages['translation_block']) and isset(($directus_content['data'][$directus_pages['translation_block']])) and $directus_pages['translation_block'] != '') {
     if (is_array($directus_content['data'][$directus_pages['translation_block']]) and count($directus_content['data'][$directus_pages['translation_block']]) == 1) {
       $directus_content['data'][$directus_pages['translation_block']] = array_values($directus_content['data'][$directus_pages['translation_block']]);
       $tmp_translations_elem = $directus_content['data'][$directus_pages['translation_block']][0];

@@ -6,12 +6,11 @@
 
   // Update 'version' if you need to refresh the caches completely (necessary to update the offline page). 
   // Mind to also change the version number in the main config!
-  var version = 'v1::';
+  var version = 'v2::';
 
   // Domain whitelist. Files not served from those domains won't be cached. The domain, which serves the serviceworker is automatically included. So, only add things like your image CDN or similar.
   // Example: domainWhitelist = ["cdn.domain.com", "www2.domain.com", "analytics.otherdomain.com"]
   var domainWhitelist = [
-
   ];
   domainWhitelist.push(hostname);
 
@@ -73,6 +72,8 @@
   
   self.addEventListener('fetch', function (event) {
     var request = event.request;
+    // Skip any purge and rebuild requests
+    if (request.url.includes('purge/directus_cache') === true || request.url.includes('rebuild/directus_cache') === true) return;
     // Get the request's language slug (used to match the right offline page)
     var langSlug = '';
     var requestpathParts = request.url.split('/');

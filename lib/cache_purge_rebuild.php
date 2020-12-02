@@ -60,6 +60,7 @@ if ($page_slug == 'rebuild/directus_cache' and $directus_url != '') {
         $tmp_pages_var = json_decode($_SESSION['rebuild_page_data'], true);
         $tmp_list = json_decode($_SESSION['rebuild_page_data_list'], true);
         foreach ($tmp_list as $tmp_list_item) {
+          $language['active'] = $tmp_list_item[0];
           $tmp_directus_data_var = new Page($tmp_list_item[1], $tmp_pages_var[$tmp_list_item[0]]);
         }        
         header('Location: ' . $the_page_url . 'rebuild/directus_cache?rebuild_mix=1&purge_rebuild_code=' . $random_cache_code, true, 307); // redirect to the next rebuild step

@@ -31,8 +31,10 @@ function generate_sitemap() {
       } else {
         $slug = $slug . '/';
       }
+      $date_updated = '';
+      if (isset($page[$page_id]['date_updated']) and $page[$page_id]['date_updated'] != '') $date_updated = '<lastmod>' . $page[$page_id]['date_updated'] . '</lastmod>' . PHP_EOL;
       // create <url> part
-      $sitemap_code .= '<url>' . PHP_EOL . '<loc>' . $the_page_url . $lang . $slug . '</loc>' . PHP_EOL . '</url>' . PHP_EOL;
+      $sitemap_code .= '<url>' . PHP_EOL . '<loc>' . $the_page_url . $lang . $slug . '</loc>' . PHP_EOL . $date_updated . '</url>' . PHP_EOL;
     }
   }
   $sitemap_code .= '</urlset>';

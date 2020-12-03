@@ -3,7 +3,7 @@
  * PHP Microsite Boilerplate
  * +++++++++++++++++++++++++
  * 
- * Version: 1.3.3
+ * Version: 1.3.4
  * Creator: Jens Kuerschner (https://jenskuerschner.de)
  * Project: https://github.com/jekuer/php-microsite-boilerplate
  * License: GNU General Public License v3.0	(gpl-3.0)
@@ -413,6 +413,7 @@ footer {
 }
 
 .language_switcher svg {
+  display: inline-block;
   fill: inherit;
   height: 12px;
   margin-bottom: -1px;

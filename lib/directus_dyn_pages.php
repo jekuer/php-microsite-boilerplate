@@ -18,9 +18,9 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
 
   // Determining the query.
   $field_query = 'id';
-  $fields_main_level = array('sitemap');
+  $fields_main_level = array();
   $fields_sub_level = array();
-  $fields_flex_level = array('slug', 'view', 'name');
+  $fields_flex_level = array('slug', 'view', 'name', 'sitemap', 'last_updated');
   $translation_block_str = '';
   if (isset($directus_pages['translation_block'])) $translation_block_str = str_replace(" ", "%20", $directus_pages['translation_block']);
   $language_field_str = '';

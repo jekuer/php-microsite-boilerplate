@@ -216,6 +216,7 @@ $directus_pages['robots'] = ''; // The field, which holds the robots information
 $directus_pages['amp'] = ''; // The field, which defines, whether the page has an AMP version or not (if empty, defaults to false). If different per collection, write as array.
 $directus_pages['redirect'] = ''; // The field, which defines, whether the page redirects to another URL (if empty, defaults to ''). If different per collection, write as array.
 $directus_pages['sitemap'] = ''; // The field, which holds information, if the page should be included into the sitemap or not (if empty, defaults to true). If different per collection, write as array.
+$directus_pages['date_updated'] = ''; // The field, which holds information about the last update of the content (only relevant for sitemap). If different per collection, write as array. Make sure that this field is also filled on item creation (not only on the update itself) - you can define this via the Directus settings for the field.
 $directus_pages['translation_block'] = 'translations'; // The block (name of the sub level), which holds translated elements (usually "translations", if you did not change it).
 $directus_pages['language_field'] = 'languages_code'; // The name of the field, which defines the language of a specific block (usually "language" in V8 and "languages_code" in V9).
 

@@ -20,7 +20,7 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
   $field_query = 'id';
   $fields_main_level = array();
   $fields_sub_level = array();
-  $fields_flex_level = array('slug', 'view', 'name', 'sitemap', 'last_updated');
+  $fields_flex_level = array('slug', 'view', 'name', 'sitemap', 'date_updated');
   $translation_block_str = '';
   if (isset($directus_pages['translation_block'])) $translation_block_str = str_replace(" ", "%20", $directus_pages['translation_block']);
   $language_field_str = '';
@@ -75,7 +75,7 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
       }
 
       // Read the values and create.
-      $tmp_id = $item['id'];
+      $tmp_id = $single_collection . '-' . $item['id'];
 
       $tmp_lang = $language['active'];
 
@@ -88,9 +88,9 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
           }
           foreach ($fields_main_level as $field_name) {
             if (is_array($directus_pages[$field_name]) and !empty($directus_pages[$field_name])) {
-              $field_name_item = make_safe2($directus_pages[$field_name][$key]);
+              $field_name_item = make_safe3($directus_pages[$field_name][$key]);
             } else {
-              $field_name_item = make_safe2($directus_pages[$field_name]);
+              $field_name_item = make_safe3($directus_pages[$field_name]);
             }
             if (isset($item[$field_name_item])) $pages[$tmp_lang][$tmp_id][$field_name] = $item[$field_name_item];
           }
@@ -102,7 +102,7 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
             }
             if (isset($translated_item[substr($field_name_item, 1)])) {
               $pages[$tmp_lang][$tmp_id][$field_name] = $translated_item[substr($field_name_item, 1)];
-              $pages[$tmp_lang][$tmp_id][$field_name] = make_safe2($pages[$tmp_lang][$tmp_id][$field_name]);
+              $pages[$tmp_lang][$tmp_id][$field_name] = make_safe3($pages[$tmp_lang][$tmp_id][$field_name]);
             }
           }
           $pages[$tmp_lang][$tmp_id]['directus_collection'] = $single_collection;
@@ -117,9 +117,9 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
       } else {
         foreach ($fields_main_level as $field_name) {
           if (is_array($directus_pages[$field_name]) and !empty($directus_pages[$field_name])) {
-            $field_name_item = make_safe2($directus_pages[$field_name][$key]);
+            $field_name_item = make_safe3($directus_pages[$field_name][$key]);
           } else {
-            $field_name_item = make_safe2($directus_pages[$field_name]);
+            $field_name_item = make_safe3($directus_pages[$field_name]);
           }
           if (isset($item[$field_name_item])) $pages[$tmp_lang][$tmp_id][$field_name] = $item[$field_name_item];
         }

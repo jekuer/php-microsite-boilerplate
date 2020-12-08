@@ -3,9 +3,10 @@
 /**
  * Language Switcher.
  */
+$language_switcher_count = 0;
 
 function create_language_switcher($page_id, $amp_version = false) {
-  global $language, $pages;
+  global $language, $pages, $language_switcher_count;
   $language_switcher = '';
   $translated_pages_count = 0;
   $lang_menu = '';
@@ -43,11 +44,14 @@ function create_language_switcher($page_id, $amp_version = false) {
   }
   if (count($language['available']) > 2 and $translated_pages_count > 1) { // If there are more than 2 language generally available and at least one additional version of the current page, offer a more complex menu.
     if ($amp_version) {
-      $language_switcher = '<span class="language_switcher" on="tap:lang_menu.show" role="button" tabindex="80">' . $globe_svg . $language['available'][$language['active']] . '&nbsp;&#9662;</span><span id="lang_menu" hidden><span id="lang_menu_overlay" on="tap:lang_menu.hide" role="img" tabindex="200"></span><span id="lang_menu_banner"><span id="lang_menu_close" on="tap:lang_menu.hide" role="button" tabindex="81">' . $close_svg . '</span>' . $lang_menu . '</span></span>';
+      $language_switcher = '<span class="language_switcher" on="tap:lang_menu.show" role="button" tabindex="80">' . $globe_svg . $language['available'][$language['active']] . '&nbsp;&#9662;</span>';
+      if ($language_switcher_count == 0) $language_switcher .= '<span id="lang_menu" hidden><span id="lang_menu_overlay" on="tap:lang_menu.hide" role="img" tabindex="200"></span><span id="lang_menu_banner"><span id="lang_menu_close" on="tap:lang_menu.hide" role="button" tabindex="81">' . $close_svg . '</span>' . $lang_menu . '</span></span>';
     } else {
-      $language_switcher = '<span class="language_switcher" onClick="document.getElementById(\'lang_menu\').style.display=\'block\';">' . $globe_svg . $language['available'][$language['active']] . '&nbsp;&#9662;</span><span id="lang_menu"><span id="lang_menu_overlay" onClick="document.getElementById(\'lang_menu\').style.display=\'none\';"></span><span id="lang_menu_banner"><span id="lang_menu_close" onClick="document.getElementById(\'lang_menu\').style.display=\'none\';">' . $close_svg . '</span>' . $lang_menu . '</span></span>';
+      $language_switcher = '<span class="language_switcher" onClick="document.getElementById(\'lang_menu\').style.display=\'block\';">' . $globe_svg . $language['available'][$language['active']] . '&nbsp;&#9662;</span>';
+      if ($language_switcher_count == 0) $language_switcher .= '<span id="lang_menu"><span id="lang_menu_overlay" onClick="document.getElementById(\'lang_menu\').style.display=\'none\';"></span><span id="lang_menu_banner"><span id="lang_menu_close" onClick="document.getElementById(\'lang_menu\').style.display=\'none\';">' . $close_svg . '</span>' . $lang_menu . '</span></span>';
     }
   }
+  $language_switcher_count++;
   return $language_switcher;
 }
 

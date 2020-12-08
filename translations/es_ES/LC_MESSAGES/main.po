@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PHP Microsite Boilerplate\n"
 "POT-Creation-Date: 2020-11-17 10:23+0100\n"
-"PO-Revision-Date: 2020-12-01 16:21+0100\n"
+"PO-Revision-Date: 2020-12-08 19:13+0100\n"
 "Last-Translator: Jens Kuerschner\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,9 +11,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: es_ES\n"
 "X-Generator: Poedit 2.4.2\n"
-
-msgid "Cookie Settings"
-msgstr "Cookie Ajustes"
 
 msgid "404"
 msgstr "404"
@@ -24,8 +21,29 @@ msgstr "La página que solicitó ya no existe."
 msgid "Offline"
 msgstr "Offline"
 
-msgid "You are offline. Please check your internet conncetion and try again."
+msgid "You are offline. Please check your internet connection and try again."
 msgstr "Me temo que estás desconectado. Comprueba tu conexión a Internet e inténtalo de nuevo después."
 
 msgid "back to home"
 msgstr "a la página de inicio"
+
+msgid "Cookies"
+msgstr "Cookies"
+
+msgid "Cookie Settings"
+msgstr "Cookie Ajustes"
+
+msgid "This website uses cookies"
+msgstr "Este sitio web utiliza cookies"
+
+msgid "Some cookies are required to provide core functionality. The website won't function properly without these cookies and they are enabled by default. Analytical cookies help to improve this website by collecting and reporting anonymized information on its usage."
+msgstr "Algunas cookies son necesarias para proporcionar la funcionalidad básica. El sitio web no funcionará correctamente sin estas cookies y están habilitadas por defecto. Las cookies analíticas ayudan a mejorar este sitio web al recopilar e informar información anónima sobre su uso."
+
+msgid "Please accept or reject analytical cookies"
+msgstr "Por favor, acepte o rechace estas cookies analíticas"
+
+msgid "Reject"
+msgstr "Rechazar"
+
+msgid "Accept"
+msgstr "Acepta"

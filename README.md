@@ -76,6 +76,7 @@ Anyone is welcome to contribute, but mind the [guidelines](.github/CONTRIBUTING.
 
 ## Changelog
 
+-   1.3.5: Bug fixes.
 -   1.3.4: Option to add last udpdate to sitemap via Directus.
 -   1.3.3: Optimization of redirect feature and Directus caching.
 -   1.3.2: Extensive bug fixing.

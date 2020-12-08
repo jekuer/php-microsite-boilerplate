@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PHP Microsite Boilerplate\n"
 "POT-Creation-Date: 2020-11-17 10:23+0100\n"
-"PO-Revision-Date: 2020-12-01 16:21+0100\n"
+"PO-Revision-Date: 2020-12-08 19:13+0100\n"
 "Last-Translator: Jens Kuerschner\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -13,9 +13,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-msgid "Cookie Settings"
-msgstr "Cookie Einstellungen"
-
 msgid "404"
 msgstr "404 Fehler"
 
@@ -25,8 +22,29 @@ msgstr "Die aufgerufene Seite gibt es leider nicht."
 msgid "Offline"
 msgstr "Offline"
 
-msgid "You are offline. Please check your internet conncetion and try again."
+msgid "You are offline. Please check your internet connection and try again."
 msgstr "Du bist leider offline. Prüfe deine Internetverbindung und versuche es danach erneut."
 
 msgid "back to home"
 msgstr "zur Startseite"
+
+msgid "Cookies"
+msgstr "Cookies"
+
+msgid "Cookie Settings"
+msgstr "Cookie Einstellungen"
+
+msgid "This website uses cookies"
+msgstr "Diese Webseite nutzt Cookies"
+
+msgid "Some cookies are required to provide core functionality. The website won't function properly without these cookies and they are enabled by default. Analytical cookies help to improve this website by collecting and reporting anonymized information on its usage."
+msgstr "Manche Cookies sind nötig, um die Kernfunktionalität zu gewährleisten. Diese sind automatisch aktiviert. Analytische Cookies helfen dabei, die Seite weiter zu optimieren. Hierbei werden anonymisierte Daten gesammelt und gespeichert."
+
+msgid "Please accept or reject analytical cookies"
+msgstr "Bitte akzeptiere diese analytischen Cookies oder lehne sie ab"
+
+msgid "Reject"
+msgstr "Ablehnen"
+
+msgid "Accept"
+msgstr "Akzeptieren"

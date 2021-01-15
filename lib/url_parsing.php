@@ -53,6 +53,7 @@ foreach ($url_parts_all['query_vars'] as $key => $value) {
 
 $url_parts_all_prev = array();
 $url_parts_prev = array();
+$prev_url_to_parse = '';
 if (isset($_SERVER['HTTP_REFERER'])) {
   $prev_url_to_parse = filter_var($_SERVER['HTTP_REFERER'], FILTER_SANITIZE_URL);
   $prev_url_to_parse_arr = parse_url($prev_url_to_parse);
@@ -60,6 +61,8 @@ if (isset($_SERVER['HTTP_REFERER'])) {
     if ($_SERVER['HTTP_HOST'] == $prev_url_to_parse_arr['host'] and isset($prev_url_to_parse_arr['path'])) {
       $prev_url_to_parse = $prev_url_to_parse_arr['path'];
       $url_parts_all_prev = parse_the_url($prev_url_to_parse);
+    } else {
+      $prev_url_to_parse = '';
     }
   }
   if (isset($url_parts_all_prev['call_parts'])) {
@@ -123,6 +126,21 @@ $current_url = $the_page_url_full; // update from actual URL to the current clea
 if (isset($url_parts[0])) {
   $current_url .= $url_parts[0] . '/';
   $amp_url .= $url_parts[0] . '/';
+}
+if (isset($url_parts[1])) {
+  $current_url .= $url_parts[1] . '/';
+  $amp_url .= $url_parts[1] . '/';
+}
+// Including query parameters is not recommended, but can be necessary in some cases.
+/*if (isset($url_query_vars) and is_array($url_query_vars) and !empty($url_query_vars)) {
+  $current_url .= '?';
+  $addand = 0;
+  foreach ($url_query_vars as $key => $value) {
+    if ($addand == 1) $current_url .= '&';
+    $current_url .= $key . '=' . $value;
+    $addand = 1;
+  }
+}*/
 }
 $amp_url = filter_var($amp_url, FILTER_SANITIZE_URL);
 $current_url = filter_var($current_url, FILTER_SANITIZE_URL);

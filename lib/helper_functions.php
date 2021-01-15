@@ -31,9 +31,9 @@ function create_language_switcher($page_id, $amp_version = false) {
         $slug = '';
       }
       if ($language['default'] != $lang) $slug = $lang . '/' . $slug;
+      if ($amp_version) $slug = 'amp/' . $slug;
       $tabindexcount++;
       $lang_menu .= '<a class="lang_menu_item" tabindex="' . $tabindexcount . '" href="';
-      if ($amp_version) $lang_menu .= '/amp';
       $lang_menu .= '/' . $slug . '">' . $lang_name . '</a>';
     }
   }
@@ -84,62 +84,56 @@ function make_safe($v) { // strip html code, remove spaces, remove any special c
   if (is_array($v)) {
     foreach ($v as $key => $subv) {
       $v[$key] = cleanString($subv);
-      if (get_magic_quotes_gpc()) $v[$key] = stripslashes($v[$key]);
+      $v[$key] = strip_tags($v[$key]);
       $v[$key] = preg_replace('/[^A-Za-z0-9@&+;,:_\. -]/', '', $v[$key]);
       $v[$key] = htmlentities($v[$key], ENT_QUOTES);
-      $v[$key] = strip_tags($v[$key]);
       $v[$key] = str_replace(" ", "", $v[$key]);
     }
   } else {
     $v = cleanString($v);
-    if (get_magic_quotes_gpc()) $v = stripslashes($v);
+    $v = strip_tags($v);
     $v = preg_replace('/[^A-Za-z0-9@&+;,:_\. -]/', '', $v);
     $v = htmlentities($v, ENT_QUOTES);
-    $v = strip_tags($v);
     $v = str_replace(" ", "", $v);
   }
   return $v;
 }
 
 
-function make_safe2($v) { // keeps spaces (except beginning and end) and allows special characters
+function make_safe2($v) { // keeps spaces (except beginning and end) and allows more special characters
   if (is_array($v)) {
     foreach ($v as $key => $subv) {
       $v[$key] = cleanString($subv);
-      if (get_magic_quotes_gpc()) $v[$key] = stripslashes($v[$key]);
-      $v[$key] = preg_replace('/[^\p{L}0-9@&+|%$§€()=?!^°#;,:_\. -]/', '', $v[$key]);
-      $v[$key] = htmlentities($v[$key], ENT_QUOTES);
       $v[$key] = strip_tags($v[$key]);
+      $v[$key] = preg_replace('/[^\p{L}0-9@&+|%$§€()[]{}=?!^°#;,:_\. -]/', '', $v[$key]);
+      $v[$key] = htmlentities($v[$key], ENT_QUOTES);
       $v[$key] = trim($v[$key]);
     }
   } else {
     $v = cleanString($v);
-    if (get_magic_quotes_gpc()) $v = stripslashes($v);
-    $v = preg_replace('/[^\p{L}0-9@&+|%$§€()=?!^°#;,:_\. -]/', '', $v);
-    $v = htmlentities($v, ENT_QUOTES);
     $v = strip_tags($v);
+    $v = preg_replace('/[^\p{L}0-9@&+|%$§€()[]{}=?!^°#;,:_\. -]/', '', $v);
+    $v = htmlentities($v, ENT_QUOTES);
     $v = trim($v);
   }
   return $v;
 }
 
 
-function make_safe3($v) { // keeps spaces (except beginning and end), but converts slashes
+function make_safe3($v) { // keeps spaces (except beginning and end), but converts slashes and allows more special characters (specialchars instead of entities)
   if (is_array($v)) {
     foreach ($v as $key => $subv) {
       $v[$key] = cleanString($subv);
-      $v[$key] = htmlentities($v[$key], ENT_QUOTES);
-      if (get_magic_quotes_gpc()) $v[$key] = stripslashes($v[$key]);
       $v[$key] = strip_tags($v[$key]);
+      $v[$key] = htmlspecialchars($v[$key], ENT_QUOTES);
       $v[$key] = trim($v[$key]);
       $v[$key] = str_replace("/", "&#47;", $v[$key]);
       $v[$key] = str_replace("\\", "&#92;", $v[$key]);
     }
   } else {
     $v = cleanString($v);
-    $v = htmlentities($v, ENT_QUOTES);
-    if (get_magic_quotes_gpc()) $v = stripslashes($v);
     $v = strip_tags($v);
+    $v = htmlspecialchars($v, ENT_QUOTES);
     $v = trim($v);
     $v = str_replace("/", "&#47;", $v);
     $v = str_replace("\\", "&#92;", $v);

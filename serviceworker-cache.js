@@ -6,7 +6,7 @@
 
   // Update 'version' if you need to refresh the caches completely (necessary to update the offline page). 
   // Mind to also change the version number in the main config!
-  var version = 'v2::';
+  var version = 'v5::';
 
   // Domain whitelist. Files not served from those domains won't be cached. The domain, which serves the serviceworker is automatically included. So, only add things like your image CDN or similar.
   // Example: domainWhitelist = ["cdn.domain.com", "www2.domain.com", "analytics.otherdomain.com"]
@@ -71,7 +71,15 @@
   });
   
   self.addEventListener('fetch', function (event) {
-    var request = event.request;
+    var request = event.request;    
+    // Bug Workaround (see: https://github.com/paulirish/caltrainschedule.io/pull/51/commits/82d03d9c4468681421321db571d978d6adea45a7)
+    if (request.cache === 'only-if-cached' && request.mode !== 'same-origin') {
+      return;
+    }
+    // Return on internal 307 redirects
+    if (request.cache == 307) {
+      return;
+    }
     // Skip any purge and rebuild requests
     if (request.url.includes('purge/directus_cache') === true || request.url.includes('rebuild/directus_cache') === true) return;
     // Get the request's language slug (used to match the right offline page)
@@ -87,9 +95,10 @@
     // For non-GET requests, try the network first, fall back to the offline page.
     if (request.method !== 'GET') {
       event.respondWith(
-        fetch(request)
-        .catch(function () {
-          return caches.match(offlinePagePath);
+        fetch(request).catch(function () {
+          return caches.open(version + pagesCacheName).then(function (cache) {
+            return cache.match(offlinePagePath);
+          });
         })
       );
       return;
@@ -109,20 +118,20 @@
         });
       }
 
-      // Try the network first, fall back to the cache (and update it), finally the offline page.
+      // Try the network first, update cache, fall back to the cache, finally the offline page.
       event.respondWith(
-        caches.open(version + pagesCacheName).then(function (cache) {
-          return cache.match(request).then(function (response) {
-            var fetchPromise = fetch(request).then(function (networkResponse) {
-              cache.put(request, networkResponse.clone());
-              return networkResponse;
-            });
-            return fetchPromise || response;
-          });
+        fetch(request).then(function (response) {
+          return caches.open(version + pagesCacheName).then(function(cache) {
+            cache.put(request, response.clone());
+            return response;
+          })
         })
         .catch(function () {
-          return caches.match(offlinePagePath);
-        }),
+          return caches.open(version + pagesCacheName).then(cache => cache
+              .match(request)
+              .then(matching => matching || cache.match(offlinePagePath))
+          );
+        })
       );
 
     // Non-HTML requests. 
@@ -138,14 +147,14 @@
       // Look in the cache first (and update it), fall back to the network.
       event.respondWith(
         caches.open(version + assetsCacheName).then(function (cache) {
-          return cache.match(request).then(function (response) {
-            var fetchPromise = fetch(request).then(function (networkResponse) {
-              cache.put(request, networkResponse.clone());
-              return networkResponse;
+          return cache.match(request).then(function (matching) {
+            var fetchPromise = fetch(request).then(function (response) {
+              cache.put(request, response.clone());
+              return response;
             });
-            return response || fetchPromise;
+            return matching || fetchPromise;
           });
-        }),
+        })
       );
 
     }

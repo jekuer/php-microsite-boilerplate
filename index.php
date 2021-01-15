@@ -5,7 +5,7 @@
  * PHP Microsite Boilerplate
  * +++++++++++++++++++++++++
  * 
- * Version: 1.3.5
+ * Version: 1.4.0
  * Creator: Jens Kuerschner (https://jenskuerschner.de)
  * Project: https://github.com/jekuer/php-microsite-boilerplate
  * License: GNU General Public License v3.0	(gpl-3.0)
@@ -112,6 +112,50 @@ if ($page_slug == 'sitemap.xml') {
 // In all other cases, prepare page.
 $the_page = new Page($page_slug, $pages[$language['active']], $the_page_meta_defaults);
 if ($the_page->amp == false) $amp = false;
+
+
+// Check for initial language via cookie or browser language and redirect automatically.
+// Optional. Mind that this could break, if you rely on heavy page chaching and/or proxy services. In this case, remove this and implement an alternative via JavaScript to handle this on the client side.
+/*if (isset($_COOKIE['language_select'])) {
+  $cookie_lang = make_safe($_COOKIE['language_select']);
+  if ($cookie_lang != $language['active']) {
+    if ($prev_url_to_parse == '') {
+      // Redirect if possible.
+      if (isset($pages[$cookie_lang][$the_page->id])) {
+        $lang_redirect_url = $the_page_url;
+        if ($amp) $lang_redirect_url .= 'amp/';
+        if ($language['default'] != $cookie_lang) $lang_redirect_url .= $cookie_lang . '/';
+        if (isset($pages[$cookie_lang][$the_page->id]['slug']) and $pages[$cookie_lang][$the_page->id]['slug'] != '') {
+          $tmp_slug = $pages[$cookie_lang][$the_page->id]['slug'];
+        } else {
+          $tmp_slug = $the_page->id;
+        }
+        if ($tmp_slug != 'main') {
+          $lang_redirect_url .= $tmp_slug . '/';
+        }
+        header('Location: ' . $lang_redirect_url, true, 307);
+        die();
+      }
+    } else {
+      // Update cookie.
+      $tmp_domain = parse_url($the_page_url, PHP_URL_HOST);
+      setcookie('language_select', $language['active'], time() + (86400 * 30), "/", $tmp_domain); // 86400 = 1 day.
+    }
+  }
+} else {
+  // Set cookie.
+  $tmp_domain = parse_url($the_page_url, PHP_URL_HOST);
+  setcookie('language_select', $language['active'], time() + (86400 * 30), "/", $tmp_domain); // 86400 = 1 day.
+  // Compare to browser language.
+  $browser_lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+  if ($prev_url_to_parse == '' and $browser_lang != $language['active']) {
+    if (isset($pages[$browser_lang][$the_page->id])) {
+      // This indicates that the user is new to the page and his browser language could be supported by one of the translations.
+      // You could now offer him a redirect or highlight the language switcher.
+      // Auto-Redirect is not recommended here in order to not piss off any search engine crawlers!
+    }
+  }
+}*/
 
 
 // Check for redirects, if no page found.

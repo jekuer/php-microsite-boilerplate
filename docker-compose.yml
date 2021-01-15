@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  php:
+    image: webdevops/php-apache:8.0-alpine
+    container_name: microsite-boilerplate
+    volumes:
+      - .:/var/www/html/
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      WEB_DOCUMENT_ROOT: /var/www/html
+      php.error_reporting: E_ALL
+      PHP_DISPLAY_ERRORS: 1
+      PHP_POST_MAX_SIZE: 80M
+      PHP_UPLOAD_MAX_FILESIZE: 200M
+      PHP_MEMORY_LIMIT: 521M
+      PHP_MAX_EXECUTION_TIME: 300

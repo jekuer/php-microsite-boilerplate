@@ -54,6 +54,7 @@ Demo: <https://phpmicrosite.jenskuerschner.de/>
     -   Define your pages at the routing.php. (Mind legal notice and privacy policy to stay GDPR compliant!) 
     -   Create those pages (as specified before) as single php files within /pages. 
     -   Create respective files within /controller if necessary in your case. 
+    -   Check the option to auto-redirect within multi-language at index.php and all.js. 
     -   Build the website with those pages, the style.css, and the all.js. Mind to minimize those files or adjust the way they get included at /templates/header.php and /templates/footer.php. 
     -   Adjust the footer at /templates/footer.php and /templates/footer_amp.php to your needs. 
 
@@ -76,6 +77,7 @@ Anyone is welcome to contribute, but mind the [guidelines](.github/CONTRIBUTING.
 
 ## Changelog
 
+-   1.4.0: Bug fixes, Docker compose template, sitemap generator update, and intelligent redirect for multilanguage use
 -   1.3.5: Bug fixes.
 -   1.3.4: Option to add last udpdate to sitemap via Directus.
 -   1.3.3: Optimization of redirect feature and Directus caching.

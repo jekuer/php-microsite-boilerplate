@@ -25,16 +25,19 @@ function generate_sitemap() {
       } else {
         $slug = $page_id;
       } 
-      // adjust slug
+      // adjust slug and priority
       if ($slug == 'main') {
         $slug = '';
+        $priority = '1.0';
       } else {
         $slug = $slug . '/';
+        $priority = '0.8';
       }
       $date_updated = '';
-      if (isset($page[$page_id]['date_updated']) and $page[$page_id]['date_updated'] != '') $date_updated = '<lastmod>' . $page[$page_id]['date_updated'] . '</lastmod>' . PHP_EOL;
+      if (isset($page[$page_id]['date_updated']) and $page[$page_id]['date_updated'] != '') $date_updated = '<lastmod>' . $page[$page_id]['date_updated'] . '</lastmod>' . PHP_EOL;      
       // create <url> part
-      $sitemap_code .= '<url>' . PHP_EOL . '<loc>' . $the_page_url . $lang . $slug . '</loc>' . PHP_EOL . $date_updated . '</url>' . PHP_EOL;
+      $sitemap_code .= '<url>' . PHP_EOL . '<loc>' . $the_page_url . $lang . $slug . '</loc>' . PHP_EOL . $date_updated . '<priority>' . $priority . '</priority>' . PHP_EOL . '</url>' . PHP_EOL;
+      $sitemap_code .= '<priority></priority>';
     }
   }
   $sitemap_code .= '</urlset>';

@@ -232,13 +232,13 @@
   ExpiresByType video/ogg                             "access plus 1 month"
   ExpiresByType video/webm                            "access plus 1 month"
   ExpiresByType application/vnd.ms-fontobject         "access plus 1 month"
-  ExpiresByType font/eot                              "access plus 1 month"
-  ExpiresByType font/opentype                         "access plus 1 month"
-  ExpiresByType application/x-font-ttf                "access plus 1 month"
-  ExpiresByType application/font-woff                 "access plus 1 month"
-  ExpiresByType application/x-font-woff               "access plus 1 month"
-  ExpiresByType font/woff                             "access plus 1 month"
-  ExpiresByType application/font-woff2                "access plus 1 month"
+  ExpiresByType font/eot                              "access plus 1 year"
+  ExpiresByType font/opentype                         "access plus 1 year"
+  ExpiresByType application/x-font-ttf                "access plus 1 year"
+  ExpiresByType application/font-woff                 "access plus 1 year"
+  ExpiresByType application/x-font-woff               "access plus 1 year"
+  ExpiresByType font/woff                             "access plus 1 year"
+  ExpiresByType application/font-woff2                "access plus 1 year"
   ExpiresByType text/x-cross-domain-policy            "access plus 1 week"
 </IfModule>
 
@@ -283,8 +283,11 @@
 # Alternative caching using Apache's "mod_headers", if it is installed.
 # Caching of common files - ENABLED
 <IfModule mod_headers.c>
-  <FilesMatch "\.(ico|pdf|flv|swf|js|css|min.js|min.css|gif|png|jpg|jpeg|txt|svg|woff2|eot|ttf)$">
+  <FilesMatch "\.(ico|pdf|flv|swf|js|css|min.js|min.css|gif|png|jpg|jpeg|txt|svg)$">
     Header set Cache-Control "max-age=2592000, public"
+  </FilesMatch>
+	<FilesMatch "\.(woff|woff2|eot|ttf)$">
+    Header set Cache-Control "max-age=31536000, public"
   </FilesMatch>
 </IfModule>
 
@@ -423,17 +426,19 @@ RedirectMatch 404 ^(.*\/)?\.git+
 	RewriteEngine On
 	RewriteBase /
 
-	# Force HTTPS.
-	RewriteCond %{HTTPS} !=on
-	RewriteRule (.*) https://%{HTTP_HOST}/$1 [R=301,L]
-
 	# Force www.
-	#RewriteCond %{HTTP_HOST} !^www\. [NC]
-	#RewriteRule (.*) https://www.%{HTTP_HOST}/$1 [L,R=301,NC]
+	RewriteCond %{HTTP_HOST} !^www\. [NC]
+	RewriteRule (.*) https://www.%{HTTP_HOST}/$1 [L,R=301,NC]
 
 	# Force non-www (alternative).
-	RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-	RewriteRule ^(.*)$ https://%1/$1 [L,R=301,NC]
+	#RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+	#RewriteRule ^(.*)$ https://%1/$1 [L,R=301,NC]
+
+	# Force HTTPS.
+	RewriteCond %{HTTP:X-Forwarded-Proto} =http [OR]
+	RewriteCond %{HTTP:X-Forwarded-Proto} =""
+	RewriteCond %{HTTPS} !=on
+	RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 	# Redirect direct access attempts to php files.
 	RewriteCond %{THE_REQUEST} \.php[?/] [NC]

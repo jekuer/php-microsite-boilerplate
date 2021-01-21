@@ -109,7 +109,7 @@ function getDirectusContent($collection, $item = '', $file = '', $respect_status
       }
       $clean_up_filter_lang = true;
     }
-    $api_curl_url = $directus_url . 'items/' .  make_safe($collection) . '/' .  make_safe($item) . '?' . $cq;
+    $api_curl_url = $directus_url . 'items/' .  make_safe($collection) . '/' .  make_safe($item) . '?' . $cq . '&limit=-1';
 
   } elseif (isset($collection) and $collection != '') {
     // setting $collection only retrieves a list of all items (optionally with meta elements and optionally only published ones) of this collection.
@@ -132,7 +132,7 @@ function getDirectusContent($collection, $item = '', $file = '', $respect_status
       $clean_up_filter_lang = true;
     }
     if ($respect_status) $cq .= '&filter[status]=published';
-    $api_curl_url = $directus_url . 'items/' . make_safe($collection) . '?' . $cq;
+    $api_curl_url = $directus_url . 'items/' . make_safe($collection) . '?' . $cq . '&limit=-1';
   }
   
   if ($api_curl_url != '') {

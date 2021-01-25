@@ -77,6 +77,7 @@ Anyone is welcome to contribute, but mind the [guidelines](.github/CONTRIBUTING.
 
 ## Changelog
 
+-   1.4.2: Sitemap bug fix
 -   1.4.1: Optimization of Directus caching, Google Tag Manager, htaccess SSL rewrite, and other tweaks
 -   1.4.0: Bug fixes, Docker compose template, sitemap generator update, and intelligent redirect for multilanguage use
 -   1.3.5: Bug fixes.

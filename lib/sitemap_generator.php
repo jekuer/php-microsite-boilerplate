@@ -34,10 +34,13 @@ function generate_sitemap() {
         $priority = '0.8';
       }
       $date_updated = '';
-      if (isset($page[$page_id]['date_updated']) and $page[$page_id]['date_updated'] != '') $date_updated = '<lastmod>' . $page[$page_id]['date_updated'] . '</lastmod>' . PHP_EOL;      
+      if (isset($page[$page_id]['date_updated']) and $page[$page_id]['date_updated'] != '') $date_updated = '<lastmod>' . $page[$page_id]['date_updated'] . '</lastmod>' . PHP_EOL;  
+      $priority = '<priority>' . $priority . '</priority>' . PHP_EOL;    
       // create <url> part
-      $sitemap_code .= '<url>' . PHP_EOL . '<loc>' . $the_page_url . $lang . $slug . '</loc>' . PHP_EOL . $date_updated . '<priority>' . $priority . '</priority>' . PHP_EOL . '</url>' . PHP_EOL;
-      $sitemap_code .= '<priority></priority>';
+      $sitemap_code .= '<url>' . PHP_EOL . '<loc>' . $the_page_url . $lang . $slug . '</loc>' . PHP_EOL;
+      $sitemap_code .= $date_updated;
+      $sitemap_code .= $priority; // optional! Google does not recognize this, but other search engines might. Decide on your own, if you want to keep it :).
+      $sitemap_code .= '</url>' . PHP_EOL;
     }
   }
   $sitemap_code .= '</urlset>';

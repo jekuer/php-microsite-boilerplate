@@ -198,49 +198,51 @@
 </IfModule>
 
 
-# Caching
-<IfModule mod_expires.c>
-  ExpiresActive on
-  ExpiresDefault                                      "access plus 1 month"
-  ExpiresByType text/css                              "access plus 2 weeks"
-  ExpiresByType application/atom+xml                  "access plus 1 hour"
-  ExpiresByType application/rdf+xml                   "access plus 1 hour"
-  ExpiresByType application/rss+xml                   "access plus 1 hour"
-  ExpiresByType application/json                      "access plus 0 seconds"
-  ExpiresByType application/ld+json                   "access plus 0 seconds"
-  ExpiresByType application/schema+json               "access plus 0 seconds"
-  ExpiresByType application/vnd.geo+json              "access plus 0 seconds"
-  ExpiresByType application/xml                       "access plus 0 seconds"
-  ExpiresByType text/xml                              "access plus 0 seconds"
-  ExpiresByType image/vnd.microsoft.icon              "access plus 1 week"
-  ExpiresByType image/x-icon                          "access plus 1 week"
-  ExpiresByType text/html                             "access plus 3600 seconds"
-  ExpiresByType application/javascript                "access plus 2 weeks"
-  ExpiresByType application/x-javascript              "access plus 2 weeks"
-  ExpiresByType text/javascript                       "access plus 2 weeks"
-  ExpiresByType application/manifest+json             "access plus 1 week"
-  ExpiresByType application/x-web-app-manifest+json   "access plus 0 seconds"
-  ExpiresByType text/cache-manifest                   "access plus 0 seconds"
-  ExpiresByType audio/ogg                             "access plus 1 month"
-  ExpiresByType image/bmp                             "access plus 1 month"
-  ExpiresByType image/gif                             "access plus 1 month"
-  ExpiresByType image/jpeg                            "access plus 1 month"
-  ExpiresByType image/png                             "access plus 1 month"
-  ExpiresByType image/svg+xml                         "access plus 1 month"
-  ExpiresByType image/webp                            "access plus 1 month"
-  ExpiresByType video/mp4                             "access plus 1 month"
-  ExpiresByType video/ogg                             "access plus 1 month"
-  ExpiresByType video/webm                            "access plus 1 month"
-  ExpiresByType application/vnd.ms-fontobject         "access plus 1 month"
-  ExpiresByType font/eot                              "access plus 1 year"
-  ExpiresByType font/opentype                         "access plus 1 year"
-  ExpiresByType application/x-font-ttf                "access plus 1 year"
-  ExpiresByType application/font-woff                 "access plus 1 year"
-  ExpiresByType application/x-font-woff               "access plus 1 year"
-  ExpiresByType font/woff                             "access plus 1 year"
-  ExpiresByType application/font-woff2                "access plus 1 year"
-  ExpiresByType text/x-cross-domain-policy            "access plus 1 week"
-</IfModule>
+# Caching (not recommended, but use it if mod_headers is not working for you)
+#<IfModule mod_expires.c>
+  #ExpiresActive on
+  #ExpiresDefault                                      "access plus 1 month"
+  #ExpiresByType text/css                              "access plus 1 year"
+  #ExpiresByType application/atom+xml                  "access plus 1 hour"
+  #ExpiresByType application/rdf+xml                   "access plus 1 hour"
+  #ExpiresByType application/rss+xml                   "access plus 1 hour"
+  #ExpiresByType application/json                      "access plus 0 seconds"
+  #ExpiresByType application/ld+json                   "access plus 0 seconds"
+  #ExpiresByType application/schema+json               "access plus 0 seconds"
+  #ExpiresByType application/vnd.geo+json              "access plus 0 seconds"
+  #ExpiresByType application/xml                       "access plus 0 seconds"
+  #ExpiresByType text/xml                              "access plus 0 seconds"
+  #ExpiresByType image/vnd.microsoft.icon              "access plus 1 week"
+  #ExpiresByType image/x-icon                          "access plus 1 week"
+  #ExpiresByType text/html                             "access plus 3600 seconds"
+  #ExpiresByType application/javascript                "access plus 1 year"
+  #ExpiresByType application/x-javascript              "access plus 1 year"
+  #ExpiresByType text/javascript                       "access plus 1 year"
+  #ExpiresByType application/manifest+json             "access plus 1 year"
+	#ExpiresByType application/webmanifest+json          "access plus 1 year"
+  #ExpiresByType application/x-web-app-manifest+json   "access plus 0 seconds"
+  #ExpiresByType text/cache-manifest                   "access plus 0 seconds"
+  #ExpiresByType audio/ogg                             "access plus 1 month"
+  #ExpiresByType image/bmp                             "access plus 1 month"
+  #ExpiresByType image/gif                             "access plus 1 month"
+  #ExpiresByType image/jpeg                            "access plus 1 month"
+	#ExpiresByType image/webp                            "access plus 1 month"
+  #ExpiresByType image/png                             "access plus 1 month"
+  #ExpiresByType image/svg+xml                         "access plus 1 month"
+  #ExpiresByType image/webp                            "access plus 1 month"
+  #ExpiresByType video/mp4                             "access plus 1 month"
+  #ExpiresByType video/ogg                             "access plus 1 month"
+  #ExpiresByType video/webm                            "access plus 1 month"
+  #ExpiresByType application/vnd.ms-fontobject         "access plus 1 month"
+  #ExpiresByType font/eot                              "access plus 1 year"
+  #ExpiresByType font/opentype                         "access plus 1 year"
+  #ExpiresByType application/x-font-ttf                "access plus 1 year"
+  #ExpiresByType application/font-woff                 "access plus 1 year"
+  #ExpiresByType application/x-font-woff               "access plus 1 year"
+  #ExpiresByType font/woff                             "access plus 1 year"
+  #ExpiresByType application/font-woff2                "access plus 1 year"
+  #ExpiresByType text/x-cross-domain-policy            "access plus 1 week"
+#</IfModule>
 
 
 # Deflation
@@ -265,12 +267,13 @@
   AddOutputFilterByType DEFLATE application/ld+json 
   AddOutputFilterByType DEFLATE application/vnd.ms-fontobject 
   AddOutputFilterByType DEFLATE application/x-font-ttf 
-  AddOutputFilterByType DEFLATE application/x-web-app-manifest+json 
+  AddOutputFilterByType DEFLATE application/x-web-app-manifest+json
+	AddOutputFilterByType DEFLATE application/webmanifest+json
   AddOutputFilterByType DEFLATE font/opentype 
   AddOutputFilterByType DEFLATE image/svg+xml
   AddOutputFilterByType DEFLATE image/x-icon 
   # Exception: Images
-  SetEnvIfNoCase REQUEST_URI \.(?:gif|jpg|jpeg|png|svg)$ no-gzip dont-vary
+  SetEnvIfNoCase REQUEST_URI \.(?:gif|jpg|jpeg|png|svg|webp)$ no-gzip dont-vary
   # Drop problematic browsers
   BrowserMatch ^Mozilla/4 gzip-only-text/html
   BrowserMatch ^Mozilla/4\.0[678] no-gzip
@@ -283,10 +286,10 @@
 # Alternative caching using Apache's "mod_headers", if it is installed.
 # Caching of common files - ENABLED
 <IfModule mod_headers.c>
-  <FilesMatch "\.(ico|pdf|flv|swf|js|css|min.js|min.css|gif|png|jpg|jpeg|txt|svg)$">
+  <FilesMatch "\.(ico|pdf|flv|swf|gif|png|jpg|jpeg|txt|svg|webmanifest|webp)$">
     Header set Cache-Control "max-age=2592000, public"
   </FilesMatch>
-	<FilesMatch "\.(woff|woff2|eot|ttf)$">
+	<FilesMatch "\.(woff|woff2|eot|ttf|js|css|min.js|min.css)$">
     Header set Cache-Control "max-age=31536000, public"
   </FilesMatch>
 </IfModule>

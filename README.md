@@ -19,7 +19,6 @@ This project wants to provide you with a framework and template for this exact c
 -   You choose PHP, because you want to do server-side scripting, while PHP is also maybe the only language, that runs on basically all hosting options.
 -   You build this thing on your own or with a maximum of 1 other person, which makes best practice, but complex code structure more of an unnecessary overhead than a helpful concept.
 -   You need to get it done fast, while you do not want to make compromises regarding security or performance.
--   Ideally, the whole project should run without any dependencies, should not require a specific IDE setup, or any specific tooling (including Saas). You can still build this on top, but for the start one should be able to update it remotely from basically any device.
 
 Demo: <https://phpmicrosite.jenskuerschner.de/>
 
@@ -77,6 +76,7 @@ Anyone is welcome to contribute, but mind the [guidelines](.github/CONTRIBUTING.
 
 ## Changelog
 
+-   1.4.3: Small updates to htaccess caching
 -   1.4.2: Sitemap bug fix
 -   1.4.1: Optimization of Directus caching, Google Tag Manager, htaccess SSL rewrite, and other tweaks
 -   1.4.0: Bug fixes, Docker compose template, sitemap generator update, and intelligent redirect for multilanguage use

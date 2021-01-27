@@ -6,7 +6,7 @@
 
 // Current version of the website.
 // Will be used to control css and js caching.
-$version_nr = '1.4.2';
+$version_nr = '1.4.3';
 
 // Multilanguage
 $language['default'] = 'en'; // Use a key from the array below.
@@ -51,9 +51,9 @@ $random_cache_code = ''; // Consider changing this code to any alpha-numeric phr
 $the_page_url = 'https://YOURDOMAIN.com/';
 
 // PWA settings.
-$the_webapp_name = 'Put the name for the webapp here'; // Mind manifest.json too.
-$the_webapp_status = true; // Set false to disable PWA (does not impact the serviceworker cache). Also delete the manifest.json to make sure it is not recognized as potential PWA.
-$the_theme_color = '#008c48'; // Mind manifest.json too.
+$the_webapp_name = 'Put the name for the webapp here'; // Mind manifest.webmanifest too.
+$the_webapp_status = true; // Set false to disable PWA (does not impact the serviceworker cache). Also delete the manifest.webmanifest to make sure it is not recognized as potential PWA.
+$the_theme_color = '#008c48'; // Mind manifest.webmanifest too.
 
 // Default page meta settings.
 // Can be partly overridden per page at the routing.

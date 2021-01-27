@@ -54,7 +54,7 @@ foreach ($language['available'] as $lang => $lang_name) {
 <?php } ?>
 
 <!-- Favicons -->
-<!-- Mind to also adjust site.webmanifest and browserconfig.xml ! -->
+<!-- Mind to also adjust webmanifest and browserconfig.xml ! -->
 <!-- Generate your favicon set via https://realfavicongenerator.net/ -->
 <!-- Mind to not only exchange the favicons in /assets/favicons, but also the favicon.ico at root level! -->
 <link rel="apple-touch-icon" sizes="57x57" href="<?php echo $the_page_url; ?>assets/favicons/apple-touch-icon-57x57.png">
@@ -77,7 +77,7 @@ foreach ($language['available'] as $lang => $lang_name) {
 <!-- PWA Meta -->
 <?php if ($the_webapp_status) { ?>
 <meta name="mobile-web-app-capable" content="yes">
-<link rel="manifest" href="<?php echo $the_page_url; ?>manifest.json" crossOrigin="use-credentials">
+<link rel="manifest" href="<?php echo $the_page_url; ?>manifest.webmanifest" crossOrigin="use-credentials">
 <meta name="theme-color" content="<?php echo $the_theme_color; ?>">
 <meta name="apple-mobile-web-app-title" content="<?php echo $the_webapp_name; ?>">
 <meta name="application-name" content="<?php echo $the_webapp_name; ?>">

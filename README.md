@@ -76,6 +76,7 @@ Anyone is welcome to contribute, but mind the [guidelines](.github/CONTRIBUTING.
 
 ## Changelog
 
+-   1.4.4: Small updates (mainly to htaccess)
 -   1.4.3: Small updates to htaccess caching
 -   1.4.2: Sitemap bug fix
 -   1.4.1: Optimization of Directus caching, Google Tag Manager, htaccess SSL rewrite, and other tweaks

@@ -141,7 +141,6 @@ if (isset($url_parts[1])) {
     $addand = 1;
   }
 }*/
-}
 $amp_url = filter_var($amp_url, FILTER_SANITIZE_URL);
 $current_url = filter_var($current_url, FILTER_SANITIZE_URL);
 

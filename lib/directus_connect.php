@@ -105,7 +105,7 @@ function getDirectusContent($collection, $item = '', $file = '', $respect_status
         if (!isset($directus_pages['language_field']) or (isset($directus_pages['language_field']) and $directus_pages['language_field'] == '')) $directus_pages['language_field'] = 'languages_code'; // set defaults if not provided
         $translation_block_str = str_replace(" ", "%20", $directus_pages['translation_block']);
         $language_field_str = str_replace(" ", "%20", $directus_pages['language_field']);
-        $cq .= '&deep[' . $translation_block_str . '][filter][' . $language_field_str . '][_eq]=' . $language['directus'][$language['active']]; // V9
+        $cq .= '&deep[' . $translation_block_str . '][_filter][' . $language_field_str . '][_eq]=' . $language['directus'][$language['active']]; // V9
       }
       $clean_up_filter_lang = true;
     }
@@ -127,7 +127,7 @@ function getDirectusContent($collection, $item = '', $file = '', $respect_status
         if (!isset($directus_pages['language_field']) or (isset($directus_pages['language_field']) and $directus_pages['language_field'] == '')) $directus_pages['language_field'] = 'languages_code'; // set defaults if not provided
         $translation_block_str = str_replace(" ", "%20", $directus_pages['translation_block']);
         $language_field_str = str_replace(" ", "%20", $directus_pages['language_field']);
-        $cq .= '&deep[' . $translation_block_str . '][filter][' . $language_field_str . '][_eq]=' . $language['directus'][$language['active']]; // V9
+        $cq .= '&deep[' . $translation_block_str . '][_filter][' . $language_field_str . '][_eq]=' . $language['directus'][$language['active']]; // V9
       }
       $clean_up_filter_lang = true;
     }

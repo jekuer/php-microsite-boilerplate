@@ -76,6 +76,7 @@ Anyone is welcome to contribute, but mind the [guidelines](.github/CONTRIBUTING.
 
 ## Changelog
 
+-   1.4.6: Micro optimization
 -   1.4.5: Bug fixes.
 -   1.4.4: Small updates (mainly to htaccess)
 -   1.4.3: Small updates to htaccess caching

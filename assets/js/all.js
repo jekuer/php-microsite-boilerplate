@@ -51,9 +51,11 @@ function adjustLanguage() {
       // Set cookie.
       setCookie('language_select', activeLanguage, 30);
       var browserLanguage = navigator.language || navigator.userLanguage;
+      browserLanguage = browserLanguage.substring(0, 1);
       if (document.referrer.indexOf(window.location.host) === -1 && browserLanguage != null && browserLanguage != '' && browserLanguage != activeLanguage) {
-        var linkToLanguage = document.querySelector('link[hreflang="'+browserLanguage+'"]').href;
+        var linkToLanguage = document.querySelector('link[hreflang="'+browserLanguage+'"]');
         if (linkToLanguage !== null && linkToLanguage !== undefined && linkToLanguage != '') {
+          linkToLanguage = linkToLanguage.href;
           // This indicates that the user is new to the page and his browser language could be supported by one of the translations.
           // You could now offer him a redirect or highlight the language switcher.
           // Auto-Redirect is not recommended here in order to not piss off any search engine crawlers!

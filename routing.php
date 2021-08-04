@@ -23,7 +23,7 @@ foreach ($language['available'] as $lang => $lang_name) {
 /* Regular Pages */
 
 // Fields:
-// - id                   (overall unique identifier, no real field) (the default slug for this page; needs to be the same per language; to reference the home page, use 'main'; mind to NOT use 'amp, 'default', or any of your language short names (e.g. 'de')) (string)
+// - id                   (overall unique identifier, no real field) (the default slug for this page; needs to be the same per language; to reference the home page, use 'main'; mind to NOT use 'default', or any of your language short names (e.g. 'de')) (string)
 // - slug                 (optional slug, if you do not want to use the id as slug (e.g. if you want to have different slugs per translation)) (string)
 // - alias                (if the entry/id acts as an alias for another id, put the target id here; this won't redirect, but load the target page's content under this slug) (string)
 // - view                 (the file to load from folder 'pages') (string)
@@ -33,7 +33,6 @@ foreach ($language['available'] as $lang => $lang_name) {
 // - description          (SEO) (string)
 // - keywords             (SEO) (string)
 // - robots               (e.g. 'noindex,nofollow') (string)
-// - amp                  (if the page works as AMP; default = false) (mind that the pages content needs to be AMP compliant! Go to https://validator.ampproject.org/ for validation.) (boolean)
 // - redirect             (if set, redirects) (url)
 // - sitemap              (if the page is included into the sitemap; default = true) (boolean)
 // - directus_collection  (collectionName, e.g. "mypages") (string)
@@ -52,7 +51,6 @@ $pages['en'][$id]['title'] = 'Legal Notice | ' . $the_page_meta_defaults['title'
 $pages['en'][$id]['description'] = 'Legal information about this website.';
 $pages['en'][$id]['keywords'] = '';
 $pages['en'][$id]['robots'] = 'noindex,nofollow';
-$pages['en'][$id]['amp'] = true;
 $pages['en'][$id]['redirect'] = '';
 $pages['en'][$id]['sitemap'] = false;
 $pages['en'][$id]['directus_collection'] = '';
@@ -77,12 +75,10 @@ $pages['en'][$id]['title'] = 'Error | ' . $the_page_meta_defaults['title'];
 $pages['en'][$id]['description'] = 'It seems that the requested page is not or no longer available.';
 $pages['en'][$id]['sitemap'] = false;
 $pages['en'][$id]['robots'] = 'noindex,nofollow';
-$pages['en'][$id]['amp'] = true;
 
 $id = 'main'; // describes the home page; kill this and following respective non-required pages, if you plan to include them dynamically via Directus CMS.
 $pages['en'][$id]['view'] = 'main_en';
 $pages['en'][$id]['name'] = 'Home';
-$pages['en'][$id]['amp'] = true;
 
 $id = 'legal-notice';
 $pages['en'][$id]['view'] = 'legal-notice_en';
@@ -90,7 +86,6 @@ $pages['en'][$id]['name'] = 'Legal Notice';
 $pages['en'][$id]['title'] = 'Legal Notice | ' . $the_page_meta_defaults['title'];
 $pages['en'][$id]['description'] = 'Legal information about this website.';
 $pages['en'][$id]['robots'] = 'noindex,nofollow';
-$pages['en'][$id]['amp'] = true;
 
 $id = 'privacy-policy';
 $pages['en'][$id]['view'] = 'privacy-policy_en';
@@ -98,7 +93,6 @@ $pages['en'][$id]['name'] = 'Privacy Policy';
 $pages['en'][$id]['title'] = 'Privacy Policy | ' . $the_page_meta_defaults['title'];
 $pages['en'][$id]['description'] = 'Privacy policy information about this website.';
 $pages['en'][$id]['robots'] = 'noindex,nofollow';
-$pages['en'][$id]['amp'] = true;
 
 /*$id = 'directus';
 $pages['en'][$id]['view'] = 'sample_directus';
@@ -125,12 +119,10 @@ $pages['de'][$id]['title'] = 'Error | ' . $the_page_meta_defaults['title'];
 $pages['de'][$id]['description'] = 'Die gewünschte Seite gibt es wohl nicht (mehr).';
 $pages['de'][$id]['sitemap'] = false;
 $pages['de'][$id]['robots'] = 'noindex,nofollow';
-$pages['de'][$id]['amp'] = true;
 
 $id = 'main';
 $pages['de'][$id]['view'] = 'main_de';
 $pages['de'][$id]['name'] = 'Startseite';
-$pages['de'][$id]['amp'] = true;
 
 $id = 'legal-notice';
 $pages['de'][$id]['view'] = 'legal-notice_de';
@@ -138,7 +130,6 @@ $pages['de'][$id]['name'] = 'Impressum';
 $pages['de'][$id]['title'] = 'Impressum | ' . $the_page_meta_defaults['title'];
 $pages['de'][$id]['description'] = 'Rechtliche Informationen zu dieser Webseite.';
 $pages['de'][$id]['robots'] = 'noindex,nofollow';
-$pages['de'][$id]['amp'] = true;
 
 $id = 'privacy-policy';
 $pages['de'][$id]['view'] = 'privacy-policy_de';
@@ -146,7 +137,6 @@ $pages['de'][$id]['name'] = 'Datenschutz';
 $pages['de'][$id]['title'] = 'Datenschutz | ' . $the_page_meta_defaults['title'];
 $pages['de'][$id]['description'] = 'Datenschutzbestimmungen und -Informationen zu dieser Webseite.';
 $pages['de'][$id]['robots'] = 'noindex,nofollow';
-$pages['de'][$id]['amp'] = true;
 
 // SPANISH
 
@@ -165,12 +155,10 @@ $pages['es'][$id]['title'] = 'Error | ' . $the_page_meta_defaults['title'];
 $pages['es'][$id]['description'] = 'La página que solicitó ya no existe.';
 $pages['es'][$id]['sitemap'] = false;
 $pages['es'][$id]['robots'] = 'noindex,nofollow';
-$pages['es'][$id]['amp'] = true;
 
 $id = 'main';
 $pages['es'][$id]['view'] = 'main_es';
 $pages['es'][$id]['name'] = 'Home';
-$pages['es'][$id]['amp'] = true;
 
 $id = 'legal-notice';
 $pages['es'][$id]['view'] = 'legal-notice_es';
@@ -178,7 +166,6 @@ $pages['es'][$id]['name'] = 'Avisio Legal';
 $pages['es'][$id]['title'] = 'Avisio Legal | ' . $the_page_meta_defaults['title'];
 $pages['es'][$id]['description'] = 'Información legal sobre este sitio web.';
 $pages['es'][$id]['robots'] = 'noindex,nofollow';
-$pages['es'][$id]['amp'] = true;
 
 $id = 'privacy-policy';
 $pages['es'][$id]['view'] = 'privacy-policy_es';
@@ -186,7 +173,6 @@ $pages['es'][$id]['name'] = 'Protección de datos';
 $pages['es'][$id]['title'] = 'Protección de datos | ' . $the_page_meta_defaults['title'];
 $pages['es'][$id]['description'] = 'Política de privacidad e información sobre este sitio web.';
 $pages['es'][$id]['robots'] = 'noindex,nofollow';
-$pages['es'][$id]['amp'] = true;
 
 // REDIRECTS
 
@@ -213,7 +199,6 @@ $directus_pages['title'] = ''; // The field, which holds the meta title. If diff
 $directus_pages['description'] = ''; // The field, which holds the meta description. If different per collection, write as array. For nested translations, add a period before the name, e.g. ".description". (If empty, defaults to the default).
 $directus_pages['keywords'] = ''; // The field, which holds the meta keywords. If different per collection, write as array. For nested translations, add a period before the name, e.g. ".keywords". (If empty, defaults to the default).
 $directus_pages['robots'] = ''; // The field, which holds the robots information (if empty, defaults to the default). If different per collection, write as array.
-$directus_pages['amp'] = ''; // The field, which defines, whether the page has an AMP version or not (if empty, defaults to false). If different per collection, write as array.
 $directus_pages['redirect'] = ''; // The field, which defines, whether the page redirects to another URL (if empty, defaults to ''). If different per collection, write as array.
 $directus_pages['sitemap'] = ''; // The field, which holds information, if the page should be included into the sitemap or not (if empty, defaults to true). If different per collection, write as array.
 $directus_pages['date_updated'] = ''; // The field, which holds information about the last update of the content (only relevant for sitemap). If different per collection, write as array. Make sure that this field is also filled on item creation (not only on the update itself) - you can define this via the Directus settings for the field.

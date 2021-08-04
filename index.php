@@ -32,10 +32,9 @@ require_once './class/class.page.php';
 
 
 // URL parsing.
-$amp = false;
 $the_page_url = filter_var($the_page_url, FILTER_SANITIZE_URL); // the base URL, cleaned up.
 $the_page_url = rtrim($the_page_url, '/') . '/';
-$the_page_url_full = $the_page_url; // holds the base url plus settings path elements (amp, language).
+$the_page_url_full = $the_page_url; // holds the base url plus settings path elements (e.g. language).
 if (isset($_SERVER['REQUEST_URI'])) {
   $current_url = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL); // holds the full url incl. slug.
   $current_url = rtrim($current_url, '/') . '/';
@@ -111,7 +110,6 @@ if ($page_slug == 'sitemap.xml') {
 
 // In all other cases, prepare page.
 $the_page = new Page($page_slug, $pages[$language['active']], $the_page_meta_defaults);
-if ($the_page->amp == false) $amp = false;
 
 
 // Check for initial language via cookie or browser language and redirect automatically.
@@ -123,7 +121,6 @@ if ($the_page->amp == false) $amp = false;
       // Redirect if possible.
       if (isset($pages[$cookie_lang][$the_page->id])) {
         $lang_redirect_url = $the_page_url;
-        if ($amp) $lang_redirect_url .= 'amp/';
         if ($language['default'] != $cookie_lang) $lang_redirect_url .= $cookie_lang . '/';
         if (isset($pages[$cookie_lang][$the_page->id]['slug']) and $pages[$cookie_lang][$the_page->id]['slug'] != '') {
           $tmp_slug = $pages[$cookie_lang][$the_page->id]['slug'];
@@ -171,17 +168,10 @@ if ($the_page->id == 'error') {
 
 // Render page (compressed and with stripped HTML comments).
 ob_start("ob_html_compress");
-if ($amp) {
-  if ($the_page->controller != '' and file_exists('./controller/'. $the_page->controller .'.php')) include_once './controller/'. $the_page->controller .'.php';
-  include_once './templates/header_amp.php';
-  include_once './pages/'. $the_page->view .'.php';
-  include_once './templates/footer_amp.php';
-} else {
-  if ($the_page->controller != '' and file_exists('./controller/'. $the_page->controller .'.php')) include_once './controller/'. $the_page->controller .'.php';
-  include_once './templates/header.php';
-  include_once './pages/'. $the_page->view .'.php';
-  include_once './templates/footer.php';
-}
+if ($the_page->controller != '' and file_exists('./controller/'. $the_page->controller .'.php')) include_once './controller/'. $the_page->controller .'.php';
+include_once './templates/header.php';
+include_once './pages/'. $the_page->view .'.php';
+include_once './templates/footer.php';
 ob_end_flush();
 
 

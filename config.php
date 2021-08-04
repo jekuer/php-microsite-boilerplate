@@ -6,7 +6,7 @@
 
 // Current version of the website.
 // Will be used to control css and js caching.
-$version_nr = '1.4.6';
+$version_nr = '2.0.0';
 
 // Multilanguage
 $language['default'] = 'en'; // Use a key from the array below.
@@ -33,8 +33,6 @@ $the_deployment_script = './deploy.php'; // File name of the deployment script -
 
 // Google Tag Manager Integration.
 $the_gtm_id = ''; // Set empty to not use it.
-$the_gtm_id_amp = ''; // Set empty to not use it (mind the correct AMP setup of your GTM container).
-$amp_cookie_consent = false; // If set to false, there will be no cookie banner on AMP pages and data-block-on-consent won't work. If set to true, add data-block-on-consent to every cookie using element (https://amp.dev/documentation/components/amp-consent/) and mind to have an option to adjust the choice through a link somewhere.
 
 // Directus (8/9) integration.
 // This is a basic integration. You can define a collection and item id at the routing and get a variable, which holds all meta information. You can than use this variable within the respective page code.

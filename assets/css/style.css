@@ -3,7 +3,7 @@
  * PHP Microsite Boilerplate
  * +++++++++++++++++++++++++
  * 
- * Version: 1.4.6
+ * Version: 2.0.0
  * Creator: Jens Kuerschner (https://jenskuerschner.de)
  * Project: https://github.com/jekuer/php-microsite-boilerplate
  * License: GNU General Public License v3.0	(gpl-3.0)
@@ -148,6 +148,7 @@ a:focus {
   font-family: 'Open Sans', Arial, sans-serif;
   font-weight: 600;
   text-decoration: underline;
+  touch-action: manipulation; /* saves some milliseconds, because the (mobile) device is not waiting for a second tap to check if the user wants to zoom in */
 }
 
 a.dark_link {

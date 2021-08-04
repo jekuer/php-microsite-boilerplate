@@ -18,7 +18,6 @@ class Page {
   public $publisher = '';
   public $twitter = '';
   public $robots = 'index,follow';
-  public $amp = false;
   
   public function __construct($page_slug, $pages, $page_defaults = array()) {
     global $directus_pages;
@@ -44,7 +43,7 @@ class Page {
       if (isset($curr_page['directus_dyn']) and $curr_page['directus_dyn'] = true) {
         $this->directus = getDirectusContent($curr_page['directus_collection'], $curr_page['directus_id'], '', false, '', true);
         // First, check where we need to look for which information.
-        $fields_main_level = array('robots', 'amp', 'redirect');
+        $fields_main_level = array('robots', 'redirect');
         $fields_sub_level = array();
         $fields_flex_level = array('controller', 'title', 'description', 'keywords');
         foreach ($fields_flex_level as $field_name) {
@@ -65,8 +64,8 @@ class Page {
           }
         }
         // Second, fill the details.
-        $fields_boolean = array('amp');
-        foreach ($fields_boolean as $field_name) { // Optimize boolean fields
+        /*$fields_boolean = array();
+        foreach ($fields_boolean as $field_name) { // Optimize boolean fields (none at the moment, but here if you want to add some)
           if (isset($this->directus[$field_name])) {
             if ($this->directus[$field_name] == '1') {
               $this->directus[$field_name] = true;
@@ -74,7 +73,7 @@ class Page {
               $this->directus[$field_name] = false;
             }
           }
-        }
+        }*/
         foreach ($fields_main_level as $field_name) {
           if (is_array($directus_pages[$field_name]) and !empty($directus_pages[$field_name])) {
             $field_name_item = $directus_pages[$field_name][$curr_page['directus_collection_key']];
@@ -148,9 +147,6 @@ class Page {
     }
     if (isset($curr_page['robots']) and $curr_page['robots'] != '') {
       $this->robots = $curr_page['robots'];
-    }
-    if (isset($curr_page['amp']) and $curr_page['amp'] == true) {
-      $this->amp = true;
     }
     if (isset($curr_page['directus_collection']) and $curr_page['directus_collection'] != '' and isset($curr_page['directus_id']) and $curr_page['directus_id'] != '') {
       // Draw content from Directus.

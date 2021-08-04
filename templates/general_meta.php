@@ -10,14 +10,13 @@
 
 <!-- Crawler Meta -->
 <meta name="robots" content="<?php echo $the_page->robots; ?>">
-<link rel="canonical" href="<?php echo str_replace('amp/', '', $current_url); ?>">
+<link rel="canonical" href="<?php echo $current_url; ?>">
 
 <!-- Multilanguage Meta -->
 <?php
 foreach ($language['available'] as $lang => $lang_name) {
   if (isset($pages[$lang][$the_page->id])) {
     $language_url = $the_page_url;
-    if ($amp) $language_url .= 'amp/';
     if ($lang != $language['default']) $language_url .= $lang . '/';
     if ($the_page->slug != 'main') {
       if (isset($pages[$lang][$the_page->id]['slug']) and $pages[$lang][$the_page->id]['slug'] != '') {

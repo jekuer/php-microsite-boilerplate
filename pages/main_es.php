@@ -1,10 +1,5 @@
 <div class="area1">
 
-  <?php if ($amp) { // For the AMP-Version, we need another markup here! ?>
-  <amp-img src="/assets/images/box_open.svg" alt="PHP Microsite Boilerplate" width="200" height="200"  class="box_icon"></amp-img>
-  <h1>PHP Microsite Boilerplate</h1>
-  <a href="https://github.com/jekuer/php-microsite-boilerplate" rel="noopener"><span class="button">Al repositorio &#8250;</span></a>
-  <?php } else { ?>
   <div id="box_closed">
     <img src="/assets/images/box.svg" class="box_icon" alt="PHP Microsite Boilerplate">
     <h1>PHP Microsite Boilerplate</h1>
@@ -16,7 +11,6 @@
     <a href="https://github.com/jekuer/php-microsite-boilerplate" rel="noopener"><span class="button">Vamos al repositorio &#8250;</span></a>
     <div id="close_box" class="small pseudo_link"><em>Ciérralo de nuevo.</em></div>
   </div>
-  <?php } ?>
 
 </div>
 
@@ -39,11 +33,10 @@
     <h2>Key Features</h2>
     <ul>
       <li>Fácil de enrutar.</li>
-      <li>Preparado <a href="https://amp.dev/" target="_blank" rel="noopener" class="dark_link">Accelerated Mobile Pages (AMP)</a>.</li>
       <li>Preparado <a href="https://web.dev/progressive-web-apps/" target="_blank" rel="noopener" class="dark_link">Progressive Web App (PWA)</a>.</li>
       <li>Preparado multilenguaje.</li>
       <li><a href="https://directus.io/" target="_blank" rel="noopener" class="dark_link">Directus CMS</a> integración (incl. cache local).</li>
-      <li>El GDPR y el CCPA están listos (sitio regular y AMP).</li>
+      <li>El GDPR y el CCPA están listos.</li>
       <li>Inteligente serviceworker cache.</li>
       <li>Obtener el soporte de texto para una fácil traducción (+ fallback si no está instalado en el servidor)</li>
       <li>SEO optimizado.</li>
@@ -72,8 +65,6 @@
 
 </div>
 
-<?php if (!$amp) { ?>
 <div id="github_button" class="hide_on_mobile">
   <a href="https://github.com/jekuer/php-microsite-boilerplate" rel="noopener"><img src="/assets/images/github.svg" alt="Explora el proyecto en GitHub!"></a>
 </div>
-<?php } ?>

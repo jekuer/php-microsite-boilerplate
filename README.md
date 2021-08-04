@@ -1,7 +1,6 @@
 # PHP Microsite Boilerplate
 
 [![pagespeed-100](https://img.shields.io/badge/Lighthouse%20PageSpeed-100-success.svg)](https://developers.google.com/speed/pagespeed/insights/?url=https://phpmicrosite.jenskuerschner.de)
-[![amp-valid](https://img.shields.io/badge/AMP-valid-success.svg)](https://validator.ampproject.org/#url=https%3A%2F%2Fphpmicrosite.jenskuerschner.de%2Famp%2F)
 [![pwa-valid](https://img.shields.io/badge/PWA-valid-success.svg)](https://phpmicrosite.jenskuerschner.de/)
 [![w3c-css-valid](https://img.shields.io/badge/W3C%20CSS-valid-success.svg)](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fphpmicrosite.jenskuerschner.de%2F&profile=css3svg&usermedium=all)
 [![LICENSE](https://img.shields.io/badge/license-GPL%203.0-blue.svg)](https://github.com/jekuer/php-microsite-boilerplate/blob/master/LICENSE.txt)
@@ -25,11 +24,10 @@ Demo: <https://phpmicrosite.jenskuerschner.de/>
 ## Key Features
 
 -   Easy routing.
--   [Accelerated Mobile Pages (AMP)](https://amp.dev/) prepared.
 -   [Progressive Web App (PWA)](https://web.dev/progressive-web-apps/) prepared.
 -   Multilanguage prepared.
 -   [Directus CMS](https://directus.io/) integration (incl. local cache).
--   GDPR and CCPA ready (regular site and AMP).
+-   GDPR and CCPA ready.
 -   Intelligent serviceworker cache.
 -   Gettext support for easy translation (+ fallback if not installed on the server).
 -   SEO optimized.
@@ -55,7 +53,7 @@ Demo: <https://phpmicrosite.jenskuerschner.de/>
     -   Create respective files within /controller if necessary in your case. 
     -   Check the option to auto-redirect within multi-language at index.php and all.js. 
     -   Build the website with those pages, the style.css, and the all.js. Mind to minimize those files or adjust the way they get included at /templates/header.php and /templates/footer.php. 
-    -   Adjust the footer at /templates/footer.php and /templates/footer_amp.php to your needs. 
+    -   Adjust the footer at /templates/footer.php to your needs. 
 
 3.  That's basically it.
 

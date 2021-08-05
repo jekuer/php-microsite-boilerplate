@@ -18,6 +18,8 @@
 			'git reset --hard origin/master',
 			'git pull',
 			'git status',
+			'npm install', // remove if you do not want to minify the css and js on the server
+			'npm run build' // remove if you do not want to minify the css and js on the server
 		);
 
 		// Run the commands for output		

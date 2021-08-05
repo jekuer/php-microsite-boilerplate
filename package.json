@@ -1,0 +1,61 @@
+{
+  "name": "php-microsite-boilerplate",
+  "version": "2.0.0",
+  "description": "An extremely simple and lightweight PHP framework/boilerplate to spin-up microsites at high speed. Optimized for Performance, Security, SEO, and Directus CMS.",
+  "keywords": [
+    "css",
+    "php",
+    "template",
+    "boilerplate",
+    "framework",
+    "pwa",
+    "html5",
+    "php-framework",
+    "gettext",
+    "microsite",
+    "directus",
+    "html5-boilerplate",
+    "cms-frontend",
+    "microsites",
+    "php-microsite",
+    "tailwindcss",
+    "tailwind",
+    "alpinejs",
+    "alpine",
+    "performance",
+    "pagespeed",
+    "postcss",
+    "webpack"
+  ],
+  "homepage": "https://phpmicrosite.jenskuerschner.de/",
+  "author": {
+    "name": "Jens Kuerschner",
+    "url": "https://jenskuerschner.de/"
+  },
+  "bugs": {
+    "url": "https://github.com/jekuer/php-microsite-boilerplate/issues"
+  },
+  "license": "GPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jekuer/php-microsite-boilerplate.git"
+  },
+  "scripts": {
+    "build": "grunt && postcss ./assets/css/style.css -o ./assets/css/style.min.css",
+    "build:dev": "grunt && npx tailwindcss -i ./assets/css/style.css -o ./assets/css/style.min.css"
+  },
+  "dependencies": {
+    "@fullhuman/postcss-purgecss": "^4.0.3",
+    "@tailwindcss/forms": "^0.3.3",
+    "acorn": "^8.4.1",
+    "autoprefixer": "^10.3.1",
+    "cssnano": "^5.0.7",
+    "grunt": "^1.4.1",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-uglify": "^5.0.1",
+    "postcss": "^8.3.6",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.2.4"
+  },
+  "browserslist": "last 3 years"
+}

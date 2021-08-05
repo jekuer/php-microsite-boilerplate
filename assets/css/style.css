@@ -30,153 +30,164 @@
  * 1.0 - General Framwork
  */
 
-/* Google Fonts. Include directly via https://google-webfonts-helper.herokuapp.com/fonts and mind "font-display:swap;" for best performance and GDPR compliance. */
-@font-face {
-  font-display: swap;
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: url('../fonts/open-sans-v17-latin-regular.eot'); /* IE9 Compat Modes */
-  src:
-    local('Open Sans Regular'),
-    local('OpenSans-Regular'),
-    url('../fonts/open-sans-v17-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../fonts/open-sans-v17-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../fonts/open-sans-v17-latin-regular.woff') format('woff'), /* Modern Browsers */
-    url('../fonts/open-sans-v17-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('../fonts/open-sans-v17-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
-}
+/* Include Tailwind */
+/* Remove this if you are not using TailwindCSS and a respective build process, since it would then blow up your CSS! */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@font-face {
-  font-display: swap;
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 600;
-  src: url('../fonts/open-sans-v17-latin-600.eot'); /* IE9 Compat Modes */
-  src:
-    local('Open Sans SemiBold'),
-    local('OpenSans-SemiBold'),
-    url('../fonts/open-sans-v17-latin-600.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../fonts/open-sans-v17-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../fonts/open-sans-v17-latin-600.woff') format('woff'), /* Modern Browsers */
-    url('../fonts/open-sans-v17-latin-600.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('../fonts/open-sans-v17-latin-600.svg#OpenSans') format('svg'); /* Legacy iOS */
-}
+@layer base {
 
-@font-face {
-  font-display: swap;
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 800;
-  src: url('../fonts/open-sans-v17-latin-800.eot'); /* IE9 Compat Modes */
-  src:
-    local('Open Sans ExtraBold'),
-    local('OpenSans-ExtraBold'),
-    url('../fonts/open-sans-v17-latin-800.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../fonts/open-sans-v17-latin-800.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../fonts/open-sans-v17-latin-800.woff') format('woff'), /* Modern Browsers */
-    url('../fonts/open-sans-v17-latin-800.ttf') format('truetype'), /* Safari, Android, iOS */
-    url('../fonts/open-sans-v17-latin-800.svg#OpenSans') format('svg'); /* Legacy iOS */
-}
+  /* Google Fonts. Include directly via https://google-webfonts-helper.herokuapp.com/fonts and mind "font-display:swap;" for best performance and GDPR compliance. */
+  @font-face {
+    font-display: swap;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/open-sans-v17-latin-regular.eot'); /* IE9 Compat Modes */
+    src:
+      local('Open Sans Regular'),
+      local('OpenSans-Regular'),
+      url('../fonts/open-sans-v17-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      url('../fonts/open-sans-v17-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+      url('../fonts/open-sans-v17-latin-regular.woff') format('woff'), /* Modern Browsers */
+      url('../fonts/open-sans-v17-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+      url('../fonts/open-sans-v17-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
+  }
 
-/* Defining base elements. */
+  @font-face {
+    font-display: swap;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    src: url('../fonts/open-sans-v17-latin-600.eot'); /* IE9 Compat Modes */
+    src:
+      local('Open Sans SemiBold'),
+      local('OpenSans-SemiBold'),
+      url('../fonts/open-sans-v17-latin-600.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      url('../fonts/open-sans-v17-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
+      url('../fonts/open-sans-v17-latin-600.woff') format('woff'), /* Modern Browsers */
+      url('../fonts/open-sans-v17-latin-600.ttf') format('truetype'), /* Safari, Android, iOS */
+      url('../fonts/open-sans-v17-latin-600.svg#OpenSans') format('svg'); /* Legacy iOS */
+  }
 
-body {
-  background: #353535;
-  color: #fff;
-  font-family: 'Open Sans', Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  height: 100%;
-  line-height: 1.7rem;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  width: 100%;
-}
+  @font-face {
+    font-display: swap;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 800;
+    src: url('../fonts/open-sans-v17-latin-800.eot'); /* IE9 Compat Modes */
+    src:
+      local('Open Sans ExtraBold'),
+      local('OpenSans-ExtraBold'),
+      url('../fonts/open-sans-v17-latin-800.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      url('../fonts/open-sans-v17-latin-800.woff2') format('woff2'), /* Super Modern Browsers */
+      url('../fonts/open-sans-v17-latin-800.woff') format('woff'), /* Modern Browsers */
+      url('../fonts/open-sans-v17-latin-800.ttf') format('truetype'), /* Safari, Android, iOS */
+      url('../fonts/open-sans-v17-latin-800.svg#OpenSans') format('svg'); /* Legacy iOS */
+  }
 
-::selection {
-  background: #e29301;
-  color: #fff;
-}
-::-moz-selection {
-  background: #e29301;
-  color: #fff;
-}
+  /* Defining base elements. */
 
-noscript {
-  color: red;
-  font-weight: bold;
-}
+  body {
+    background: #353535;
+    color: #fff;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    height: 100%;
+    line-height: 1.7rem;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+  }
 
-h1 {
-  font-size: 3rem;
-  font-weight: 800;
-  line-height: 1rem;
-  margin: 0;
-  padding: 60px 0;
-  text-shadow: 0px 0px 20px rgba(0, 0, 0, .3);
-  word-wrap: break-word;
-}
+  ::selection {
+    background: #e29301;
+    color: #fff;
+  }
+  ::-moz-selection {
+    background: #e29301;
+    color: #fff;
+  }
 
-h2 {
-  font-size: 1.8rem;
-  font-weight: 600;
-  line-height: 2rem;
-  margin: 0;
-  padding: 40px 0 15px 0;
-  word-wrap: break-word;
-}
-
-h3 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  line-height: 1.1rem;
-  margin: 0;
-  padding: 40px 0 15px 0;
-  word-wrap: break-word;
-}
-
-strong {
-  font-weight: 600;
-}
-
-a,
-a:active,
-a:focus {
-  color: #fff;
-  font-family: 'Open Sans', Arial, sans-serif;
-  font-weight: 600;
-  text-decoration: underline;
-  touch-action: manipulation; /* saves some milliseconds, because the (mobile) device is not waiting for a second tap to check if the user wants to zoom in */
-}
-
-a.dark_link {
-  color: #353535;
-}
- 
-a:hover,
-a.dark_link:hover {
-  color: #e29301;
-  text-decoration: none;
-}
-
-li + li,
-li + ul li,
-ul + li {
-  margin-top: 10px;
-}
-
-/* Mobile Adjustments */
-
-@media only screen and (max-width: 600px) {
+  noscript {
+    color: red;
+    font-weight: bold;
+  }
 
   h1 {
-    font-size: 2.5rem;
-    line-height: 2.6rem;
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1rem;
+    margin: 0;
+    padding: 60px 0;
+    text-shadow: 0px 0px 20px rgba(0, 0, 0, .3);
+    word-wrap: break-word;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 2rem;
+    margin: 0;
+    padding: 40px 0 15px 0;
+    word-wrap: break-word;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.1rem;
+    margin: 0;
+    padding: 40px 0 15px 0;
+    word-wrap: break-word;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  a,
+  a:active,
+  a:focus {
+    color: #fff;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: 600;
+    text-decoration: underline;
+    touch-action: manipulation; /* saves some milliseconds, because the (mobile) device is not waiting for a second tap to check if the user wants to zoom in */
+  }
+
+  a.dark_link {
+    color: #353535;
+  }
+  
+  a:hover,
+  a.dark_link:hover {
+    color: #e29301;
+    text-decoration: none;
+  }
+
+  li + li,
+  li + ul li,
+  ul + li {
+    margin-top: 10px;
+  }
+
+  /* Mobile Adjustments */
+
+  @media only screen and (max-width: 600px) {
+
+    h1 {
+      font-size: 2.5rem;
+      line-height: 2.6rem;
+    }
+
   }
 
 }
+
 
 
 /**
@@ -187,22 +198,6 @@ ul + li {
   height: 100%;
   width: 100%;
   
-}
-
-.container {
-  box-sizing: border-box;
-  margin: 0 auto;
-  max-width: 800px;
-  padding: 0 20px;
-  width: 100%;
-}
-
-.container_small {
-  box-sizing: border-box;
-  margin: 0 auto;
-  max-width: 600px;
-  padding: 0 20px;
-  width: 100%;
 }
 
 .area1 {
@@ -262,10 +257,6 @@ footer {
 /* Mobile Adjustments */
 
 @media only screen and (max-width: 600px) {
-
-  .container {
-    padding: 0 10px;
-  }
 
   footer {
     padding: 30px 10px;
@@ -329,6 +320,72 @@ footer {
   position: absolute;
   top: 0;
   width: 100%;
+}
+
+.youtube {
+  background-color: #353535;
+  border-radius: 0.25rem;
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 0;
+  overflow: hidden;
+  cursor: pointer;
+  display: block;
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, .2);
+  -webkit-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, .2);
+  -moz-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, .2);
+  text-align: center;
+  width: 100%;
+}
+.youtube span {
+  color: #fff;
+  font-style: italic;
+}
+.youtube img {
+  width: 100%;
+  height: 100%;
+	top: 0;
+	left: 0;
+}
+.youtube .play-button {
+	width: 100px;
+	z-index: 1;
+  opacity: .8;
+  -webkit-filter: drop-shadow( 0px 0px 8px rgba(0, 0, 0, .8) );
+  filter: drop-shadow( 0px 0px 8px rgba(0, 0, 0, .8) );
+  content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 122.88" height="100%"><path fill="white" d="M61.44 0c33.93 0 61.44 27.51 61.44 61.44s-27.51 61.44-61.44 61.44S0 95.37 0 61.44 27.51 0 61.44 0h0zm21.87 65.24c3.13-2.02 3.12-4.27 0-6.06L50.98 40.6c-2.55-1.6-5.21-.66-5.14 2.67l.1 37.55c.22 3.61 2.28 4.6 5.32 2.93l32.05-18.51zM61.44 12.48c27.04 0 48.96 21.92 48.96 48.96S88.48 110.4 61.44 110.4 12.48 88.48 12.48 61.44 34.4 12.48 61.44 12.48h0z" fill-rule="evenodd"/></svg>');
+}
+.youtube img,
+.youtube .play-button {
+	cursor: pointer;
+}
+.youtube:hover .play-button {
+  opacity: 1;
+}
+.youtube:hover img {
+  filter: brightness(40%) blur(1px);
+  -webkit-filter: brightness(40%) blur(1px);
+  -moz-filter: brightness(40%) blur(1px);
+  -o-filter: brightness(40%) blur(1px);
+  -ms-filter: brightness(40%) blur(1px);
+}
+.youtube img,
+.youtube iframe,
+.youtube .play-button,
+.youtube span {
+	position: absolute;
+}
+.youtube span,
+.youtube .play-button {
+	top: 50%;
+	left: 50%;
+	transform: translate3d( -50%, -50%, 0 );
+}
+.youtube iframe {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
 }
 
 /* Mobile Adjustments */

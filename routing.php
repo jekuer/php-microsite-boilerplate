@@ -206,4 +206,15 @@ $directus_pages['translation_block'] = 'translations'; // The block (name of the
 $directus_pages['language_field'] = 'languages_code'; // The name of the field, which defines the language of a specific block (usually "language" in V8 and "languages_code" in V9).
 
 
+
+
+/* Fill slug paramter of regular routes, if not set */
+foreach ($pages as $lang => $page) {
+  foreach ($page as $page_id => $pagedetails) {
+    if (!isset($page[$page_id]['slug']) or $page[$page_id]['slug'] == '') {
+      $pages[$lang][$page_id]['slug'] = $page_id;
+    } 
+  }
+}
+
 ?>

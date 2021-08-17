@@ -266,7 +266,7 @@ footer {
 
 
 /**
- * 3.0 - Helper
+ * 3.0 - Helpers (not really needed when using TailwindCSS, but get removed by PostCSS in this case anyway)
  */
 
 .small {

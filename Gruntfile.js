@@ -5,22 +5,34 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     paths: {
       src: {
-        js: 'assets/js/*.js'
+        js: 'assets/js/*.js',
+        swcache: 'serviceworker-cache.js'
       },
       dest: {
-        jsMin: 'assets/js/all.min.js'
+        jsMin: 'assets/js/all.min.js',
+        swcacheMin: 'serviceworker-cache.min.js'
       }
     },
     clean: {
-      jsMin: '<%= paths.dest.jsMin %>'
+      jsMin: '<%= paths.dest.jsMin %>',
+      swcacheMin: '<%= paths.dest.swcacheMin %>'
     },
     uglify: {
-      options: {
-        compress: true,
-        mangle: true,
-        sourceMap: true
+      swcache: {
+        options: {
+          compress: true,
+          mangle: true,
+          sourceMap: true
+        },
+        src: '<%= paths.src.swcache %>',
+        dest: '<%= paths.dest.swcacheMin %>'
       },
-      target: {
+      jsassets: {
+        options: {
+          compress: true,
+          mangle: true,
+          sourceMap: true
+        },
         src: '<%= paths.src.js %>',
         dest: '<%= paths.dest.jsMin %>'
       }

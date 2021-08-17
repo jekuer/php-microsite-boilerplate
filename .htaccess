@@ -414,6 +414,9 @@ RedirectMatch 404 ^(.*\/)?\.git+
   # Exclude specific directories or files from the restriction (e.g. to make them available within emails)
 	# RewriteCond %{REQUEST_URI} !^(.*)email_logo\.png [NC]
 	# RewriteCond %{REQUEST_URI} !^(.*)\/opendirectory\/(.*) [NC]
+	# Any files, which act as external thumbnails (e.g. social media preview) and favicons should be always excluded.
+  	RewriteCond %{REQUEST_URI} !^(.*)social_media\.png [NC]
+	  RewriteCond %{REQUEST_URI} !^(.*)\/assets\/favicons\/(.*) [NC]
 	# Rewrite
   RewriteRule \.(jpg|jpeg|gif|webp|png)$ - [F]
 </ifModule>

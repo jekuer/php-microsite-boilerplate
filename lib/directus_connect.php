@@ -7,7 +7,7 @@
 $directus_url = rtrim($directus_url, '/') . '/';
 $directus_url = filter_var($directus_url, FILTER_SANITIZE_URL);
 if ($directus_version == '8') { // fixing path for V8
-  $directus_url .= $directus_project .'/';
+  $directus_url .= $directus_project . '/';
 }
 $directus_auth_token = '';
 
@@ -44,7 +44,7 @@ function authDirectus($directus_url) {
     if ($directus_version == '8') {
       preg_match('/Set-Cookie:\sdirectus-' . $directus_project . '-session=(.*?)\;/i', $api_curl_response, $matches);
     } else {
-      //preg_match('/Set-Cookie:\sdirectus_refresh_token=(.*?)\;/i', $api_curl_response, $matches); // Would retrieve the refresh token. We keep it simple in this application and only work with the access token.
+      //preg_match('/Set-Cookie:\sdirectus_refresh_token=(.*?)\;/i', $api_curl_response, $matches); // Would set the refresh token. We keep it simple in this application and only work with the access token (since we are on the server backend side here, it also does not make that big of a difference in terms of security).
       $tmp_response = json_decode($api_curl_response, true);
       $matches[1] = $tmp_response['data']['access_token'];
     }
@@ -60,11 +60,11 @@ function authDirectus($directus_url) {
 
 
 // Read/Get only.
-function getDirectusContent($collection, $item = '', $file = '', $respect_status = false, $get_fields = '', $filter_lang = false) {
+function getDirectusContent($collection, $item = '', $file = '', $respect_status = false, $get_fields = '', $filter_lang = false, $filter_id = '') {
   global $directus_auth_token, $directus_url, $directus_user, $directus_password, $directus_pages, $directus_version, $directus_project, $directus_cache, $language;
 
   // Check for cache first.
-  $cache_token = md5($collection . '_' . $item . '_' . $file . '_' . $respect_status . '_' . $get_fields . '_' . $filter_lang);
+  $cache_token = md5($collection . '_' . $item . '_' . $file . '_' . $respect_status . '_' . $get_fields . '_' . $filter_lang . '_' . $filter_id);
   if ($filter_lang) {
     $cache_filename = 'directus_cache_' . $collection . '_' . $item . '_' . $cache_token . '_' . $language['active'];
   } else {
@@ -85,18 +85,24 @@ function getDirectusContent($collection, $item = '', $file = '', $respect_status
   $clean_up_filter_lang = false;
   if (isset($file) and $file != '') {
     // setting $file retrieves the specific file.
-    // https://docs.directus.io/api/files.html#retrieve-a-file
+    // https://docs.directus.io/reference/api/system/files/#retrieve-a-file
     $api_curl_url = $directus_url . 'files/' . make_safe($file);
 
   } elseif (isset($collection) and $collection != '' and isset($item) and $item != '') {
     // setting $collection and $item retrieves the specific item (including related collections' fields).
-    // https://docs.directus.io/api/items.html#retrieve-an-item    
+    // https://docs.directus.io/reference/api/items/#get-item-by-id  
     if ($get_fields != '') {
       $cq = 'fields=' . $get_fields;
     } else {
       $cq = 'fields=*.*';
     }
-    if ($respect_status) $cq .= '&filter[status]=published';
+    if ($respect_status) {
+      if (getenv('APPSETTING_ENV') == 'test') {
+        $cq .= '&filter[status][_in]=published,draft';
+      } else {
+        $cq .= '&filter[status]=published';
+      }
+    }
     if ($filter_lang) {
       if ($directus_version == '8') {
         $cq .= '&lang=' . $language['directus'][$language['active']]; // V8 only!
@@ -109,11 +115,14 @@ function getDirectusContent($collection, $item = '', $file = '', $respect_status
       }
       $clean_up_filter_lang = true;
     }
+    if ($filter_id != '') {
+      $cq .= '&filter[id][_in]=' . $filter_id;
+    }
     $api_curl_url = $directus_url . 'items/' .  make_safe($collection) . '/' .  make_safe($item) . '?' . $cq . '&limit=-1';
 
   } elseif (isset($collection) and $collection != '') {
     // setting $collection only retrieves a list of all items (optionally with meta elements and optionally only published ones) of this collection.
-    // https://docs.directus.io/api/items.html#list-the-items
+    // https://docs.directus.io/reference/api/items/#get-items
     if ($get_fields != '') {
       $cq = 'fields=' . $get_fields;
     } else {
@@ -131,7 +140,16 @@ function getDirectusContent($collection, $item = '', $file = '', $respect_status
       }
       $clean_up_filter_lang = true;
     }
-    if ($respect_status) $cq .= '&filter[status]=published';
+    if ($filter_id != '') {
+      $cq .= '&filter[id][_in]=' . $filter_id;
+    }
+    if ($respect_status) {
+      if (getenv('APPSETTING_ENV') == 'test') {
+        $cq .= '&filter[status][_in]=published,draft';
+      } else {
+        $cq .= '&filter[status]=published';
+      }
+    }
     $api_curl_url = $directus_url . 'items/' . make_safe($collection) . '?' . $cq . '&limit=-1';
   }
   
@@ -144,7 +162,7 @@ function getDirectusContent($collection, $item = '', $file = '', $respect_status
       if ($directus_version == '8') {
         array_push($api_curl_headers, 'Cookie: directus-' . $directus_project . '-session=' . $directus_auth_token);
       } else {
-        // array_push($api_curl_headers, 'Cookie: directus_refresh_token=' . $directus_auth_token); // Would set the refresh token. We keep it simple in this application and only work with the access token.
+        // array_push($api_curl_headers, 'Cookie: directus_refresh_token=' . $directus_auth_token); // Would set the refresh token. We keep it simple in this application and only work with the access token (since we are on the server backend side here, it also does not make that big of a difference in terms of security).
         array_push($api_curl_headers, 'Authorization: Bearer ' . $directus_auth_token);
       }
     } else {

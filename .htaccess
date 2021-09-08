@@ -198,7 +198,17 @@
 </IfModule>
 
 
-# Caching (not recommended, but use it if mod_headers is not working for you)
+# Caching of common files using Apache's "mod_headers", if it is installed.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(ico|pdf|flv|swf|gif|png|jpg|jpeg|txt|svg|webmanifest|webp)$">
+    Header set Cache-Control "max-age=2592000, public"
+  </FilesMatch>
+	<FilesMatch "\.(woff|woff2|eot|ttf|js|css|min.js|min.css)$">
+    Header set Cache-Control "max-age=31536000, public"
+  </FilesMatch>
+</IfModule>
+
+# Alternativ caching with mod_expires (not recommended, but use it if mod_headers is not working for you)
 #<IfModule mod_expires.c>
   #ExpiresActive on
   #ExpiresDefault                                      "access plus 1 month"
@@ -219,14 +229,14 @@
   #ExpiresByType application/x-javascript              "access plus 1 year"
   #ExpiresByType text/javascript                       "access plus 1 year"
   #ExpiresByType application/manifest+json             "access plus 1 year"
-	#ExpiresByType application/webmanifest+json          "access plus 1 year"
+  #ExpiresByType application/webmanifest+json          "access plus 1 year"
   #ExpiresByType application/x-web-app-manifest+json   "access plus 0 seconds"
   #ExpiresByType text/cache-manifest                   "access plus 0 seconds"
   #ExpiresByType audio/ogg                             "access plus 1 month"
   #ExpiresByType image/bmp                             "access plus 1 month"
   #ExpiresByType image/gif                             "access plus 1 month"
   #ExpiresByType image/jpeg                            "access plus 1 month"
-	#ExpiresByType image/webp                            "access plus 1 month"
+  #ExpiresByType image/webp                            "access plus 1 month"
   #ExpiresByType image/png                             "access plus 1 month"
   #ExpiresByType image/svg+xml                         "access plus 1 month"
   #ExpiresByType image/webp                            "access plus 1 month"
@@ -280,18 +290,6 @@
   BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
   # Make sure proxies don't deliver the wrong content
   Header append Vary User-Agent env=!dont-vary
-</IfModule>
-
-
-# Alternative caching using Apache's "mod_headers", if it is installed.
-# Caching of common files - ENABLED
-<IfModule mod_headers.c>
-  <FilesMatch "\.(ico|pdf|flv|swf|gif|png|jpg|jpeg|txt|svg|webmanifest|webp)$">
-    Header set Cache-Control "max-age=2592000, public"
-  </FilesMatch>
-	<FilesMatch "\.(woff|woff2|eot|ttf|js|css|min.js|min.css)$">
-    Header set Cache-Control "max-age=31536000, public"
-  </FilesMatch>
 </IfModule>
 
 

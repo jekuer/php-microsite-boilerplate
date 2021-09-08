@@ -17,7 +17,6 @@
   # The next 3 lines aim to hide the server's identity.
   Header unset "X-Powered-By"
   Header always unset "X-Powered-By"
-  ServerSignature Off
 </IfModule>
 
 

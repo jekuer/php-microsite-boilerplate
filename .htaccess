@@ -247,8 +247,8 @@ RewriteBase /
 </IfModule>
 
 
-# Restrict access to .htaccess and .htpasswd
-<FilesMatch "(\.htaccess|\.htpasswd)">
+# Restrict access to .htaccess and .htpasswd and nginx conf
+<FilesMatch "(\.htaccess|\.htpasswd|my\.conf)">
   Order deny,allow
   Deny from all
 </FilesMatch>

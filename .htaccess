@@ -6,7 +6,7 @@
   Header set X-Content-Type-Options "nosniff"
   Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
   Header set Referrer-Policy "no-referrer-when-downgrade"
-  # Put your domain here
+  # Put your domain here (or your wildcard *, if you experience any problems)
   Header set Access-Control-Allow-Origin "https://YOURDOMAIN.com/"
   # Adjust to your needs. GET should be enough for simple landingpages. Sometimes, you might need 'GET, POST'.
   Header set Access-Control-Allow-Methods "GET"

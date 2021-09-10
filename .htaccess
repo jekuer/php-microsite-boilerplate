@@ -276,15 +276,15 @@ RedirectMatch 404 ^(.*\/)?\.git+
   RewriteEngine on
   RewriteCond %{HTTP_REFERER} !^$
   RewriteCond %{HTTP_REFERER} !^https://YOURDOMAIN\.com(/.*)?$ [NC]
-	# Use this if you force www and/or allow for subdomains (adjust accordingly):
-	#RewriteCond %{HTTP_REFERER} !^https://(www|test)\.(localhost|YOURDOMAIN\.com)(/.*)?$ [NC]
+  # Use this if you force www and/or allow for subdomains (adjust accordingly):
+  #RewriteCond %{HTTP_REFERER} !^https://(www|test)\.(localhost|YOURDOMAIN\.com)(/.*)?$ [NC]
   # Exclude specific directories or files from the restriction (e.g. to make them available within emails)
-	# RewriteCond %{REQUEST_URI} !^(.*)email_logo\.png [NC]
-	# RewriteCond %{REQUEST_URI} !^(.*)\/opendirectory\/(.*) [NC]
-	# Any files, which act as external thumbnails (e.g. social media preview) and favicons should be always excluded.
-  	RewriteCond %{REQUEST_URI} !^(.*)social_media\.png [NC]
-	  RewriteCond %{REQUEST_URI} !^(.*)\/assets\/favicons\/(.*) [NC]
-	# Rewrite
+  # RewriteCond %{REQUEST_URI} !^(.*)email_logo\.png [NC]
+  # RewriteCond %{REQUEST_URI} !^(.*)\/opendirectory\/(.*) [NC]
+  # Any files, which act as external thumbnails (e.g. social media preview) and favicons should be always excluded.
+  RewriteCond %{REQUEST_URI} !^(.*)social_media\.png [NC]
+  RewriteCond %{REQUEST_URI} !^(.*)\/assets\/favicons\/(.*) [NC]
+  # Rewrite
   RewriteRule \.(jpg|jpeg|gif|webp|png)$ - [F]
 </ifModule>
 
@@ -296,40 +296,38 @@ RedirectMatch 404 ^(.*\/)?\.git+
 </Files>
 
 
-
-
 ## MAIN REWRITE ##
 <IfModule mod_rewrite.c>
-	RewriteEngine On
-	RewriteBase /
+  RewriteEngine On
+  RewriteBase /
 
-	# Force www.
-	RewriteCond %{HTTP_HOST} !^www\. [NC]
-	RewriteRule (.*) https://www.%{HTTP_HOST}/$1 [L,R=301,NC]
+  # Force www.
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteRule (.*) https://www.%{HTTP_HOST}/$1 [L,R=301,NC]
 
-	# Force non-www (alternative).
-	#RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-	#RewriteRule ^(.*)$ https://%1/$1 [L,R=301,NC]
+  # Force non-www (alternative).
+  #RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+  #RewriteRule ^(.*)$ https://%1/$1 [L,R=301,NC]
 
-	# Force HTTPS.
-	RewriteCond %{HTTP:X-Forwarded-Proto} =http [OR]
-	RewriteCond %{HTTP:X-Forwarded-Proto} =""
-	RewriteCond %{HTTPS} !=on
-	RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # Force HTTPS.
+  RewriteCond %{HTTP:X-Forwarded-Proto} =http [OR]
+  RewriteCond %{HTTP:X-Forwarded-Proto} =""
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-	# Redirect direct access attempts to php files.
-	RewriteCond %{THE_REQUEST} \.php[?/] [NC]
-	RewriteRule !^index\.php$ - [F,L,NC]
+  # Redirect direct access attempts to php files.
+  RewriteCond %{THE_REQUEST} \.php[?/] [NC]
+  RewriteRule !^index\.php$ - [F,L,NC]
 
-	# Force a trailing slash and route through index.php.
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteCond %{REQUEST_URI} !(.*)/$ [NC]
-	RewriteRule ^(.*)$ $1/ [L,R=301,NC]
+  # Force a trailing slash and route through index.php.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} !(.*)/$ [NC]
+  RewriteRule ^(.*)$ $1/ [L,R=301,NC]
 	
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
 
 </IfModule>
 ## END MAIN REWRITE ##

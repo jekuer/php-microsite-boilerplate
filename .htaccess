@@ -247,20 +247,18 @@ RewriteBase /
 </IfModule>
 
 
-# Restrict access to .htaccess and .htpasswd and nginx conf
-<FilesMatch "(\.htaccess|\.htpasswd|my\.conf)">
+# Restrict access to .htaccess and .htpasswd
+<FilesMatch "(\.htaccess|\.htpasswd)">
   Order deny,allow
   Deny from all
 </FilesMatch>
 
 
+# Restrict access to nginx conf
+RedirectMatch 404 ^(.*\/)?nginx_conf
+
+
 # Restrict access to .git
-# MIND THE DOMAIN HERE!
-<IfModule mod_rewrite.c>
-	RewriteEngine On
-	RewriteRule ^(.*\/)?\.git+ https://YOURDOMAIN.com/ [R=301,L]
-</IfModule>
-# 2nd line of defense (if no mod_rewrite)
 RedirectMatch 404 ^(.*\/)?\.git+
 
 

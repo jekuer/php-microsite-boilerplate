@@ -39,6 +39,7 @@
 @layer base {
 
   /* Google Fonts. Include directly via https://google-webfonts-helper.herokuapp.com/fonts and mind "font-display:swap;" for best performance and GDPR compliance. */
+  /* if you do not care about old browsers, you can strip out all src entries except woff and woff2 to save on data. */
   @font-face {
     font-display: swap;
     font-family: 'Open Sans';

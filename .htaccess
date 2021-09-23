@@ -181,6 +181,8 @@ RewriteBase /
   #ExpiresByType application/font-woff                 "access plus 1 year"
   #ExpiresByType application/x-font-woff               "access plus 1 year"
   #ExpiresByType font/woff                             "access plus 1 year"
+  #ExpiresByType font/woff2                            "access plus 1 year"
+  #ExpiresByType application/font-woff                 "access plus 1 year"
   #ExpiresByType application/font-woff2                "access plus 1 year"
   #ExpiresByType text/x-cross-domain-policy            "access plus 1 week"
 #</IfModule>
@@ -209,10 +211,14 @@ RewriteBase /
   AddOutputFilterByType DEFLATE application/vnd.ms-fontobject 
   AddOutputFilterByType DEFLATE application/x-font-ttf 
   AddOutputFilterByType DEFLATE application/x-web-app-manifest+json
-	AddOutputFilterByType DEFLATE application/webmanifest+json
-  AddOutputFilterByType DEFLATE font/opentype 
+  AddOutputFilterByType DEFLATE application/webmanifest+json
+  AddOutputFilterByType DEFLATE font/opentype  
+  AddOutputFilterByType DEFLATE font/woff
+  AddOutputFilterByType DEFLATE font/woff2
+  AddOutputFilterByType DEFLATE application/x-font-woff
+  AddOutputFilterByType DEFLATE application/x-font-woff2
   AddOutputFilterByType DEFLATE image/svg+xml
-  AddOutputFilterByType DEFLATE image/x-icon 
+  AddOutputFilterByType DEFLATE image/x-icon
   # Exception: Images
   SetEnvIfNoCase REQUEST_URI \.(?:gif|jpg|jpeg|png|svg|webp)$ no-gzip dont-vary
   # Drop problematic browsers

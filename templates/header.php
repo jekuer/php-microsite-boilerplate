@@ -33,9 +33,9 @@
     <link rel="preconnect" href="https:///www.googletagmanager.com" crossorigin>
 
     <!-- Preload fonts (optional, only .woff2 recommended) -->
-    <link rel="preload" href="./assets/fonts/open-sans-v17-latin-regular.woff2&display=swap" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="./assets/fonts/open-sans-v17-latin-600.woff2&display=swap" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="./assets/fonts/open-sans-v17-latin-800.woff2&display=swap" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./assets/fonts/open-sans-v17-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./assets/fonts/open-sans-v17-latin-800.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- CSS -->
     <!-- Add more files, if needed, but try to consolidate it into one for better performance -->

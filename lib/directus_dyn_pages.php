@@ -55,7 +55,7 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
   }
   if (isset($directus_pages['language_field'])) $field_query .= ',' . $translation_block_str . '.' . $language_field_str;
 
-  // Draw content from Directus.
+  // Pull content from Directus.
   $tmp_draw = getDirectusContent($single_collection, '', '', $directus_pages['respect_status'], $field_query);
 
   // Create pages.

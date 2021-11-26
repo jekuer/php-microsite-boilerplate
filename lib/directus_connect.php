@@ -100,7 +100,7 @@ function getDirectusContent($collection, $item = '', $file = '', $respect_status
       if (getenv('APPSETTING_ENV') == 'test') {
         $cq .= '&filter[status][_in]=published,draft';
       } else {
-        $cq .= '&filter[status]=published';
+        $cq .= '&filter[status][_in]=published';
       }
     }
     if ($filter_lang) {
@@ -147,7 +147,7 @@ function getDirectusContent($collection, $item = '', $file = '', $respect_status
       if (getenv('APPSETTING_ENV') == 'test') {
         $cq .= '&filter[status][_in]=published,draft';
       } else {
-        $cq .= '&filter[status]=published';
+        $cq .= '&filter[status][_in]=published';
       }
     }
     $api_curl_url = $directus_url . 'items/' . make_safe($collection) . '?' . $cq . '&limit=-1';

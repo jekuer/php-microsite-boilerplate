@@ -8,6 +8,7 @@
 - implementing js and css optimization packages and therefore adding a completely new way to deploy the boilerplate.
 - optimizing documentation and contribution possibilities.
 - nginx option as an alternative for apache.
+- pre-build speed and GDPR YouTube integration feature.
 
 ## Version 1
 - 1.4.6: Micro optimization

@@ -77,7 +77,7 @@ $page_slug = $url_parts[0];
 if (isset($url_parts[1]) and $url_parts[1] != '') $page_slug = $page_slug . '/' . $url_parts[1]; // enables an optional second URL level.
 
 
-// Check for cache purge/rebuild call.
+// Check for cache purge/rebuild call (via YOURDOMAIN.com/purge/directus_cache?purge_rebuild_code=XXXXX - set the purge_rebuild_code in the config.php).
 require_once './lib/cache_purge_rebuild.php';
 
 
@@ -113,7 +113,7 @@ $the_page = new Page($page_slug, $pages[$language['active']], $the_page_meta_def
 
 
 // Check for initial language via cookie or browser language and redirect automatically.
-// Optional. Mind that this could break, if you rely on heavy page chaching and/or proxy services. In this case, remove this and implement an alternative via JavaScript to handle this on the client side.
+// Optional. Mind that this could break, if you rely on heavy page chaching and/or proxy services. In this case, remove this and implement an alternative via JavaScript to handle this on the client side (the default way).
 /*if (isset($_COOKIE['language_select'])) {
   $cookie_lang = make_safe($_COOKIE['language_select']);
   if ($cookie_lang != $language['active']) {

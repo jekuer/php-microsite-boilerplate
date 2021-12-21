@@ -60,7 +60,7 @@ function authDirectus($directus_url) {
 
 
 // Read/Get only.
-function getDirectusContent($collection, $item = '', $file = '', $respect_status = false, $get_fields = '', $filter_lang = false, $filter_id = '') {
+function getDirectusContent($collection = '', $item = '', $file = '', $respect_status = false, $get_fields = '', $filter_lang = false, $filter_id = '') {
   global $directus_auth_token, $directus_url, $directus_user, $directus_password, $directus_pages, $directus_version, $directus_project, $directus_cache, $language;
 
   // Check for cache first.
@@ -85,12 +85,12 @@ function getDirectusContent($collection, $item = '', $file = '', $respect_status
   $clean_up_filter_lang = false;
   if (isset($file) and $file != '') {
     // setting $file retrieves the specific file.
-    // https://docs.directus.io/reference/api/system/files/#retrieve-a-file
+    // https://docs.directus.io/reference/files/#retrieve-a-file
     $api_curl_url = $directus_url . 'files/' . make_safe($file);
 
   } elseif (isset($collection) and $collection != '' and isset($item) and $item != '') {
     // setting $collection and $item retrieves the specific item (including related collections' fields).
-    // https://docs.directus.io/reference/api/items/#get-item-by-id  
+    // https://docs.directus.io/reference/items/#get-item-by-id
     if ($get_fields != '') {
       $cq = 'fields=' . $get_fields;
     } else {
@@ -115,14 +115,11 @@ function getDirectusContent($collection, $item = '', $file = '', $respect_status
       }
       $clean_up_filter_lang = true;
     }
-    if ($filter_id != '') {
-      $cq .= '&filter[id][_in]=' . $filter_id;
-    }
     $api_curl_url = $directus_url . 'items/' .  make_safe($collection) . '/' .  make_safe($item) . '?' . $cq . '&limit=-1';
 
   } elseif (isset($collection) and $collection != '') {
     // setting $collection only retrieves a list of all items (optionally with meta elements and optionally only published ones) of this collection.
-    // https://docs.directus.io/reference/api/items/#get-items
+    // https://docs.directus.io/reference/items/#get-items
     if ($get_fields != '') {
       $cq = 'fields=' . $get_fields;
     } else {

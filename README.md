@@ -18,6 +18,7 @@ This project wants to provide you with a framework and template for this exact c
 -   You choose PHP, because you want to do server-side scripting, while PHP is also maybe the only language, that runs on basically all hosting options.
 -   You build this thing on your own or with a maximum of 1 other person, which makes best practice, but complex code structure more of an unnecessary overhead than a helpful concept.
 -   You need to get it done fast, while you do not want to make compromises regarding security or performance.
+-   You therefore do not care about clean code a lot ;).
 
 Demo: <https://phpmicrosite.jenskuerschner.de/>
 
@@ -45,8 +46,8 @@ Demo: <https://phpmicrosite.jenskuerschner.de/>
 
 2.  Adjust it to your project: 
     -   Check the .htaccess file, if you run it on Apache. Mind the security headers and places, where a domain/path is specified (look for YOURDOMAIN.com). 
-    -   If you do not run it on Apache, check the index.php for the security headers setup and make sure every request (except for files) is send to the index.php. 
-    -   Adjust the value within config.php and also mind files, which are mentioned in the comments there. 
+    -   If you do not run it on Apache, check the index.php for the security headers setup and make sure every request (except for files) is send to the index.php. Check the nginx_deployment.sh - it is a pre-configured bash script to setup your nginx webserver. 
+    -   Adjust the values within config.php and also mind files, which are mentioned in the comments there. Setup a connection to your Directus CMS if used.
     -   Check /templates/general_meta.php and create the respective favicons. 
     -   Define your pages at the routing.php. (Mind legal notice and privacy policy to stay GDPR compliant!) 
     -   Create those pages (as specified before) as single php files within /pages. 
@@ -54,13 +55,9 @@ Demo: <https://phpmicrosite.jenskuerschner.de/>
     -   Check the option to auto-redirect within multi-language at index.php and all.js. 
     -   Build the website with those pages, the style.css, and the all.js. Mind to minimize those files or adjust the way they get included at /templates/header.php and /templates/footer.php. 
     -   Adjust the footer at /templates/footer.php to your needs. 
+    -   Find more details in the in-code documentation - it's a well documented playground!
 
-3.  That's basically it.
-
-You can make more changes and use more features, like:
-
--   Setting up a deployment script (sample included) or the Directus integration.
--   Do even more - it's a well documented playground!
+3.  But that is basically it. You can find a more detailed sample setup guide [at the corresponding Medium blog post here](https://medium.com/@jenskuerschner/build-a-kick-ass-php-microsite-in-under-3h-f21b27b904d2).
 
 BTW: It is recommended to use a CDN service (e.g. [Cloudflare](https://www.cloudflare.com/)) in order to speed it up even more.
 
@@ -74,7 +71,11 @@ Anyone is welcome to contribute, but mind the [guidelines](.github/CONTRIBUTING.
 
 ## License
 
-The code is available under the [GPU 3.0 license](LICENSE.txt).
+The code is available under the [GPL 3.0 license](LICENSE.txt).
+You can basically do anything with it, but mind that if you want to distribute your work based on this code, your work needs to be GPL licensed as well.
+This means that you can easily build your website with it, since this is no distribution. Distribution would be the case, if you sell a project based on this code to others or if you create public projects (no matter if you sell them or not). Even this would be all fine, as long as you license those projects also with GPL. :)
+Check the [license file](LICENSE.txt) for all details.
+
 
 ## Inspired by
 

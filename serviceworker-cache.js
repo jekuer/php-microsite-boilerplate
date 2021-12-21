@@ -7,7 +7,7 @@
 
   // Update 'version' if you need to refresh the caches completely (necessary to update the offline page). 
   // Mind to also change the version number in the main config!
-  var version = 'v6::';
+  var version = 'v1::';
 
   // Domain whitelist. Files not served from those domains won't be cached. The domain, which serves the serviceworker is automatically included. So, only add things like your image CDN or similar.
   // Example: domainWhitelist = ["cdn.domain.com", "www2.domain.com", "analytics.otherdomain.com"]

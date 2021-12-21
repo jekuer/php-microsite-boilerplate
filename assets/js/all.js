@@ -112,24 +112,10 @@ function adjustLanguage() {
   }
 }
 
-
-// Some simple stupid code for playing with the box icon.
-function openIt() {
-  document.getElementById("box_closed").style.display = "none";
-  document.getElementById("box_opened").style.display = "block";
-}
-function closeIt() {
-  document.getElementById("box_closed").style.display = "block";
-  document.getElementById("box_opened").style.display = "none";
-}
-document.getElementById("open_box").addEventListener("click", openIt);
-document.getElementById("close_box").addEventListener("click", closeIt);
-
-
 // run on load.
 function runOnStart() {
   // Adjust Language
-  // Optional. Use this as JS alternative for the php version within the index.php.
+  // Check for initial language via cookie or browser language and redirect automatically. The JavaScript alternative for the php version within the index.php.
   adjustLanguage();
   // Init lazy load YouTube videos.
   initYouTube();

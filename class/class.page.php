@@ -43,6 +43,9 @@ class Page {
       if (isset($curr_page['directus_dyn']) and $curr_page['directus_dyn'] = true) {
         $this->directus = getDirectusContent($curr_page['directus_collection'], $curr_page['directus_id'], '', false, '', true);
         // First, check where we need to look for which information.
+          // Add fields to main level, if they are always on the root level of the collection.
+          // Add them to sub level, if they are always below the root level (e.g. because they are always under translations).
+          // Add them to flex level, if the can be both, depending on the collection.
         $fields_main_level = array('robots', 'redirect');
         $fields_sub_level = array();
         $fields_flex_level = array('controller', 'title', 'description', 'keywords');

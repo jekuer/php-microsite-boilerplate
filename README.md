@@ -29,7 +29,7 @@ Demo: <https://phpmicrosite.jenskuerschner.de/>
 * Multilanguage prepared.
 * [Directus CMS](https://directus.io/) integration (incl. local cache).
 * Docker compose for local development.
-* TailwindCSS included (optional).
+* [TailwindCSS](https://tailwindcss.com/) included (optional).
 * GDPR and CCPA ready.
 * Intelligent serviceworker cache.
 * Gettext support for easy translation (+ fallback if not installed on the server).

@@ -45,9 +45,9 @@ $directus_password = ''; // If you store your code in a repo, consider using a m
 $directus_cache = true; // The default API calls will be cached locally, if true. If you want to purge the cache, call YOURDOMAIN.com/purge/directus_cache. It is recommended to add this as webhook (GET) to Directus to purge the cache on every page update.
 $random_cache_code = ''; // Consider changing this code to any alpha-numeric phrase, to make it harder for others to trigger the resource hungry cache & rebuild process. You will need to add this as purge_rebuild_code query param to the cache URL, e.g. YOURDOMAIN.com/purge/directus_cache?purge_rebuild_code=7347373467.
 
-// Base URL of your microsite. (For local tests, set it to '/'.)
-//$the_page_url = 'https://YOURDOMAIN.com/';
-$the_page_url = '/';
+// Base URL of your microsite.
+$the_page_url = 'https://YOURDOMAIN.com/';
+// $the_page_url = '/'; (use this for localhost dev/tests via Docker)
 
 // PWA settings.
 $the_webapp_name = 'Put the name for the webapp here'; // Mind manifest.webmanifest too.

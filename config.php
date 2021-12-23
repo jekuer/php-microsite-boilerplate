@@ -50,9 +50,9 @@ $the_page_url = 'https://YOURDOMAIN.com/';
 // $the_page_url = '/'; (use this for localhost dev/tests via Docker)
 
 // PWA settings.
-$the_webapp_name = 'Put the name for the webapp here'; // Mind manifest.webmanifest too.
-$the_webapp_status = true; // Set false to disable PWA (does not impact the serviceworker cache). Also delete the manifest.webmanifest to make sure it is not recognized as potential PWA.
-$the_theme_color = '#008c48'; // Mind manifest.webmanifest too.
+$the_webapp_name = 'Put the name for the webapp here'; // Mind manifest.json too.
+$the_webapp_status = true; // Set false to disable PWA (does not impact the serviceworker cache). Also delete the manifest.json to make sure it is not recognized as potential PWA.
+$the_theme_color = '#008c48'; // Mind manifest.json too.
 
 // Default page meta settings.
 // Can be partly overridden per page at the routing.

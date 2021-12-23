@@ -53,7 +53,7 @@ foreach ($language['available'] as $lang => $lang_name) {
 <?php } ?>
 
 <!-- Favicons -->
-<!-- Mind to also adjust webmanifest and browserconfig.xml ! -->
+<!-- Mind to also adjust manifest.json and browserconfig.xml ! -->
 <!-- Generate your favicon set via https://realfavicongenerator.net/ -->
 <!-- Mind to not only exchange the favicons in /assets/favicons, but also the favicon.ico at root level! -->
 <link rel="apple-touch-icon" sizes="57x57" href="<?php echo $the_page_url; ?>assets/favicons/apple-touch-icon-57x57.png">

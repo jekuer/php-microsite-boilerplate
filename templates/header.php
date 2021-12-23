@@ -40,6 +40,8 @@
     <!-- CSS -->
     <!-- Add more files, if needed, but try to consolidate it into one for better performance -->
     <link rel="stylesheet" href="./assets/css/style.min.css<?php echo '?v='.$version_nr; ?>">
+    <!-- Use the TailwindCSS Play CDN, if you need to play around on a local setup - do not use this in production! -->
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 
   </head>
   <body itemscope itemtype="http://schema.org/WebSite">
@@ -52,6 +54,9 @@
     ?>
 
     <link itemprop="url" href="<?php echo $the_page_url_full; ?>"/>
-    <div id="main">
-        
-        
+    <header class="bg-primary text-white text-2xl font-semibold p-6 md:p-8 lg:p-14 shadow-lg">
+      <p>PHP Microsite Boilerplate V2</p>
+    </header>
+
+    <div class="bg-white shadow-lg">
+      <div class="container mx-auto p-6 md:p-8 lg:p-20">

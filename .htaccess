@@ -11,7 +11,7 @@
   # Adjust to your needs. GET should be enough for simple landingpages. Sometimes, you might need 'GET, POST'.
   Header set Access-Control-Allow-Methods "GET"
   # Be careful here. Enabling it limits you on what third-party tools you can include on your page. The provided configuration is only an example.
-  Header set Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube-nocookie.com https://www.googletagmanager.com https://tagmanager.google.com https://www.google-analytics.com https://stats.g.doubleclick.net https://cookiehub.net data:; img-src 'self' https://www.gstatic.com https://ssl.gstatic.com https://i.ytimg.com https://stats.g.doubleclick.net https://www.google-analytics.com data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tagmanager.google.com https://www.googletagmanager.com https://www.google-analytics.com https://cookiehub.net"
+  Header set Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube-nocookie.com https://www.googletagmanager.com https://tagmanager.google.com https://www.google-analytics.com https://stats.g.doubleclick.net https://cookiehub.net data:; img-src 'self' https://www.gstatic.com https://ssl.gstatic.com https://i.ytimg.com https://stats.g.doubleclick.net https://www.google-analytics.com data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://tagmanager.google.com https://www.googletagmanager.com https://www.google-analytics.com https://cookiehub.net"
   # Usually, you would not need any special browser features, so keep them set to 'none'. Some none intrusive things might be helpful for services like YouTube.
   Header set Permissions-Policy "geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(*),encrypted-media=(*),accelerometer=(*),payment=()"
   # The next 2 lines aim to hide the PHP version.
@@ -279,14 +279,14 @@ RedirectMatch 404 ^(.*\/)?\.git+
 <IfModule mod_rewrite.c>
   RewriteEngine on
   RewriteCond %{HTTP_REFERER} !^$
-  RewriteCond %{HTTP_REFERER} !^https://YOURDOMAIN\.com(/.*)?$ [NC]
-  # Use this if you force www and/or allow for subdomains (adjust accordingly):
-  #RewriteCond %{HTTP_REFERER} !^https://(www|test)\.(localhost|YOURDOMAIN\.com)(/.*)?$ [NC]
+  # Adjust the regex accordingly, if you want to allow for other subdomains
+  RewriteCond %{HTTP_REFERER} !^https://(www.|test.|)(localhost|YOURDOMAIN\.com)(/.*)?$ [NC]
   # Exclude specific directories or files from the restriction (e.g. to make them available within emails)
   # RewriteCond %{REQUEST_URI} !^(.*)email_logo\.png [NC]
   # RewriteCond %{REQUEST_URI} !^(.*)\/opendirectory\/(.*) [NC]
   # Any files, which act as external thumbnails (e.g. social media preview) and favicons should be always excluded.
   RewriteCond %{REQUEST_URI} !^(.*)social_media\.png [NC]
+  RewriteCond %{REQUEST_URI} !^(.*)repo_image\.png [NC]
   RewriteCond %{REQUEST_URI} !^(.*)\/assets\/favicons\/(.*) [NC]
   # Rewrite
   RewriteRule \.(jpg|jpeg|gif|webp|png)$ - [F]

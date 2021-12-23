@@ -7,9 +7,16 @@
 */
 
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
+  content: ['./templates/*.php', './pages/*.php', './lib/*.php', './assets/js/*.js'],
+  darkMode: 'media', // or 'class'
   theme: {
+    extend: { // within the extend block, you can add items to the default. Below, you would override the default.
+      colors: {
+        transparent: 'rgba(255, 255, 255, 0)',
+        current: 'currentColor',
+        primary: '#008c48'
+      }
+    },
     screens: {
       sm: '640px',
       md: '768px',

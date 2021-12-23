@@ -36,63 +36,65 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* Google Fonts. Include directly via https://google-webfonts-helper.herokuapp.com/fonts and mind "font-display:swap;" for best performance and GDPR compliance. */
+/* if you do not care about old browsers, you can strip out all src entries except woff and woff2 to save on data. */
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/open-sans-v17-latin-regular.eot'); /* IE9 Compat Modes */
+  src:
+    local('Open Sans Regular'),
+    local('OpenSans-Regular'),
+    url('../fonts/open-sans-v17-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/open-sans-v17-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/open-sans-v17-latin-regular.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/open-sans-v17-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/open-sans-v17-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../fonts/open-sans-v17-latin-600.eot'); /* IE9 Compat Modes */
+  src:
+    local('Open Sans SemiBold'),
+    local('OpenSans-SemiBold'),
+    url('../fonts/open-sans-v17-latin-600.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/open-sans-v17-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/open-sans-v17-latin-600.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/open-sans-v17-latin-600.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/open-sans-v17-latin-600.svg#OpenSans') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: url('../fonts/open-sans-v17-latin-800.eot'); /* IE9 Compat Modes */
+  src:
+    local('Open Sans ExtraBold'),
+    local('OpenSans-ExtraBold'),
+    url('../fonts/open-sans-v17-latin-800.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/open-sans-v17-latin-800.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/open-sans-v17-latin-800.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/open-sans-v17-latin-800.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/open-sans-v17-latin-800.svg#OpenSans') format('svg'); /* Legacy iOS */
+}
+
+
 @layer base {
-
-  /* Google Fonts. Include directly via https://google-webfonts-helper.herokuapp.com/fonts and mind "font-display:swap;" for best performance and GDPR compliance. */
-  /* if you do not care about old browsers, you can strip out all src entries except woff and woff2 to save on data. */
-  @font-face {
-    font-display: swap;
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../fonts/open-sans-v17-latin-regular.eot'); /* IE9 Compat Modes */
-    src:
-      local('Open Sans Regular'),
-      local('OpenSans-Regular'),
-      url('../fonts/open-sans-v17-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-      url('../fonts/open-sans-v17-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-      url('../fonts/open-sans-v17-latin-regular.woff') format('woff'), /* Modern Browsers */
-      url('../fonts/open-sans-v17-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-      url('../fonts/open-sans-v17-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
-  }
-
-  @font-face {
-    font-display: swap;
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 600;
-    src: url('../fonts/open-sans-v17-latin-600.eot'); /* IE9 Compat Modes */
-    src:
-      local('Open Sans SemiBold'),
-      local('OpenSans-SemiBold'),
-      url('../fonts/open-sans-v17-latin-600.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-      url('../fonts/open-sans-v17-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
-      url('../fonts/open-sans-v17-latin-600.woff') format('woff'), /* Modern Browsers */
-      url('../fonts/open-sans-v17-latin-600.ttf') format('truetype'), /* Safari, Android, iOS */
-      url('../fonts/open-sans-v17-latin-600.svg#OpenSans') format('svg'); /* Legacy iOS */
-  }
-
-  @font-face {
-    font-display: swap;
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 800;
-    src: url('../fonts/open-sans-v17-latin-800.eot'); /* IE9 Compat Modes */
-    src:
-      local('Open Sans ExtraBold'),
-      local('OpenSans-ExtraBold'),
-      url('../fonts/open-sans-v17-latin-800.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-      url('../fonts/open-sans-v17-latin-800.woff2') format('woff2'), /* Super Modern Browsers */
-      url('../fonts/open-sans-v17-latin-800.woff') format('woff'), /* Modern Browsers */
-      url('../fonts/open-sans-v17-latin-800.ttf') format('truetype'), /* Safari, Android, iOS */
-      url('../fonts/open-sans-v17-latin-800.svg#OpenSans') format('svg'); /* Legacy iOS */
-  }
 
   /* Defining base elements. */
 
   body {
-    background: #353535;
-    color: #fff;
+    background: #e8e8e8;
+    color: #353535;
     font-family: 'Open Sans', Arial, sans-serif;
     font-size: 16px;
     font-weight: 400;
@@ -105,68 +107,26 @@
   }
 
   ::selection {
-    background: #e29301;
+    background: #008c48;
     color: #fff;
   }
   ::-moz-selection {
-    background: #e29301;
+    background: #008c48;
     color: #fff;
-  }
-
-  noscript {
-    color: red;
-    font-weight: bold;
-  }
-
-  h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    line-height: 1rem;
-    margin: 0;
-    padding: 60px 0;
-    text-shadow: 0px 0px 20px rgba(0, 0, 0, .3);
-    word-wrap: break-word;
-  }
-
-  h2 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    line-height: 2rem;
-    margin: 0;
-    padding: 40px 0 15px 0;
-    word-wrap: break-word;
-  }
-
-  h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    line-height: 1.1rem;
-    margin: 0;
-    padding: 40px 0 15px 0;
-    word-wrap: break-word;
-  }
-
-  strong {
-    font-weight: 600;
   }
 
   a,
   a:active,
   a:focus {
-    color: #fff;
+    color: #353535;
     font-family: 'Open Sans', Arial, sans-serif;
     font-weight: 600;
     text-decoration: underline;
     touch-action: manipulation; /* saves some milliseconds, because the (mobile) device is not waiting for a second tap to check if the user wants to zoom in */
   }
-
-  a.dark_link {
-    color: #353535;
-  }
   
-  a:hover,
-  a.dark_link:hover {
-    color: #e29301;
+  a:hover {
+    color: #008c48;
     text-decoration: none;
   }
 
@@ -176,152 +136,11 @@
     margin-top: 10px;
   }
 
-  /* Mobile Adjustments */
-
-  @media only screen and (max-width: 600px) {
-
-    h1 {
-      font-size: 2.5rem;
-      line-height: 2.6rem;
-    }
-
-  }
-
 }
 
 
 
-/**
- * 2.0 - General Layout
- */
-
- #main {
-  height: 100%;
-  width: 100%;
-  
-}
-
-.area1 {
-  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#008c48+0,00602b+100 */
-  background: #008c48; /* Old browsers */
-  background: -moz-linear-gradient(top, #008c48 0%, #00602b 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #008c48 0%,#00602b 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #008c48 0%,#00602b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#008c48', endColorstr='#00602b', GradientType=0); /* IE6-9 */
-  display: block;
-  padding-bottom: 150px;
-  padding-top: 100px;
-  width: 100%;
-}
-
-.area2 {
-  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fff+0,efefef+100 */
-  background: #fff; /* Old browsers */
-  background: -moz-linear-gradient(top, #fff 0%,  #efefef 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #fff 0%, #efefef 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #fff 0%, #efefef 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#efefef', GradientType=0); /* IE6-9 */
-  box-shadow: inset 0px 50px 50px -50px rgba(0, 0, 0, .75);
-  -webkit-box-shadow: inset 0px 50px 50px -50px rgba(0, 0, 0, .75);
-  -moz-box-shadow: inset 0px 50px 50px -50px rgba(0, 0, 0, .75);
-  clip-path: polygon(0 calc(2vw), 100% 0, 100% calc(100% - 2vw), 0 100%);
-  margin-top: -3vw;
-  color: #353535;
-  display: block;
-  padding-bottom: 150px;
-  padding-top: 120px;
-  text-align: left;
-  width: 100%;
-}
-
-footer {
-  color: #ccc;
-  padding: 50px 20px;
-  font-size: .8rem;
-  font-weight: 400;
-}
-
-.footer_link {
-  color: #ccc;
-  cursor: pointer;
-  display: inline-block;
-  font-weight: 400;
-  margin: 10px 20px;
-  text-decoration: underline;
-}
-.footer_link:hover {
-  color: #e29301;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-/* Mobile Adjustments */
-
-@media only screen and (max-width: 600px) {
-
-  footer {
-    padding: 30px 10px;
-  }
-
-}
-
-
-/**
- * 3.0 - Helpers (not really needed when using TailwindCSS, but get removed by PostCSS in this case anyway)
- */
-
-.small {
-  font-size: .7rem;
-}
-
-.left {
-  text-align: left;
-}
-
-.right {
-  text-align: right;
-}
-
-.center {
-  text-align: center;
-}
-
-.space25 {
-  height: 25px;
-  display:block;
-  width: 100%;
-}
-
-.space50 {
-  height: 50px;
-  display:block;
-  width: 100%;
-}
-
-.hide {
-  font-size: 0;
-  margin: 0;
-  opacity: 0;
-  padding: 0;
-}
-
-.responsivevideo {
-  border-radius: 6px;
-  height: 0; 
-  overflow: hidden;
-  position: relative;
-  padding-bottom: 56.25%; /*16:9*/
-  padding-top: 0;
-}
-.responsivevideo iframe,
-.responsivevideo object,
-.responsivevideo embed {
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
+/* YouTube Video Integration */
 
 .youtube {
   background-color: #353535;
@@ -389,84 +208,34 @@ footer {
 	left: 0;
 }
 
-/* Mobile Adjustments */
 
-@media only screen and (max-width: 850px) {
-
-  .hide_on_tablet {
-    display: none;
-  }
-
-}
-
-@media only screen and (max-width: 600px) {
-
-  .hide_on_mobile {
-    display: none;
-  }
-
-}
-
-
-/**
- * 4.0 - Buttons and Input
- */
-
-.button, 
-.button:active,
-.button:focus {
-  background-color: #e29301;
-  border-radius: 50px;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .1);
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .1);
-  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .1);
-  color: #353535;
-  cursor: pointer;
-  display: inline-block;
-  font-family: 'Open Sans', Arial, sans-serif;
-  font-weight: 600;
-  padding: 10px 20px;
-  text-decoration: none;
-  text-shadow: none;
-}
-.button:hover {
-  background-color: #e9b75b;
-  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, .3);
-  -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, .3);
-  -moz-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, .3);
-  color: #000;
-  text-decoration: none;
-}
-
-.pseudo_link {
-  cursor: pointer;
-}
 
 /* Language Switcher */
 
 .language_switcher,
 .language_switcher:active,
 .language_switcher:focus {
-  border: 1px solid #ccc;
+  border: 1px solid;
+  border-color: inherit;
   border-radius: 6px;
-  color: #ccc;
+  color: inherit;
   display: inline-block;
-  fill: #ccc;
+  fill: inherit;
   font-weight: 400;
   margin: 10px 20px;
-  padding: 3px 8px;
+  padding: 5px 8px;
   text-decoration: none;
 }
 
 .language_switcher:hover {
-  background-color: #e9b75b;
-  border-color: #e9b75b;
+  background-color: #008c48;
+  border-color: #008c48;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .2);
   -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .2);
   -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .2);
-  color: #000;
+  color: #fff;
   cursor: pointer;
-  fill: #000;
+  fill: #fff;
   font-weight: 400;
   text-decoration: none;
 }
@@ -475,7 +244,7 @@ footer {
   display: inline-block;
   fill: inherit;
   height: 12px;
-  margin-bottom: -1px;
+  margin-bottom: 2px;
   margin-right: 6px;
   position: relative;
   width: 12px;
@@ -489,39 +258,24 @@ footer {
 }
 
 #lang_menu_overlay {
-  background-color: #353535;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  background-color: rgba(28, 28, 28, .98);
   height: 100%;
   left: 0;
-  opacity: .9;
   position: fixed;
   top: 0;
   width: 100%;
-}
-
-#lang_menu_banner {
-  background-color: #0e0e0e;
-  border-radius: 3px;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .6);
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .6);
-  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .6);
-  box-sizing: border-box;
-  color: #ccc;
-  font-size: 1.5rem;
-  left: 50%;
-  margin-left: -150px;
-  padding: 50px;
-  position: fixed;
-  text-align: center;
-  top: 20%;
-  width: 300px;
+  z-index: 998;
 }
 
 #lang_menu_close {
   cursor: pointer;
   fill: #ccc;
   position: absolute;
-  right: 15px;
-  top: 15px;
+  right: 25px;
+  top: 25px;
+  z-index: 999;
 }
 #lang_menu_close svg {
   fill: inherit;
@@ -535,75 +289,51 @@ footer {
   fill: #fff;
 }
 
+#lang_menu_banner {
+  box-sizing: border-box;
+  color: #ccc;
+  font-size: 2rem;
+  padding: 50px;
+  position: fixed;
+  text-align: left;
+  top: 50%;
+	left: 50%;
+	transform: translate3d( -50%, -50%, 0 );
+  z-index: 999;
+}
+
 .lang_menu_item,
 .lang_menu_item_active {
+  color: #818181;
   display: block;
   margin: 40px 0;
+}
+.lang_menu_item_active {
+  margin-left: -21px;
 }
 
 a.lang_menu_item,
 a.lang_menu_item:active,
 a.lang_menu_item:focus {
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  color: #ccc;
+  color: #b1b1b1;
+  font-weight: 800;
   text-decoration: none;
   outline: none;
   padding: 10px 0 15px 0;
 }
 a.lang_menu_item:hover {
-  background-color: #1f1f1f;
-  border-color: #fff;
   color: #fff;
 }
-
-.lang_menu_item_active {
-  border: 1px solid #3d3d3d;
-  border-radius: 6px;
-  -webkit-box-shadow: inset 1px 1px 15px 1px rgba(0,0,0,1);
-  -moz-box-shadow: inset 1px 1px 15px 1px rgba(0,0,0,1);
-  box-shadow: inset 1px 1px 15px 1px rgba(0,0,0,1);
-  color: #a9a9a9;
-  padding: 10px 0 15px 0;
+a.lang_menu_item svg {
+  display: inline-block;
+  opacity: 0;
+  position: relative;
+  right: 0px;
+  transition: all .1s ease-out;
+  width: 1.1em;
+  will-change: right, opacity;
 }
-
-
-
-/**
- * 5.0 - Custom Elements
- */
-
-#box_opened {
-  display: none;
-}
-
-.box_icon {
-  display: block;
-  height: 200px;
-  margin: 10px auto;
-  width: 200px;
-}
-
-#github_button {
-  height: 50px;
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  width: 50px;
-  z-index: 99;
-}
-
-#github_button img:hover {
-  opacity: .8;
-}
-
-/* Mobile Adjustments */
-
-@media only screen and (max-width: 600px) {
-
-  .box_icon {
-    height: 150px;
-    width: 150px;
-  }
-
+a.lang_menu_item:hover svg {
+  opacity: 1;
+  right: -2rem;
 }

@@ -41,8 +41,7 @@
     "url": "https://github.com/jekuer/php-microsite-boilerplate.git"
   },
   "scripts": {
-    "build": "grunt && postcss ./assets/css/style.css -o ./assets/css/style.min.css",
-    "build:dev": "grunt && npx tailwindcss -i ./assets/css/style.css -o ./assets/css/style.min.css"
+    "build": "grunt && postcss ./assets/css/style.css -o ./assets/css/style.min.css"
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^4.1.3",

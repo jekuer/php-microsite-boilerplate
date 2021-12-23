@@ -66,7 +66,7 @@ Demo: <https://phpmicrosite.jenskuerschner.de/>
 4. Building the project, hardly depends on your configuration! If you are using the TailwindCSS integration, you need to use the included build script, which requires NodeJS! If you are going plain, you can skip on that. However, not using the build scripts would also not merge and minify the css and js files. Therefore, if possible for you, it is hardly recommended. For building:
   * make sure you are within the project's root directory with your terminal.
   * run `npm install`.
-  * run `npm run build:dev` for development (will not limit/minify the TailwindCSS code) or `npm run build` for production (going minimal).
+  * run `npm run build` to let the magic happen.
   * That's it. Feel free to do this manually on your local machine and upload it to your host - or use some build pipelines at whatever tool you are using.
 
 BTW: It is recommended to use a CDN service (e.g. [Cloudflare](https://www.cloudflare.com/)) in order to speed it up even more.

@@ -57,7 +57,7 @@ Demo: <https://phpmicrosite.jenskuerschner.de/>
   * Create those pages (as specified before) as single php files within /pages. 
   * Create respective files within /controller if necessary in your case. 
   * Check the option to auto-redirect within multi-language at index.php and all.js. 
-  * Build the website with those pages, the style.css, and the all.js. Mind to minimize those files or adjust the way they get included at /templates/header.php and /templates/footer.php. 
+  * Build the website with those pages, the style.css, and the all.js. Mind to minimize those files or adjust the way they get included at /templates/header.php and /templates/footer.php. If you use the prepared build script, you do not need to worry about this part. 
   * Adjust the footer at /templates/footer.php to your needs. 
   * Find more details in the in-code documentation - it's a well documented playground!
 

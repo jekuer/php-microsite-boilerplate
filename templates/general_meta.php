@@ -67,7 +67,7 @@ foreach ($language['available'] as $lang => $lang_name) {
 <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $the_page_url; ?>assets/favicons/apple-touch-icon-180x180.png">
 <link rel="icon" type="image/png" sizes="32x32" href="<?php echo $the_page_url; ?>assets/favicons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="<?php echo $the_page_url; ?>assets/favicons/favicon-16x16.png">
-<link rel="mask-icon" href="<?php echo $the_page_url; ?>assets/favicons/safari-pinned-tab.svg" color="#323032">
+<link rel="mask-icon" href="<?php echo $the_page_url; ?>assets/favicons/safari-pinned-tab.svg" color="#008c48">
 <link rel="shortcut icon" href="<?php echo $the_page_url; ?>assets/favicons/favicon.ico">
 <meta name="msapplication-TileColor" content="<?php echo $the_theme_color; ?>">
 <meta name="msapplication-TileImage" content="<?php echo $the_page_url; ?>assets/favicons/mstile-144x144.png">

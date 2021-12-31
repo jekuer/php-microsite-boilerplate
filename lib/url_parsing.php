@@ -78,21 +78,6 @@ $full_url_parts = implode('/', $url_parts);
 $full_url_parts_prev = implode('/', $url_parts_prev);
 
 
-// Get AMP information and reset URL parts (current URL only).
-if (isset($url_parts[0]) and $url_parts[0] == 'amp') {
-  $amp = true;
-  // reset URL parts.
-  if (isset($url_parts[1])) {
-    for ($i = 1; $i < count($url_parts); $i++) {
-      $url_parts[$i - 1] = $url_parts[$i];
-      if ($i == count($url_parts) - 1) unset($url_parts[$i]);
-    }
-  } else {
-    unset($url_parts[0]);
-  }
-}
-
-
 // Get language information and reset URL parts (current URL only).
 $language['active'] = $language['default'];
 if (isset($url_parts[0])) {
@@ -114,22 +99,17 @@ if (isset($url_parts[0])) {
 }
 
 
-// Adjust URL variables for AMP and language adjustments.
-if ($amp) $the_page_url_full = $the_page_url_full . 'amp/';
-$amp_url = $the_page_url . 'amp/';
+// Adjust URL variables for language adjustments.
 if ($language['active'] != $language['default']) {
   $the_page_url_full .= $language['active'] . '/';
-  $amp_url .= $language['active'] . '/';
 }
 $the_page_url_full = filter_var($the_page_url_full, FILTER_SANITIZE_URL);
 $current_url = $the_page_url_full; // update from actual URL to the current clean one
 if (isset($url_parts[0])) {
   $current_url .= $url_parts[0] . '/';
-  $amp_url .= $url_parts[0] . '/';
 }
 if (isset($url_parts[1])) {
   $current_url .= $url_parts[1] . '/';
-  $amp_url .= $url_parts[1] . '/';
 }
 // Including query parameters is not recommended, but can be necessary in some cases.
 /*if (isset($url_query_vars) and is_array($url_query_vars) and !empty($url_query_vars)) {
@@ -141,7 +121,6 @@ if (isset($url_parts[1])) {
     $addand = 1;
   }
 }*/
-$amp_url = filter_var($amp_url, FILTER_SANITIZE_URL);
 $current_url = filter_var($current_url, FILTER_SANITIZE_URL);
 
 

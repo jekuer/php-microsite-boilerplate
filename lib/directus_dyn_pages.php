@@ -18,6 +18,9 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
 
   // Determining the query.
   $field_query = 'id';
+  // Add fields to main level, if they are always on the root level of the collection.
+  // Add them to sub level, if they are always below the root level (e.g. because they are always under translations).
+  // Add them to flex level, if the can be both, depending on the collection.
   $fields_main_level = array();
   $fields_sub_level = array();
   $fields_flex_level = array('slug', 'view', 'name', 'sitemap', 'date_updated');
@@ -55,7 +58,7 @@ foreach($directus_pages['collections'] as $key => $single_collection) {
   }
   if (isset($directus_pages['language_field'])) $field_query .= ',' . $translation_block_str . '.' . $language_field_str;
 
-  // Draw content from Directus.
+  // Pull content from Directus.
   $tmp_draw = getDirectusContent($single_collection, '', '', $directus_pages['respect_status'], $field_query);
 
   // Create pages.

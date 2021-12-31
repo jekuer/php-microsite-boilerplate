@@ -2,17 +2,19 @@
 
 (function () {
   var hostname = self.location.hostname;
+  var hostnameWithoutWWW = hostname.replace('www.','');
 
 
   // Update 'version' if you need to refresh the caches completely (necessary to update the offline page). 
   // Mind to also change the version number in the main config!
-  var version = 'v5::';
+  var version = 'v1::';
 
   // Domain whitelist. Files not served from those domains won't be cached. The domain, which serves the serviceworker is automatically included. So, only add things like your image CDN or similar.
   // Example: domainWhitelist = ["cdn.domain.com", "www2.domain.com", "analytics.otherdomain.com"]
   var domainWhitelist = [
   ];
   domainWhitelist.push(hostname);
+  domainWhitelist.push(hostnameWithoutWWW);
 
   // List of available language slugs. Start with the default one, but leave it empty! So, if you have 'en' and 'de', you would write ['', 'de'].
   var lang = ['', 'de', 'es'];
@@ -24,13 +26,14 @@
   var assetsCacheName = 'assets';
 
 
-  // Store the offline page.
+  // Store the offline and home page on install.
   var createOfflineCache = function () {
     var offlinePages = [];
     lang.forEach(function(element) {
       if (element != '') {
         element = '/' + element;
       }
+      offlinePages.push('https://' + hostname + element + '/')
       offlinePages.push('https://' + hostname + element + '/offline/')
     });
     return caches.open(version + pagesCacheName)

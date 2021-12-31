@@ -2,13 +2,14 @@ version: '3.8'
 
 services:
   php:
-    image: webdevops/php-apache:8.0-alpine
+    image: webdevops/php-apache:8.0
     container_name: microsite-boilerplate
     volumes:
       - .:/var/www/html/
     ports:
       - 80:80
       - 443:443
+    restart: always
     environment:
       WEB_DOCUMENT_ROOT: /var/www/html
       php.error_reporting: E_ALL

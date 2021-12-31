@@ -26,6 +26,52 @@ function setCookie(cname, cvalue, exdays) {
 }
 
 
+/* Managing YouTube Videos */
+// Stop all
+function stopAllIframeVideos() {
+	var iframes = document.querySelectorAll('iframe');
+  Array.prototype.forEach.call(iframes, iframe => {
+    iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'stopVideo' }), '*');
+  });
+};
+// Deferred Loading
+// Sample Element: <div class="youtube" data-embed="dQw4w9WgXcQ" data-playlist="PLi9drqWffJ9FWBo7ZVOiaVy0UQQEm4IbP" data-img="./assets/images/thumb.jpg"><div class="play-button"></div></div>
+// - data-embed holds the YouTube video URL.
+// - setting data-playlist, holding a playlist id, enables the video as a playlist, where the data-embed only defines the thumbnail.
+// - setting data-img overrides the YouTube thumb with your own image.
+function initYouTube() {
+	var youtube = document.querySelectorAll( ".youtube" );
+	for (var i = 0; i < youtube.length; i++) {
+    var source;
+    if (youtube[i].dataset.img != null) {
+      source = youtube[i].dataset.img;
+    }	 else {
+      source = "https://img.youtube.com/vi/"+ youtube[i].dataset.embed +"/hq720.jpg";
+    }
+		var image = new Image();
+      image.src = source;
+      image.alt = "";
+			image.addEventListener( "load", function() {
+				youtube[ i ].appendChild( image );
+			}( i ) );		
+			youtube[i].addEventListener( "click", function() {
+        stopAllIframeVideos();
+				var iframe = document.createElement( "iframe" );
+        iframe.setAttribute( "frameborder", "0" );
+        iframe.setAttribute( "allowfullscreen", "" );
+        iframe.setAttribute( "allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" );
+        if (this.dataset.playlist != null) {
+          iframe.setAttribute( "src", "https://www.youtube-nocookie.com/embed/?listType=playlist&list="+ this.dataset.playlist +"&enablejsapi=1&autoplay=1&rel=0&showinfo=0" );
+        } else {
+          iframe.setAttribute( "src", "https://www.youtube-nocookie.com/embed/"+ this.dataset.embed +"?enablejsapi=1&autoplay=1&rel=0&showinfo=0" );
+        }
+        this.innerHTML = "<span>Loading...</span>";
+        this.appendChild( iframe );
+			} );	
+	};	
+};
+
+
 // Check for initial language via cookie or browser language.
 function adjustLanguage() {
   var languageCookie = getCookie('language_select');
@@ -66,25 +112,13 @@ function adjustLanguage() {
   }
 }
 
-
-// Some simple stupid code for playing with the box icon.
-function openIt() {
-  document.getElementById("box_closed").style.display = "none";
-  document.getElementById("box_opened").style.display = "block";
-}
-function closeIt() {
-  document.getElementById("box_closed").style.display = "block";
-  document.getElementById("box_opened").style.display = "none";
-}
-document.getElementById("open_box").addEventListener("click", openIt);
-document.getElementById("close_box").addEventListener("click", closeIt);
-
-
 // run on load.
 function runOnStart() {
   // Adjust Language
-  // Optional. Use this as JS alternative for the php version within the index.php.
+  // Check for initial language via cookie or browser language and redirect automatically. The JavaScript alternative for the php version within the index.php.
   adjustLanguage();
+  // Init lazy load YouTube videos.
+  initYouTube();
 }
 
 runOnStart();

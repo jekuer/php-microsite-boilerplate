@@ -1,6 +1,5 @@
 ﻿deploy.php
 node_modules/
-*.map
 
 # Visual Studio Code from https://github.com/github/gitignore/blob/master/Global/VisualStudioCode.gitignore
 # Adjust to your needs.

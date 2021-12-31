@@ -10,14 +10,13 @@
 
 <!-- Crawler Meta -->
 <meta name="robots" content="<?php echo $the_page->robots; ?>">
-<link rel="canonical" href="<?php echo str_replace('amp/', '', $current_url); ?>">
+<link rel="canonical" href="<?php echo $current_url; ?>">
 
 <!-- Multilanguage Meta -->
 <?php
 foreach ($language['available'] as $lang => $lang_name) {
   if (isset($pages[$lang][$the_page->id])) {
     $language_url = $the_page_url;
-    if ($amp) $language_url .= 'amp/';
     if ($lang != $language['default']) $language_url .= $lang . '/';
     if ($the_page->slug != 'main') {
       if (isset($pages[$lang][$the_page->id]['slug']) and $pages[$lang][$the_page->id]['slug'] != '') {
@@ -54,7 +53,7 @@ foreach ($language['available'] as $lang => $lang_name) {
 <?php } ?>
 
 <!-- Favicons -->
-<!-- Mind to also adjust webmanifest and browserconfig.xml ! -->
+<!-- Mind to also adjust manifest.json and browserconfig.xml ! -->
 <!-- Generate your favicon set via https://realfavicongenerator.net/ -->
 <!-- Mind to not only exchange the favicons in /assets/favicons, but also the favicon.ico at root level! -->
 <link rel="apple-touch-icon" sizes="57x57" href="<?php echo $the_page_url; ?>assets/favicons/apple-touch-icon-57x57.png">
@@ -68,7 +67,7 @@ foreach ($language['available'] as $lang => $lang_name) {
 <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $the_page_url; ?>assets/favicons/apple-touch-icon-180x180.png">
 <link rel="icon" type="image/png" sizes="32x32" href="<?php echo $the_page_url; ?>assets/favicons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="<?php echo $the_page_url; ?>assets/favicons/favicon-16x16.png">
-<link rel="mask-icon" href="<?php echo $the_page_url; ?>assets/favicons/safari-pinned-tab.svg" color="#323032">
+<link rel="mask-icon" href="<?php echo $the_page_url; ?>assets/favicons/safari-pinned-tab.svg" color="#008c48">
 <link rel="shortcut icon" href="<?php echo $the_page_url; ?>assets/favicons/favicon.ico">
 <meta name="msapplication-TileColor" content="<?php echo $the_theme_color; ?>">
 <meta name="msapplication-TileImage" content="<?php echo $the_page_url; ?>assets/favicons/mstile-144x144.png">
@@ -77,7 +76,7 @@ foreach ($language['available'] as $lang => $lang_name) {
 <!-- PWA Meta -->
 <?php if ($the_webapp_status) { ?>
 <meta name="mobile-web-app-capable" content="yes">
-<link rel="manifest" href="<?php echo $the_page_url; ?>manifest.webmanifest" crossOrigin="use-credentials">
+<link rel="manifest" href="<?php echo $the_page_url; ?>manifest.json" crossOrigin="use-credentials">
 <meta name="theme-color" content="<?php echo $the_theme_color; ?>">
 <meta name="apple-mobile-web-app-title" content="<?php echo $the_webapp_name; ?>">
 <meta name="application-name" content="<?php echo $the_webapp_name; ?>">

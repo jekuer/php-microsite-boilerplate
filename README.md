@@ -1,6 +1,6 @@
 # PHP Microsite Boilerplate
 
-[![pagespeed-100](https://img.shields.io/badge/Lighthouse%20PageSpeed-100-success.svg)](https://developers.google.com/speed/pagespeed/insights/?url=https://phpmicrosite.jenskuerschner.de)
+[![pagespeed-100](https://img.shields.io/badge/Lighthouse%20PageSpeed-100-success.svg)](https://pagespeed.web.dev/report?utm_source=psi&utm_medium=redirect&url=https://phpmicrosite.jenskuerschner.de)
 [![pwa-valid](https://img.shields.io/badge/PWA-valid-success.svg)](https://phpmicrosite.jenskuerschner.de/)
 [![w3c-css-valid](https://img.shields.io/badge/W3C%20CSS-valid-success.svg)](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fphpmicrosite.jenskuerschner.de%2F&profile=css3svg&usermedium=all)
 [![LICENSE](https://img.shields.io/badge/license-GPL%203.0-blue.svg)](https://github.com/jekuer/php-microsite-boilerplate/blob/master/LICENSE.txt)

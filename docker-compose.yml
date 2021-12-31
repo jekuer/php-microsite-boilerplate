@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   php:
-    image: webdevops/php-apache:8.0-alpine
+    image: webdevops/php-apache:8.0
     container_name: microsite-boilerplate
     volumes:
       - .:/var/www/html/

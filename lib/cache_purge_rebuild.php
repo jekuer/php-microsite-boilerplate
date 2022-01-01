@@ -17,7 +17,7 @@ if ($page_slug == 'purge/directus_cache') {
   if ($_SERVER['REQUEST_METHOD'] === 'GET' and $random_cache_code == $provided_cache_code) {
 
     // First: Purge.
-    $limiter = array(); // use the query param "limit" to provide a comma separated list of strings, if you only want to purge specific files. If provided, only files, which contain on of the strings in their filename get purged.
+    $limiter = array(); // use the query param "limit" to provide a comma separated list of strings, if you only want to purge specific files. If provided, only files, which contain (so, you do not need to mind the whole file name) one of the strings in their filename get purged.
     if (isset($url_query_vars['limit'])) {
       $url_query_vars['limit'] = make_safe($url_query_vars['limit']);
       $limiter = explode(',', $url_query_vars['limit']);

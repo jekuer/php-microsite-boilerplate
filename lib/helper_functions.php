@@ -21,7 +21,7 @@ function create_language_switcher($page_id) {
     $translated_pages_count++;
     if ($lang != $language['active']) $goto_lang = $lang;
     if ($lang == $language['active']) {
-      $lang_menu .= '<span class="lang_menu_item_active">&#8226; ' . $lang_name . '</span>';
+      $lang_menu .= '<span class="lang_menu_item_active">' . $lang_name . '</span>';
     } else {
       if (isset($pages[$lang][$page_id]['slug']) and $pages[$lang][$page_id]['slug'] != '') {
         $slug = $pages[$lang][$page_id]['slug'];
@@ -182,7 +182,7 @@ function checkEmail($email = '') {
 
 
 function ob_html_compress($buffer) {
-  return preg_replace(array('/<!--(.*)-->/Uis',"/[[:blank:]]+/"),array('',' '),str_replace(array("\n","\r","\t"),'',$buffer));
+  return preg_replace(array('/<!--(.*)-->/Uis',"/[[:blank:]]+/"),array('',' '),$buffer);
 }
 
 ?>

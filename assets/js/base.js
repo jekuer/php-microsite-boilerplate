@@ -25,6 +25,14 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
+// Scroll to Section.
+function scrollToSection(targetId) {
+  document.getElementById(targetId).scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+  })
+}
+
 
 /* Managing YouTube Videos */
 // Stop all

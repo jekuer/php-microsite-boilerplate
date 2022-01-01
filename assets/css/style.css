@@ -3,7 +3,7 @@
  * PHP Microsite Boilerplate
  * +++++++++++++++++++++++++
  * 
- * Version: 2.0.0
+ * Version: 2.0.1
  * Creator: Jens Kuerschner (https://jenskuerschner.de)
  * Project: https://github.com/jekuer/php-microsite-boilerplate
  * License: GNU General Public License v3.0	(gpl-3.0)
@@ -225,6 +225,7 @@
   margin: 10px 20px;
   padding: 5px 8px;
   text-decoration: none;
+  user-select: none;
 }
 
 .language_switcher:hover {
@@ -272,7 +273,7 @@
 #lang_menu_close {
   cursor: pointer;
   fill: #ccc;
-  position: absolute;
+  position: fixed;
   right: 25px;
   top: 25px;
   z-index: 999;
@@ -293,7 +294,7 @@
   box-sizing: border-box;
   color: #ccc;
   font-size: 2rem;
-  padding: 50px;
+  padding: 50px 10px;
   position: fixed;
   text-align: left;
   top: 50%;
@@ -304,12 +305,11 @@
 
 .lang_menu_item,
 .lang_menu_item_active {
-  color: #818181;
+  color: #666666;
   display: block;
   margin: 40px 0;
-}
-.lang_menu_item_active {
-  margin-left: -21px;
+  padding: 10px 0 15px 0;
+  user-select: none;
 }
 
 a.lang_menu_item,
@@ -319,7 +319,6 @@ a.lang_menu_item:focus {
   font-weight: 800;
   text-decoration: none;
   outline: none;
-  padding: 10px 0 15px 0;
 }
 a.lang_menu_item:hover {
   color: #fff;

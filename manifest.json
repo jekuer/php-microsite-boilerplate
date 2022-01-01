@@ -1,6 +1,7 @@
 {
   "name": "Put your webapp name here",
   "short_name": "And the shorter version here",
+  "description": "And a description here - but this is optional - you can also keep it empty",
   "icons": [
     {
       "src": "/assets/favicons/android-chrome-192x192.png",
@@ -24,11 +25,12 @@
       "src": "/assets/favicons/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
     }
   ],
   "start_url": "/?utm_source=homescreen",
   "theme_color": "#008c48",
   "background_color": "#008c48",
-  "display": "standalone"
+  "display": "standalone",
+  "scope": "/"
 }

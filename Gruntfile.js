@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     paths: {
       src: {
-        js: 'assets/js/*.js',
+        js: 'assets/js/*.js', // mind that files get combined in alphabetical order
         swcache: 'serviceworker-cache.js'
       },
       dest: {

@@ -1,7 +1,7 @@
 # Changelog
 
 ## Version 2
-### 2.0.0
+### 2.0.x
 - major updates to the code base (+ a lot of bug fixes).
 - removing AMP functionality (due to the note by Google to no longer push AMP pages and since the included caching solution is almost as fast without the downsides).
 - adding TailwindCSS support (as optional feature).

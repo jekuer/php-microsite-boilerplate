@@ -7,7 +7,7 @@
 */
 
 module.exports = {
-  content: ['./templates/*.php', './pages/*.php', './lib/*.php', './assets/js/*.js'],
+  content: ['./templates/*.php', './pages/*.php', './lib/*.php', './assets/js/*.js'], // update, if you add other sources for CSS selectors (and also add them at the postcss.config.js)
   darkMode: 'media', // or 'class'
   theme: {
     extend: { // within the extend block, you can add items to the default. Below, you would override the default.

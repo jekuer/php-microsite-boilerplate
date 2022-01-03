@@ -3,7 +3,7 @@
  * PHP Microsite Boilerplate
  * +++++++++++++++++++++++++
  * 
- * Version: 2.0.1
+ * Version: 2.0.2
  * Creator: Jens Kuerschner (https://jenskuerschner.de)
  * Project: https://github.com/jekuer/php-microsite-boilerplate
  * License: GNU General Public License v3.0	(gpl-3.0)
@@ -308,8 +308,10 @@
   color: #666666;
   display: block;
   margin: 40px 0;
-  padding: 10px 0 15px 0;
+  padding: 10px 40px 15px;
   user-select: none;
+  white-space: nowrap;
+  overflow-x: hidden;
 }
 
 a.lang_menu_item,

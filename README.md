@@ -61,7 +61,7 @@ Demo: <https://phpmicrosite.jenskuerschner.de/>
   * Adjust the footer at /templates/footer.php to your needs. 
   * Find more details in the in-code documentation - it's a well documented playground!
 
-3. That is basically it regarding adjustments. You can find a more detailed sample setup guide [at the corresponding Medium blog post here](https://medium.com/@jenskuerschner/build-a-kick-ass-php-microsite-in-under-3h-f21b27b904d2).
+3. That is basically it regarding adjustments. You can find a more detailed sample setup guide [at the corresponding Medium blog post here](https://jenskuerschner.medium.com/build-a-kick-ass-php-microsite-in-under-4h-f21b27b904d2).
 
 4. Building the project, hardly depends on your configuration! If you are using the TailwindCSS integration, you need to use the included build script, which requires NodeJS! If you are going plain, you can skip on that. However, not using the build scripts would also not merge and minify the css and js files. Therefore, if possible for you, it is hardly recommended. For building:
   * make sure you are within the project's root directory with your terminal.

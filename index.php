@@ -91,7 +91,7 @@ if ($directus_url != '' and isset($directus_pages['collections']) and !empty($di
 if ($page_slug == $the_deployment_slug) {
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include_once $the_deployment_script;
-    die();
+    exit();
   } else {
     http_response_code(400);
     $page_slug = 'error';
@@ -104,7 +104,7 @@ if ($page_slug == 'sitemap.xml') {
   require_once './lib/sitemap_generator.php';
   header('Content-Type: application/xml');
   echo generate_sitemap();
-  die();
+  exit();
 }
 
 
@@ -131,7 +131,7 @@ $the_page = new Page($page_slug, $pages[$language['active']], $the_page_meta_def
           $lang_redirect_url .= $tmp_slug . '/';
         }
         header('Location: ' . $lang_redirect_url, true, 307);
-        die();
+        exit();
       }
     } else {
       // Update cookie.
@@ -161,7 +161,7 @@ if ($the_page->id == 'error') {
   if (isset($redirects[$full_url_parts]['target']) and $redirects[$full_url_parts]['target'] != '') {
     if (!isset($redirects[$full_url_parts]['type']) or $redirects[$full_url_parts]['type'] == '') $redirects[$full_url_parts]['type'] = 301;
     header('Location: ' . $redirects[$full_url_parts]['target'], true, $redirects[$full_url_parts]['type']);
-    die();
+    exit();
   }
 }
 

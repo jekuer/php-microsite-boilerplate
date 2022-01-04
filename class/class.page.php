@@ -105,7 +105,7 @@ class Page {
       // Check for redirect.
       if (isset($curr_page['redirect']) and $curr_page['redirect'] != '') {
         header('Location: ' . $curr_page['redirect'], true, 301);
-        die();
+        exit();
       }
       // Mind a potential alias.
       if (isset($curr_page['alias']) and $curr_page['alias'] != '') {

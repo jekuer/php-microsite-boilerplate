@@ -42,7 +42,7 @@ $url_query_vars = array();
 if (isset($_SERVER['REQUEST_URI'])) {
   $url_parts_all = parse_the_url($current_url);
 } else {
-    die();
+    exit();
 }
 foreach ($url_parts_all['call_parts'] as $call_part) {
   if ($call_part != '') $url_parts[] = make_safe($call_part);

@@ -30,7 +30,11 @@
     <?php include_once './templates/general_meta.php'; ?>
 
     <!-- Preconnect to other servers/domains -->
-    <link rel="preconnect" href="https:///www.googletagmanager.com" crossorigin>
+    <?php
+    if ($the_gtm_id != '') {
+      echo '<link rel="preconnect" href="https:///www.googletagmanager.com" crossorigin>';
+    }
+    ?>
 
     <!-- Preload fonts (optional, only .woff2 recommended) -->
     <link rel="preload" href="./assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin>

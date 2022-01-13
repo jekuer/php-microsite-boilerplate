@@ -43,7 +43,7 @@
 
     <!-- CSS -->
     <!-- Add more files, if needed, but try to consolidate it into one for better performance -->
-    <link rel="stylesheet" href="./assets/css/style.min.css<?php echo '?v='.$version_nr; ?>">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.min.css<?php echo '?v='.$version_nr; ?>">
     <!-- Use the TailwindCSS Play CDN, if you need to play around on a local setup - do not use this in production! -->
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 

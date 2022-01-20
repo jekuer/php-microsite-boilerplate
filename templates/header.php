@@ -36,7 +36,7 @@
     }
     ?>
 
-    <!-- Preload fonts (optional, only .woff2 recommended) -->
+    <!-- Preload fonts (optional, only .woff2 and only the ones you use above the fold recommended) -->
     <link rel="preload" href="./assets/fonts/open-sans-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./assets/fonts/open-sans-v17-latin-600.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="./assets/fonts/open-sans-v17-latin-800.woff2" as="font" type="font/woff2" crossorigin>

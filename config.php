@@ -47,7 +47,7 @@ $random_cache_code = ''; // Consider changing this code to any alpha-numeric phr
 
 // Base URL of your microsite.
 $the_page_url = 'https://YOURDOMAIN.com/';
-// $the_page_url = '/'; (use this for localhost dev/tests via Docker)
+// $the_page_url = '/'; // (use this for localhost dev/tests via Docker)
 
 // PWA settings.
 $the_webapp_name = 'Put the name for the webapp here'; // Mind manifest.json too.

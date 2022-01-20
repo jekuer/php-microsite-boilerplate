@@ -6,7 +6,7 @@ header("X-Frame-Options: sameorigin");
 header("X-XSS-Protection: 1; mode=block");
 header("X-Content-Type-Options: nosniff");
 header("Strict-Transport-Security: max-age=31536000; includeSubDomains");
-header("Referrer-Policy: no-referrer-when-downgrade");
+header("Referrer-Policy: strict-origin-when-cross-origin");
 header("Access-Control-Allow-Origin: ". $the_page_url);
 // Adjust to your needs. GET should be enough for simple landingpages. Sometimes, you might need 'GET, POST'.
 header("Access-Control-Allow-Methods: GET");

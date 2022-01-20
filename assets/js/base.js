@@ -87,8 +87,11 @@ function adjustLanguage() {
   if (activeLanguage != null && activeLanguage != '') {
     if (languageCookie != null && languageCookie != '') {
       if (languageCookie != activeLanguage) {
-        if (document.referrer.indexOf(window.location.host) === -1) {
-          // Redirect if possible.
+        if (document.getElementById('same_site_referrer').innerHTML === '1') {
+          // Update cookie if on same domain.
+          setCookie('language_select', activeLanguage, 30);          
+        } else {
+          // Redirect if not and possible.
           var linkToLanguage_lookup = document.querySelector('link[hreflang="'+languageCookie+'"]');
           if (linkToLanguage_lookup != null && linkToLanguage_lookup != '') {
             var linkToLanguage = linkToLanguage_lookup.href;
@@ -96,9 +99,6 @@ function adjustLanguage() {
               window.location = linkToLanguage;
             }
           }
-        } else {
-          // Update cookie.
-          setCookie('language_select', activeLanguage, 30);
         }
       }
     } else {
@@ -106,7 +106,7 @@ function adjustLanguage() {
       setCookie('language_select', activeLanguage, 30);
       var browserLanguage = navigator.language || navigator.userLanguage;
       browserLanguage = browserLanguage.substring(0, 1);
-      if (document.referrer.indexOf(window.location.host) === -1 && browserLanguage != null && browserLanguage != '' && browserLanguage != activeLanguage) {
+      if (document.getElementById('same_site_referrer').innerHTML !== '1' && browserLanguage != null && browserLanguage != '' && browserLanguage != activeLanguage) {
         var linkToLanguage = document.querySelector('link[hreflang="'+browserLanguage+'"]');
         if (linkToLanguage !== null && linkToLanguage !== undefined && linkToLanguage != '') {
           linkToLanguage = linkToLanguage.href;

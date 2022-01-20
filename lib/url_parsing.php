@@ -54,11 +54,13 @@ foreach ($url_parts_all['query_vars'] as $key => $value) {
 $url_parts_all_prev = array();
 $url_parts_prev = array();
 $prev_url_to_parse = '';
+$same_site_referrer = false;
 if (isset($_SERVER['HTTP_REFERER'])) {
   $prev_url_to_parse = filter_var($_SERVER['HTTP_REFERER'], FILTER_SANITIZE_URL);
   $prev_url_to_parse_arr = parse_url($prev_url_to_parse);
   if (isset($prev_url_to_parse_arr['host']) and isset($_SERVER['HTTP_HOST'])) {
     if ($_SERVER['HTTP_HOST'] == $prev_url_to_parse_arr['host'] and isset($prev_url_to_parse_arr['path'])) {
+      $same_site_referrer = true;
       $prev_url_to_parse = $prev_url_to_parse_arr['path'];
       $url_parts_all_prev = parse_the_url($prev_url_to_parse);
     } else {

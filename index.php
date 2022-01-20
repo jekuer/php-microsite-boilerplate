@@ -5,7 +5,7 @@
  * PHP Microsite Boilerplate
  * +++++++++++++++++++++++++
  * 
- * Version: 2.0.6
+ * Version: 2.0.7
  * Creator: Jens Kuerschner (https://jenskuerschner.de)
  * Project: https://github.com/jekuer/php-microsite-boilerplate
  * License: GNU General Public License v3.0	(gpl-3.0)
@@ -117,7 +117,7 @@ $the_page = new Page($page_slug, $pages[$language['active']], $the_page_meta_def
 /*if (isset($_COOKIE['language_select'])) {
   $cookie_lang = make_safe($_COOKIE['language_select']);
   if ($cookie_lang != $language['active']) {
-    if ($prev_url_to_parse == '') {
+    if ($same_site_referrer == false) {
       // Redirect if possible.
       if (isset($pages[$cookie_lang][$the_page->id])) {
         $lang_redirect_url = $the_page_url;
@@ -145,7 +145,7 @@ $the_page = new Page($page_slug, $pages[$language['active']], $the_page_meta_def
   setcookie('language_select', $language['active'], time() + (86400 * 30), "/", $tmp_domain); // 86400 = 1 day.
   // Compare to browser language.
   $browser_lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-  if ($prev_url_to_parse == '' and $browser_lang != $language['active']) {
+  if ($same_site_referrer = false and $browser_lang != $language['active']) {
     if (isset($pages[$browser_lang][$the_page->id])) {
       // This indicates that the user is new to the page and his browser language could be supported by one of the translations.
       // You could now offer him a redirect or highlight the language switcher.

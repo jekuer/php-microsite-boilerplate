@@ -49,6 +49,7 @@
 
   </head>
   <body itemscope itemtype="http://schema.org/WebSite">
+    <?php echo '<div id="same_site_referrer" style="display:none;">' . $same_site_referrer . '</div>' // a workaround to have the referrer domain even, if Firefox does not support it ?>
     
     <!-- Google Tag Manager (noscript) -->
     <?php

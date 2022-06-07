@@ -1,6 +1,6 @@
 {
   "name": "php-microsite-boilerplate",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "An extremely simple and lightweight PHP framework/boilerplate to spin-up microsites at high speed. Optimized for Performance, Security, SEO, and Directus CMS.",
   "keywords": [
     "css",

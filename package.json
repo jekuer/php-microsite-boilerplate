@@ -1,6 +1,6 @@
 {
   "name": "php-microsite-boilerplate",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "description": "An extremely simple and lightweight PHP framework/boilerplate to spin-up microsites at high speed. Optimized for Performance, Security, SEO, and Directus CMS.",
   "keywords": [
     "css",
@@ -44,19 +44,19 @@
     "build": "grunt && postcss ./assets/css/style.css -o ./assets/css/style.min.css"
   },
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^4.1.3",
-    "@tailwindcss/forms": "^0.4.0",
-    "acorn": "^8.4.1",
-    "autoprefixer": "^10.3.1",
-    "cssnano": "^5.0.14",
+    "@fullhuman/postcss-purgecss": "^5.0.0",
+    "@tailwindcss/forms": "^0.5.3",
+    "acorn": "^8.8.1",
+    "autoprefixer": "^10.4.13",
+    "cssnano": "^5.1.14",
     "grunt": "^1.5.3",
-    "grunt-contrib-clean": "^2.0.0",
-    "grunt-contrib-uglify": "^5.0.1",
-    "postcss": "^8.4.5",
-    "postcss-cli": "^9.1.0",
-    "postcss-import": "^14.0.2",
-    "postcss-nesting": "^10.1.1",
-    "tailwindcss": "^3.0.7"
+    "grunt-contrib-clean": "^2.0.1",
+    "grunt-contrib-uglify": "^5.2.2",
+    "postcss": "^8.4.19",
+    "postcss-cli": "^10.0.0",
+    "postcss-import": "^15.0.0",
+    "postcss-nesting": "^10.2.0",
+    "tailwindcss": "^3.2.4"
   },
   "browserslist": "last 3 years"
 }

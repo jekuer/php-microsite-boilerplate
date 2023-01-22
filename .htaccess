@@ -7,7 +7,7 @@
   Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
   # Put your domain here (or your wildcard *, if you experience any problems)
-  Header set Access-Control-Allow-Origin "https://YOURDOMAIN.com/"
+  Header set Access-Control-Allow-Origin "https://infinite-monkey.co.za/"
   # Adjust to your needs. GET should be enough for simple landingpages. Sometimes, you might need 'GET, POST'.
   Header set Access-Control-Allow-Methods "GET"
   # Be careful here. Enabling it limits you on what third-party tools you can include on your page. The provided configuration is only an example.
@@ -280,7 +280,7 @@ RedirectMatch 404 ^(.*\/)?\.git+
   RewriteEngine on
   RewriteCond %{HTTP_REFERER} !^$
   # Adjust the regex accordingly, if you want to allow for other subdomains
-  RewriteCond %{HTTP_REFERER} !^https://(www.|test.|)(localhost|YOURDOMAIN\.com)(/.*)?$ [NC]
+  RewriteCond %{HTTP_REFERER} !^https://(www.|test.|)(localhost|infinite\-monkey\.co\.za)(/.*)?$ [NC]
   # Exclude specific directories or files from the restriction (e.g. to make them available within emails)
   # RewriteCond %{REQUEST_URI} !^(.*)email_logo\.png [NC]
   # RewriteCond %{REQUEST_URI} !^(.*)\/opendirectory\/(.*) [NC]

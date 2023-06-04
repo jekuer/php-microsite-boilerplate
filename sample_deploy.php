@@ -26,7 +26,7 @@
 		// Run the commands for output		
 		foreach($commands as $command){
 			$tmp = shell_exec($command);
-			$output .= "\${$command}\n";
+			$output .= "\$" . $command . "\n";
 			$output .= htmlentities(trim($tmp)) . "\n";
 		}
 

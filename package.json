@@ -1,6 +1,6 @@
 {
   "name": "php-microsite-boilerplate",
-  "version": "2.0.13",
+  "version": "2.0.14",
   "description": "An extremely simple and lightweight PHP framework/boilerplate to spin-up microsites at high speed. Optimized for Performance, Security, SEO, and Directus CMS.",
   "keywords": [
     "css",
@@ -27,10 +27,10 @@
     "postcss",
     "webpack"
   ],
-  "homepage": "https://phpmicrosite.jenskuerschner.de/",
+  "homepage": "https://phpmicrosite.jekuer.com/",
   "author": {
     "name": "Jens Kuerschner",
-    "url": "https://jenskuerschner.de/"
+    "url": "https://jekuer.com/"
   },
   "bugs": {
     "url": "https://github.com/jekuer/php-microsite-boilerplate/issues"
@@ -44,19 +44,19 @@
     "build": "grunt && postcss ./assets/css/style.css -o ./assets/css/style.min.css"
   },
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^5.0.0",
-    "@tailwindcss/forms": "^0.5.3",
-    "acorn": "^8.8.2",
-    "autoprefixer": "^10.4.14",
-    "cssnano": "^6.0.1",
+    "@fullhuman/postcss-purgecss": "^7.0.2",
+    "@tailwindcss/forms": "^0.5.9",
+    "acorn": "^8.14.0",
+    "autoprefixer": "^10.4.20",
+    "cssnano": "^7.0.6",
     "grunt": "^1.6.1",
     "grunt-contrib-clean": "^2.0.1",
     "grunt-contrib-uglify": "^5.2.2",
-    "postcss": "^8.4.31",
-    "postcss-cli": "^10.1.0",
-    "postcss-import": "^15.1.0",
-    "postcss-nesting": "^11.2.2",
-    "tailwindcss": "^3.3.2"
+    "postcss": "^8.4.49",
+    "postcss-cli": "^11.0.0",
+    "postcss-import": "^16.1.0",
+    "postcss-nesting": "^13.0.1",
+    "tailwindcss": "^3.4.17"
   },
   "browserslist": "last 3 years"
 }

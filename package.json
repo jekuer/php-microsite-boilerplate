@@ -1,6 +1,6 @@
 {
   "name": "php-microsite-boilerplate",
-  "version": "2.0.14",
+  "version": "2.0.15",
   "description": "An extremely simple and lightweight PHP framework/boilerplate to spin-up microsites at high speed. Optimized for Performance, Security, SEO, and Directus CMS.",
   "keywords": [
     "css",
@@ -46,16 +46,16 @@
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^7.0.2",
     "@tailwindcss/forms": "^0.5.9",
-    "acorn": "^8.14.0",
-    "autoprefixer": "^10.4.20",
-    "cssnano": "^7.0.6",
+    "acorn": "^8.15.0",
+    "autoprefixer": "^10.4.21",
+    "cssnano": "^7.1.0",
     "grunt": "^1.6.1",
     "grunt-contrib-clean": "^2.0.1",
     "grunt-contrib-uglify": "^5.2.2",
-    "postcss": "^8.4.49",
-    "postcss-cli": "^11.0.0",
-    "postcss-import": "^16.1.0",
-    "postcss-nesting": "^13.0.1",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "postcss-import": "^16.1.1",
+    "postcss-nesting": "^13.0.2",
     "tailwindcss": "^3.4.17"
   },
   "browserslist": "last 3 years"

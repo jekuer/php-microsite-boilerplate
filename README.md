@@ -1,8 +1,8 @@
 # PHP Microsite Boilerplate
 
-[![pagespeed-100](https://img.shields.io/badge/Lighthouse%20PageSpeed-100-success.svg)](https://pagespeed.web.dev/report?utm_source=psi&utm_medium=redirect&url=https://phpmicrosite.jenskuerschner.de)
-[![pwa-valid](https://img.shields.io/badge/PWA-valid-success.svg)](https://phpmicrosite.jenskuerschner.de/)
-[![w3c-css-valid](https://img.shields.io/badge/W3C%20CSS-valid-success.svg)](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fphpmicrosite.jenskuerschner.de%2F&profile=css3svg&usermedium=all)
+[![pagespeed-100](https://img.shields.io/badge/Lighthouse%20PageSpeed-100-success.svg)](https://pagespeed.web.dev/report?utm_source=psi&utm_medium=redirect&url=https://phpmicrosite.jekuer.com)
+[![pwa-valid](https://img.shields.io/badge/PWA-valid-success.svg)](https://phpmicrosite.jekuer.com/)
+[![w3c-css-valid](https://img.shields.io/badge/W3C%20CSS-valid-success.svg)](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fphpmicrosite.jekuer.com%2F&profile=css3svg&usermedium=all)
 [![LICENSE](https://img.shields.io/badge/license-GPL%203.0-blue.svg)](https://github.com/jekuer/php-microsite-boilerplate/blob/master/LICENSE.txt)
 [![github-stars-image](https://img.shields.io/github/stars/jekuer/php-microsite-boilerplate.svg?label=github%20stars)](https://github.com/jekuer/php-microsite-boilerplate)
 
@@ -20,7 +20,7 @@ This project wants to provide you with a framework and template for this exact c
 * You need to get it done fast, while you do not want to make compromises regarding security or performance.
 * You therefore do not care about clean code a lot ;).
 
-Demo: <https://phpmicrosite.jenskuerschner.de/>
+Demo: <https://phpmicrosite.jekuer.com/>
 
 ## Key Features
 

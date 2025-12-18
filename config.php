@@ -6,7 +6,7 @@
 
 // Current version of the website.
 // Will be used to control css and js caching.
-$version_nr = '2.0.15';
+$version_nr = '2.0.16';
 
 // Multilanguage
 $language['default'] = 'en'; // Use a key from the array below.

@@ -6,6 +6,15 @@
 [![LICENSE](https://img.shields.io/badge/license-GPL%203.0-blue.svg)](https://github.com/jekuer/php-microsite-boilerplate/blob/master/LICENSE.txt)
 [![github-stars-image](https://img.shields.io/github/stars/jekuer/php-microsite-boilerplate.svg?label=github%20stars)](https://github.com/jekuer/php-microsite-boilerplate)
 
+> [!CAUTION]
+> 🪦 This project has reached the end of its lifecycle!  
+> PHP is hard to defend for small websites and landingpages. There are way better options out there and I am not talking about React! The world has moved on, backing modern technology into the fundamentals of the world wide web.  
+> Check my new ["Astro Stardrive Boilerplate"](https://github.com/Peltmonger/stardrive) project for a solution that really makes a lot of sense to power those kind of pages. Happy launching! 🚀
+
+<br />
+
+<br />
+
 _PHP Microsite Boilerplate_ is a PHP framework to create simple, yet strongly functional, fast, and secure websites on basically every environment.
 
 Most frameworks and even boilerplates require an exhausting setup process, where you need to install multiple dependencies. 

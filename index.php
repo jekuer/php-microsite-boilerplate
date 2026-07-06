@@ -5,8 +5,8 @@
  * PHP Microsite Boilerplate
  * +++++++++++++++++++++++++
  * 
- * Version: 2.0.16
- * Creator: Jens Kuerschner (https://jekuer.com
+ * Version: 2.0.17
+ * Creator: Jens Kuerschner (https://jekuer.com)
  * Project: https://github.com/jekuer/php-microsite-boilerplate
  * License: GNU General Public License v3.0	(gpl-3.0)
  */
